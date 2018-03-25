@@ -1,0 +1,42 @@
+{
+  "pages":[
+    "pages/sell/index",
+    "pages/sell/cart/cart",
+    "pages/sell/mine/mine",
+    "pages/order/cert/cert",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "公寓鲜",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "color": "#dddddd",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/sell/index",
+        "iconPath": "images/mealNormal.png",
+        "selectedIconPath": "images/mealSelect.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/sell/cart/cart",
+        "iconPath": "images/orderListNormal.png",
+        "selectedIconPath": "images/orderListSelect.png",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/sell/mine/mine",
+        "iconPath": "images/myNormal.png",
+        "selectedIconPath": "images/mySelect.png",
+        "text": "我的"
+      }
+    ]
+  }
+
+}

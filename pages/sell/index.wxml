@@ -1,0 +1,60 @@
+<view class="index">
+  <view class="nav-tab-wrp">
+    <view style='text-align: center;'>
+      <text>定位</text>
+    </view>
+    <scroll-view scroll-x style="width:auto; overflow:hidden;">
+      <view class="item_list" wx:for="{{menus}}" wx:key="{{menus.categoryId}}" wx:for-item="menu">
+        <view bindtap='selectMenu' data-categoryid='{{menu.categoryId}}'>
+          <text class="m-item-title">{{menu.categoryName}}</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <view class="menu-wrp">
+    <scroll-view scroll-y="true" scroll-into-view="{{toView}}" class="right-side">
+      <view class="dish-header"></view>
+      <block wx:for="{{smallCategories}}" wx:key="id" wx:for-item="smallCategory">
+        <view>
+          <view id="{{smallCategory.smallCategoryId}}" class="dish-category-title">{{smallCategory.smallCategoryName}}</view>
+          <block wx:for="{{smallCategory.productInfos}}" wx:key="id" wx:for-item="product">
+            <view class="dish-item">
+              <view class="dish-item-wrp">
+                <view class="dish-item-pic">
+                  <image class="image" src="{{product.productIcon}}" />
+                </view>
+                <view class="dish-item-info" style="">
+                  <view>
+                    <text class="dish-item-name">{{product.productName}}</text>
+                  </view>
+                  <view>
+                    <text class="dish-item-sales">月销量{{product.productSales}}</text>
+                  </view>
+                  <view>
+                    <text class="dish-item-money">¥{{product.productPrice}}</text>
+                  </view>
+                </view>
+
+                <view class="dish-item-count" style="">
+                  <view class="dish-item-tab">
+                    <view hidden="{{product.count == 0}}" class="dish-item-count-minus" data-id="{{product.productId}}" data-sctid="{{smallCategory.smallCategoryId}}" data-ctid="{{smallCategory.categoryId}}" bindtap="minusCount">
+                      <image class="image" src="resources/pic/countMinus.png" />
+                    </view>
+                  </view>
+                  <view class="dish-item-count-text dish-item-tab">
+                    <text hidden="{{product.count == 0}}">{{product.count}}</text>
+                  </view>
+                  <view class="dish-item-count-plus" data-id="{{product.productId}}" data-sctid="{{smallCategory.smallCategoryId}}" data-ctid="{{smallCategory.categoryId}}" bindtap="addCount">
+                    <image class="image" src="resources/pic/countSelAdd.png" />
+                  </view>
+                </view>
+              </view>
+            </view>
+          </block>
+
+        </view>
+      </block>
+      <view class="dish-footer"></view>
+    </scroll-view>
+  </view>
+</view>
