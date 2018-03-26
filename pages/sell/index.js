@@ -24,11 +24,11 @@ Page({
     menus: [],
     smallCategories: [],
     selectedMenuId: 1,
+    list: [],
     total: {
       count: 0,
       money: 0
-    },
-    list: []
+    }
   },
   //事件处理函数
   bindViewTap: function () {
@@ -45,10 +45,31 @@ Page({
         if (list == null) {
           list = [];
         }
+
         var smallcts = res.data.data[0].productSmallCategories;
         if (smallcts == null) {
           smallcts = [];
         }
+
+        //初始化购物车数据
+        let cart = wx.getStorageSync("cart");
+        if(cart !=null && cart.length >= 1){
+          var i;
+          var j;
+          var k;
+          for (i in smallcts) {
+            for (j in smallcts[i].productInfos) {
+              let product = smallcts[i].productInfos[j];
+              for (k in cart) {
+                if (cart[k].productId == product.productId) {
+                  product.count = cart[k].count;
+                  cart.splice(k,1);
+                }
+              }
+            }
+          }
+        }
+
         that.setData({
           menus: list,
           smallCategories: smallcts
