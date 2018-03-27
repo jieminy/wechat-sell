@@ -1,0 +1,4 @@
+/* pages/sell/mine/address/manage/manage.wxss */
+.mana-form{
+  flex-direction: column;
+}

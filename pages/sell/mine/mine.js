@@ -50,5 +50,20 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  openOrderPage: function(){
+    wx.navigateTo({
+      url: 'myorder/myorder'
+    });
+  },
+  openAddressPage: function(){
+    wx.navigateTo({
+      url: 'address/address'
+    });
+  },
+  openCustomPage: function(){
+    wx.navigateTo({
+      url: 'custom/custom'
+    });
   }
 })

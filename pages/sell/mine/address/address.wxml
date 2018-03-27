@@ -1,0 +1,3 @@
+<view>
+  <button bindtap='addAddress'>新增收获地址</button>
+</view>

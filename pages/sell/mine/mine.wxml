@@ -5,6 +5,23 @@
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
+    <block>
+      <view class="mine-menu-item" bindtap='openOrderPage'>
+        <image class='mine-item-img' src="/images/myNormal.png"></image>
+        <text>我的订单</text>
+        <image class='mine-item-img' src="/images/play.png"></image>
+      </view>
+      <view class=".mine-menu-item" bindtap='openAddressPage'>
+        <image class='mine-item-img' src="/images/myNormal.png"></image>
+        <text>我的地址</text>
+        <image class='mine-item-img' src="/images/play.png"></image>
+      </view>
+      <view class=".mine-menu-item" bindtap='openCustomPage'>
+        <image class='mine-item-img' src="/images/myNormal.png"></image>
+        <text>联系客服</text>
+        <image class='mine-item-img' src="/images/play.png"></image>
+      </view>
+    </block>
   </view>
 
   

@@ -1,0 +1,25 @@
+<form bindsubmit="formSubmit">
+  <view class='mana-form'>
+    <view>收货人</view>
+    <input name="name" placeholder='姓名'/>
+  </view>
+  <view class='mana-form'>
+    <view>联系电话</view>
+    <input name="phone" placeholder='手机或固话'/>
+  </view>
+   <view class='mana-form'>
+    <view>收获地址</view>
+    <input name="address" placeholder='请输入您的收货地址' bindtap=''/>
+  </view>
+   <view class='mana-form'>
+    <view>楼号门牌</view>
+    <input name="doorPlate" placeholder='楼号/单元/门牌号'/>
+  </view>
+  <view class='mana-form'>
+    <view>地址类型</view>
+    <input name="addressType" placeholder='请选择地址类型'/>
+  </view>
+   <view class="btn-area">
+    <button formType="submit">Submit</button>
+  </view>
+</form>
