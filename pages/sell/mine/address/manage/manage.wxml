@@ -20,6 +20,6 @@
     <input name="addressType" placeholder='请选择地址类型'/>
   </view>
    <view class="btn-area">
-    <button formType="submit">Submit</button>
+    <button formType="submit" >Submit</button>
   </view>
 </form>

@@ -1,3 +1,4 @@
+var Utils = require("../../../../../utils/util.js");
 Page({
 
   /**
@@ -62,7 +63,22 @@ Page({
   onShareAppMessage: function () {
     
   },
+
   formSubmit: function (e) {
-    console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    let receiver = e.detail.value;
+    receiver.openid = getApp().globalData.openid;
+    console.log('form发生了submit事件，携带数据为：', receiver);
+    wx.request({
+      url: getApp().globalData.serviceUrl + '/buyer/receiver/save',
+      data: Utils.json2Form(receiver),
+      method: "POST",
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function(res){
+        let resData = res.data;
+        console.log(resData);
+      }
+    })
   },
 })

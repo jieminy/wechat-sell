@@ -10,11 +10,6 @@
         <text class="m-item-title">{{menu.categoryName}}</text>
       </view>
     </view>
-    <view class="item_list" wx:for="{{menus}}" wx:key="{{menus.categoryId}}" wx:for-item="menu">
-      <view bindtap='selectMenu' data-categoryid='{{menu.categoryId}}'>
-        <text class="m-item-title">{{menu.categoryName}}</text>
-      </view>
-    </view>
   </scroll-view>
 
   <view class="menu-wrp">

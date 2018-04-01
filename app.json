@@ -1,7 +1,8 @@
 {
   "pages":[
-    "pages/sell/mine/address/manage/manage",
     "pages/sell/mine/address/address",
+    "pages/sell/index",
+    "pages/sell/mine/address/manage/manage",
     "pages/sell/cart/confirm/confirm",
     "pages/sell/mine/myorder/detail/detail",
     "pages/logs/logs",
@@ -9,8 +10,7 @@
 
     "pages/sell/mine/myorder/myorder",
     "pages/sell/mine/mine",
-    "pages/sell/cart/cart",
-    "pages/sell/index"
+    "pages/sell/cart/cart"
   ],
   "window":{
     "backgroundTextStyle":"light",
