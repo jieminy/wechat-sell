@@ -1,0 +1,40 @@
+
+.address-wrap-scroll{
+  overflow: hidden;
+}
+
+.address-item{
+  font-size: 26rpx;
+  line-height: 40rpx;
+  border-width: 1px 0;
+  border-style: solid;
+  border-color: #f2f2f2;
+  background-color: #fff;
+  padding: 1em;
+}
+
+.address-text{
+  font-size: 22rpx;
+  color: #DBDBDB;
+}
+
+.address-item + .address-item{
+  border-top: 1em solid #FAFAFA;
+}
+
+.address-action{
+  margin-left: 1em;
+}
+
+.address-action icon{
+  line-height: 1;
+  position: relative;
+  top: 9rpx;
+  margin-right: 5rpx;
+}
+
+.new-address{
+  background-color: red;
+  color: #fff;
+  border-radius: 0;
+}
