@@ -1,4 +1,20 @@
 /* pages/sell/mine/address/manage/manage.wxss */
 .mana-form{
-  flex-direction: column;
+  padding: .3em 1em;
+  display: flex;
+  flex-direction: row;
+  font-size: 24rpx;
+  line-height: 52rpx;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.mana-form .form-label{
+  width: 5em;
+}
+
+.manage-action{
+  border-radius: 0;
+  background-color: red;
+  color: #fff;
+  width: 50%;
 }

@@ -1,66 +1,76 @@
-<scroll-view scroll-y="true" style='height:auto; width:100%; overflow:hidden;'>
-  <view style="height: 200px;flex-direction:column;">
-    <view>
-      <image src='/images/orderListSelect.png' style='width:80px;height:80px'></image>
-    </view>
-    <view>
-      <label>{{order.buyerAddress}}</label>
-    </view>
-  </view>
-  <view>
-    <view>
-      <label>商品信息</label>
-    </view>
-    <view>
-      <block wx:for="{{order.orderDetailList}}" wx:key="detailId" wx:for-item="product">
-        <view style='flex-direction:row'>
-          <view style='width:50px;height:50px'>
-            <image src='{{product.productIcon}}' style='width:50px;height:50px'></image>
+<view class="layout-fill layout-column">
+  <scroll-view scroll-y class="detail-scroll-wrap flex">
+    <view class="ibox">
+      <view class="ibox-title">
+        <text>商品信息</text>
+      </view>
+      <view class="ibox-content">
+        <block wx:for="{{order.orderDetailList}}" wx:key="detailId" wx:for-item="product">
+          <view style='flex-direction:row'>
+            <view style='width:50px;height:50px'>
+              <image src='{{product.productIcon}}' style='width:50px;height:50px'></image>
+            </view>
           </view>
+        </block>
+      </view>
+    </view>
+
+    <view class="ibox">
+      <view class="ibox-content">
+        <view class="ibox-item">
+          <text>白惠波 15212121212</text>
         </view>
-      </block>
+        <view class="ibox-item">
+          <text>地址：{{order.buyerAddress}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="ibox">
+      <view class="ibox-title">
+        <text>订单信息</text>
+      </view>
+      <view class="ibox-content">
+        <view class="ibox-item">
+          <text>订单编号：{{order.orderId}}</text>
+        </view>
+        <view class="ibox-item">
+          <text>创建时间：{{order.createTime}}</text>
+        </view>
+        <view class="ibox-item">
+          <text>付款时间：{{order.updateTime}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="ibox">
+      <view class="ibox-content">
+        <view class="ibox-item">
+          <text>商品总价：￥{{order.orderAmount}}</text>
+        </view>
+        <view class="ibox-item">
+          <text>商品实付：￥{{order.orderAmount}}</text>
+        </view>
+        <view class="ibox-item">
+          <text>运费：￥{{order.orderAmount}}</text>
+        </view>
+        <view class="ibox-item">
+          <text>合计：￥{{order.orderAmount}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="tips text-center text-danger">
+      <text>如果收到商品有任何质量问题请联系客服</text>
+    </view>
+
+  </scroll-view>
+
+  <view class="common-tab layout-row">
+    <view class="flex"></view>
+    <view>
+      <view class="common-tab-action">取消订单</view>
+      <view class="common-tab-action">去支付</view>
     </view>
   </view>
-  <view>
-    <view>
-      <label>订单信息</label>
-    </view>
-    <view>
-      <label>订单编号：{{order.orderId}}</label>
-    </view>
-    <view>
-      <label>创建时间：{{order.createTime}}</label>
-    </view>
-    <view>
-      <label>付款时间：{{order.updateTime}}</label>
-    </view>
-  </view>
-  <view>
-    <view>
-      <label>商品总价</label>
-      <label>￥{{order.orderAmount}}</label>
-    </view>
-    <view>
-      <label>商品实付</label>
-      <label>￥{{order.orderAmount}}</label>
-    </view>
-    <view>
-      <label>运费</label>
-    </view>
-    <view>
-      <label>合计</label>
-      <label>￥{{order.orderAmount}}</label>
-    </view>
-  </view>
-  <view>
-    <label>
-      如果收到商品有任何质量问题请联系客服
-    </label>
-  </view>
-  <view>
-    <view  wx:if="{{order.payStatus == 0}}">
-    <button>取消订单</button>
-    <button>去支付</button>
-    </view>
-  </view>
-</scroll-view>  
+</view>

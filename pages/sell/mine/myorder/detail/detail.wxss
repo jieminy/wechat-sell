@@ -1,0 +1,9 @@
+.detail-scroll-wrap{
+  height: 100%;
+  overflow: hidden;
+}
+
+.tips{
+  margin-top: 1em;
+  font-size: 24rpx;
+}

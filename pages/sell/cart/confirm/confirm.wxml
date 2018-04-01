@@ -1,61 +1,98 @@
-<view style="flex-direction: column">
-  <view>地址</view>
-  <view style="flex-direction: row; width: 100%;">
-    <view style='width:50%'>
-      <button bindtap='selfpick'>自提</button>
-    </view>
-    <view style='width:50%'>
-      <button bindtap='distribute'>配送</button>
-    </view>
-  </view>
+<view class="layout-fill layout-column">
+  <scroll-view scroll-y class="confirm-scroll flex">
 
-  <view class="menu-wrp">
-    <scroll-view scroll-y="true" scroll-into-view="{{toView}}" class="right-side">
-      <view class="dish-header"></view>
-        <block wx:for="{{cart}}" wx:key="productId" wx:for-item="product">
-          <view class="dish-item">
-            <view class="dish-item-wrp">
-              <view class="dish-item-pic">
-                <image class="image" src="{{product.productIcon}}" />
-              </view>
-              <text hidden="{{total.count}}" class="cart-item-total-num bc_red">共{{total.count}}件</text>
-            </view>
-          </view>
-        </block>
-      <view class="dish-footer"></view>
-    </scroll-view>
-  </view>
-
-
-  <view>
-    <label>商品总价</label>
-    <text>￥{{total.money}}</text>
-  </view>
-  <view>
-    <label>商品实付</label>
-    <text>￥{{total.money}}</text>
-  </view>
-  <view hidden='{{isSelfPick}}'>
-    <label>运费</label>
-    <text>￥{{total.money}}</text>
-  </view>
-  <view hidden='{{!isSelfPick}}'>
-    <label>自提享{{discount}}优惠</label>
-  </view>
-  <view>
-    <label>合计</label>
-    <text>￥{{total.money}}</text>
-  </view>
-    <view>
-    <label>备注</label>
-    <textarea></textarea>
-  </view>
-
-  <view class="cart-tab-wrp">
-    <view class="cart-item-total cart-tab-item">
-      <view class="cart-item-icon-wrp">
-        <label>付款</label>
+    <view class="address-infos text-center">
+      <view>
+        <icon type='waiting' size='46' />
       </view>
+      <view class="pay-status">
+        <text>待付款</text>
+      </view>
+      <view class="hot-center">
+        <button>联系客服</button>
+      </view>
+
+      <view class="address-text-wrap">
+        <view class="address-text">
+          <text>收货地址：尹洁明 15212121212</text>
+        </view>
+        <view class="address-text">
+          <text>北京市北京市北京时间</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="ibox">
+      <view class="ibox-title">
+        <text>商品信息</text>
+      </view>
+      <view class="ibox-content">
+        <scroll-view scroll-y scroll-into-view="{{toView}}" class="right-side">
+          <view class="dish-header"></view>
+          <block wx:for="{{cart}}" wx:key="productId" wx:for-item="product">
+            <view class="dish-item">
+              <view class="dish-item-wrp">
+                <view class="dish-item-pic">
+                  <image class="image" src="{{product.productIcon}}" />
+                </view>
+                <text hidden="{{total.count}}" class="cart-item-total-num bc_red">共{{total.count}}件</text>
+              </view>
+            </view>
+          </block>
+          <view class="dish-footer"></view>
+        </scroll-view>
+      </view>
+    </view>
+
+    <view class="ibox">
+      <view class="ibox-title">
+        <text>订单信息</text>
+      </view>
+      <view class="ibox-content">
+        <view class="ibox-item">
+          <text>订单编号：xxxxxxxx</text>
+        </view>
+        <view class="ibox-item">
+          <text>创建时间：xxxxxxxx</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="ibox pay-infos">
+      <view class="ibox-content">
+        <view class="ibox-item layout-row">
+          <text class="flex">商品总价</text>
+          <text>￥{{total.money}}</text>
+        </view>
+        <view class="ibox-item layout-row">
+          <text class="flex">商品实付</text>
+          <text>￥{{total.money}}</text>
+        </view>
+        <view class="ibox-item layout-row" hidden='{{isSelfPick}}'>
+          <text class="flex">运费</text>
+          <text>￥{{total.money}}</text>
+        </view>
+        <view class="ibox-item layout-row" hidden='{{!isSelfPick}}'>
+          <text class="flex">自提</text>
+          <text>享{{discount}}优惠</text>
+        </view>
+        <view class="ibox-item layout-row">
+          <text class="flex">合计</text>
+          <text>￥{{total.money}}</text>
+        </view>
+        <view class="ibox-item layout-row">
+          <text class="flex">备注</text>
+          <text>￥{{total.money}}</text>
+        </view>
+      </view>
+
+    </view>
+
+  </scroll-view>
+
+  <view class="cart-tab-wrp layout-row">
+    <view class="cart-item-total cart-tab-item layout-row">
+      <text>付款</text>
       <text class="cart-item-total-price">￥{{total.money}}</text>
     </view>
     <view class="cart-tab-item">
