@@ -1,0 +1,21 @@
+.order-main{
+  display: flex;
+  height: 100%;
+  width: 100%;
+  overflow:hidden;
+}
+.order-item{
+  border-bottom: 1px solid #f2f2f2;
+  margin-top: 10rpx;
+}
+
+.order-time{
+  font-size: 22rpx;
+}
+
+.order-action{
+  display: inline-block;
+  font-weight: 400;
+  font-size: 22rpx;
+  border: 1px solid #f2f2f2;
+}

@@ -43,8 +43,9 @@ App({
     userInfo: null,
     total: {
       count: 0,
-      money: 0
+      money: 0.0
     },
-    openid: "wxffsaare23425ajk"
+    openid: "wxffsaare23425ajk",
+    serviceUrl: "https://51vr.mynatapp.cc/sell"
   }
 })

@@ -1,59 +1,89 @@
-<view style="flex-direction:column">
- <view class="menu-wrp">
-    <scroll-view scroll-y="true" scroll-into-view="{{toView}}" class="right-side">
-      <view class="dish-header"></view>
-      <block wx:for="{{cart}}" wx:key="id" wx:for-item="product">
+<view class="cart-main">
 
-            <view class="dish-item">
-              <view class="dish-item-wrp">
-                <view class="dish-item-pic">
-                  <image class="image" src="{{product.productIcon}}" />
-                </view>
-                <view class="dish-item-info" style="">
-                  <view>
-                    <text class="dish-item-name">{{product.productName}}</text>
-                  </view>
-                  <view>
-                    <text class="dish-item-sales">月销量{{product.productSales}}</text>
-                  </view>
-                  <view>
-                    <text class="dish-item-money">¥{{product.productPrice}}</text>
-                  </view>
-                </view>
+  <scroll-view scroll-y="true" scroll-into-view="{{toView}}" class="right-side">
+    <block wx:for="{{cart}}" wx:key="productId" wx:for-item="product">
+      <view class="dish-item" hidden="{{product.count == 0}}">
+        <view class="dish-item-wrp">
+          <view class="dish-item-pic">
+            <image class="image" src="{{product.productIcon}}" />
+          </view>
+          <view class="dish-item-info" style="">
+            <view>
+              <text class="dish-item-name">{{product.productName}}</text>
+            </view>
+            <view>
+              <text class="dish-item-sales">月销量{{product.productSales}}</text>
+            </view>
+            <view>
+              <text class="dish-item-money">¥{{product.productPrice}}</text>
+            </view>
+          </view>
 
-                <view class="dish-item-count" style="">
-                  <view class="dish-item-tab">
-                    <view hidden="{{product.count == 0}}" class="dish-item-count-minus" data-id="{{product.productId}}" data-sctid="{{smallCategory.smallCategoryId}}" data-ctid="{{smallCategory.categoryId}}" bindtap="minusCount">
-                      <image class="image" src="resources/pic/countMinus.png" />
-                    </view>
-                  </view>
-                  <view class="dish-item-count-text dish-item-tab">
-                    <text hidden="{{product.count == 0}}">{{product.count}}</text>
-                  </view>
-                  <view class="dish-item-count-plus" data-id="{{product.productId}}" data-sctid="{{smallCategory.smallCategoryId}}" data-ctid="{{smallCategory.categoryId}}" bindtap="addCount">
-                    <image class="image" src="resources/pic/countSelAdd.png" />
-                  </view>
-                </view>
+          <view class="dish-item-count" style="">
+            <view class="dish-item-tab">
+              <view hidden="{{product.count == 0}}" class="dish-item-count-minus" data-id="{{product.productId}}" bindtap="minusCount">
+                <image class="image" src="resources/pic/countMinus.png" />
               </view>
-
+            </view>
+            <view class="dish-item-count-text dish-item-tab">
+              <text hidden="{{product.count == 0}}">{{product.count}}</text>
+            </view>
+            <view class="dish-item-count-plus" data-id="{{product.productId}}" bindtap="addCount">
+              <image class="image" src="resources/pic/countSelAdd.png" />
+            </view>
+          </view>
         </view>
-      </block>
-      <view class="dish-footer"></view>
-    </scroll-view>
-  </view>
-  <text>商品总价：￥{{total.money}}</text>
-  <view></view>
-    <view class="cart-tab-wrp">
+
+      </view>
+    </block>
+
+    <block wx:for="{{cart}}" wx:key="productId" wx:for-item="product">
+      <view class="dish-item" hidden="{{product.count == 0}}">
+        <view class="dish-item-wrp">
+          <view class="dish-item-pic">
+            <image class="image" src="{{product.productIcon}}" />
+          </view>
+          <view class="dish-item-info" style="">
+            <view>
+              <text class="dish-item-name">{{product.productName}}</text>
+            </view>
+            <view>
+              <text class="dish-item-sales">月销量{{product.productSales}}</text>
+            </view>
+            <view>
+              <text class="dish-item-money">¥{{product.productPrice}}</text>
+            </view>
+          </view>
+
+          <view class="dish-item-count" style="">
+            <view class="dish-item-tab">
+              <view hidden="{{product.count == 0}}" class="dish-item-count-minus" data-id="{{product.productId}}" bindtap="minusCount">
+                <image class="image" src="resources/pic/countMinus.png" />
+              </view>
+            </view>
+            <view class="dish-item-count-text dish-item-tab">
+              <text hidden="{{product.count == 0}}">{{product.count}}</text>
+            </view>
+            <view class="dish-item-count-plus" data-id="{{product.productId}}" bindtap="addCount">
+              <image class="image" src="resources/pic/countSelAdd.png" />
+            </view>
+          </view>
+        </view>
+
+      </view>
+    </block>
+  </scroll-view>
+
+  <view class="cart-tab-wrp">
     <view class="cart-item-total cart-tab-item">
-      <view class="cart-item-icon-wrp">
+      <!-- <view class="cart-item-icon-wrp">
         <image class="cart-item-icon" src="../resources/pic/orderBox.png" />
         <text hidden="{{total.count}}" class="cart-item-total-num bc_red">{{total.count}}</text>
-      </view>
+      </view> -->
       <text class="cart-item-total-price">￥{{total.money}}</text>
     </view>
     <view class="cart-tab-item">
-      <navigator url="../order/cert/cert?title=确认" class="cart-tab-item-btn" hover-class="navigator-hover">选好了</navigator>
+      <navigator url="confirm/confirm" class="cart-tab-item-btn" hover-class="navigator-hover">去结算</navigator>
     </view>
-  </view>  
+  </view>
 </view>
-

@@ -1,16 +1,22 @@
 <view class="index">
-  <view class="nav-tab-wrp">
-    <view style='text-align: center;'>
+
+  <view style='text-align: center;'>
       <text>定位</text>
-    </view>
-    <scroll-view scroll-x style="width:auto; overflow:hidden;">
-      <view class="item_list" wx:for="{{menus}}" wx:key="{{menus.categoryId}}" wx:for-item="menu">
-        <view bindtap='selectMenu' data-categoryid='{{menu.categoryId}}'>
-          <text class="m-item-title">{{menu.categoryName}}</text>
-        </view>
-      </view>
-    </scroll-view>
   </view>
+
+  <scroll-view scroll-x class="scroll-nav-bar">
+    <view class="item_list" wx:for="{{menus}}" wx:key="{{menus.categoryId}}" wx:for-item="menu">
+      <view bindtap='selectMenu' data-categoryid='{{menu.categoryId}}'>
+        <text class="m-item-title">{{menu.categoryName}}</text>
+      </view>
+    </view>
+    <view class="item_list" wx:for="{{menus}}" wx:key="{{menus.categoryId}}" wx:for-item="menu">
+      <view bindtap='selectMenu' data-categoryid='{{menu.categoryId}}'>
+        <text class="m-item-title">{{menu.categoryName}}</text>
+      </view>
+    </view>
+  </scroll-view>
+
   <view class="menu-wrp">
     <scroll-view scroll-y="true" scroll-into-view="{{toView}}" class="right-side">
       <view class="dish-header"></view>
@@ -20,10 +26,12 @@
           <block wx:for="{{smallCategory.productInfos}}" wx:key="id" wx:for-item="product">
             <view class="dish-item">
               <view class="dish-item-wrp">
+
                 <view class="dish-item-pic">
                   <image class="image" src="{{product.productIcon}}" />
                 </view>
-                <view class="dish-item-info" style="">
+
+                <view class="dish-item-info">
                   <view>
                     <text class="dish-item-name">{{product.productName}}</text>
                   </view>
@@ -35,7 +43,7 @@
                   </view>
                 </view>
 
-                <view class="dish-item-count" style="">
+                <view class="dish-item-count">
                   <view class="dish-item-tab">
                     <view hidden="{{product.count == 0}}" class="dish-item-count-minus" data-id="{{product.productId}}" data-sctid="{{smallCategory.smallCategoryId}}" data-ctid="{{smallCategory.categoryId}}" bindtap="minusCount">
                       <image class="image" src="resources/pic/countMinus.png" />

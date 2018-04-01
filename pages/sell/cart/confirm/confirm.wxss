@@ -1,21 +1,13 @@
-.cart-main{
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.right-side{
-  flex: 1;
-  overflow: hidden;
-}
-
 /*底部浮动*/
 .cart-tab-wrp{
   height: 100rpx;
+  position: fixed;
+  bottom: 0rpx;
   background: rgba(255, 255, 255, 0.9);
   display: flex;
   flex-direction:row;
   width: 100%;
+  z-index: 10;
   color: black
 }
 .cart-item-total{
@@ -34,8 +26,8 @@
 }
 .cart-item-total-num{
     display: inline-block;
-    width: 36rpx;
-    height: 36rpx;
+    width: 80rpx;
+    height: 80rpx;
     font-size: 22rpx;
     color: white;
     line-height: 36rpx;
@@ -46,10 +38,13 @@
 }
 .cart-item-total-price{
     display: inline-block;
+    width: 40rpx;
+    height: 40rpx;
     font-size: 36rpx;
     color: #ed7e05;
     line-height: 100rpx;
     text-align: center;
+    padding-left: 110rpx;
 }
 .cart-tab-item-btn{
     width: 160rpx;
@@ -68,7 +63,7 @@
 /*菜品信息*/
 .dish-item{
   width: 100%;
-  padding: 16rpx 1.5rem;
+  padding: 16rpx 0;
   border-bottom: 2rpx solid #ccc;
 }
 .dish-item-wrp{
@@ -78,62 +73,13 @@
 }
 .dish-item-pic{
   width:158rpx;
-  margin-right: 1em;
 }
 .dish-item-pic image{
    width: 158rpx;
    height: 120rpx;
    margin: 0 auto
 }
-.dish-item-info{
-  width: 150rpx;
-  padding-left: 16rpx;
-  flex:1;
-}
-.dish-item-name{
-  color: #454545;
-  font-size: 26rpx;
-}
-.dish-item-sales{
-  color: #ccc;
-  font-size:20rpx;
-  line-height: 50rpx
-}
-.dish-item-money{
-  color: #f50909;
-  font-size: 26rpx;
-}
 .dish-footer{
   /*background: red;*/
   height: 100rpx;
-}
-/*操作菜品数量*/
-.dish-item-count{
-  width: 260rpx;
-  display: flex;
-  font-size: 26rpx;
-  padding: 60rpx 0 0 10rpx;
-}
-.dish-item-tab{
-  width: 60rpx;
-  height: 60rpx;
-}
-.dish-item-count-minus{
-  width: 60rpx;
-  height: 60rpx;
-}
-.dish-item-count-text{
-  color: #ccc;
-  font-size: 28rpx;
-  line-height: 60rpx;
-  text-align: center
-
-}
-.dish-item-count-plus{
-  width: 60rpx;
-  height: 60rpx;
-}
-.image{
-  width: 100%;
-  height: 100%
 }

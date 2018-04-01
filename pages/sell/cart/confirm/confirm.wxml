@@ -1,0 +1,65 @@
+<view style="flex-direction: column">
+  <view>地址</view>
+  <view style="flex-direction: row; width: 100%;">
+    <view style='width:50%'>
+      <button bindtap='selfpick'>自提</button>
+    </view>
+    <view style='width:50%'>
+      <button bindtap='distribute'>配送</button>
+    </view>
+  </view>
+
+  <view class="menu-wrp">
+    <scroll-view scroll-y="true" scroll-into-view="{{toView}}" class="right-side">
+      <view class="dish-header"></view>
+        <block wx:for="{{cart}}" wx:key="productId" wx:for-item="product">
+          <view class="dish-item">
+            <view class="dish-item-wrp">
+              <view class="dish-item-pic">
+                <image class="image" src="{{product.productIcon}}" />
+              </view>
+              <text hidden="{{total.count}}" class="cart-item-total-num bc_red">共{{total.count}}件</text>
+            </view>
+          </view>
+        </block>
+      <view class="dish-footer"></view>
+    </scroll-view>
+  </view>
+
+
+  <view>
+    <label>商品总价</label>
+    <text>￥{{total.money}}</text>
+  </view>
+  <view>
+    <label>商品实付</label>
+    <text>￥{{total.money}}</text>
+  </view>
+  <view hidden='{{isSelfPick}}'>
+    <label>运费</label>
+    <text>￥{{total.money}}</text>
+  </view>
+  <view hidden='{{!isSelfPick}}'>
+    <label>自提享{{discount}}优惠</label>
+  </view>
+  <view>
+    <label>合计</label>
+    <text>￥{{total.money}}</text>
+  </view>
+    <view>
+    <label>备注</label>
+    <textarea></textarea>
+  </view>
+
+  <view class="cart-tab-wrp">
+    <view class="cart-item-total cart-tab-item">
+      <view class="cart-item-icon-wrp">
+        <label>付款</label>
+      </view>
+      <text class="cart-item-total-price">￥{{total.money}}</text>
+    </view>
+    <view class="cart-tab-item">
+      <navigator url="/pages/sell/index" class="cart-tab-item-btn" hover-class="navigator-hover" bindtap='createOrder'>去支付</navigator>
+    </view>
+  </view>
+</view>

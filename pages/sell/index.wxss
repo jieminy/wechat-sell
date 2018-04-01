@@ -10,15 +10,13 @@
   height: 300rpx;
 }
 
-.nav-tab-wrp {
-  height: 100rpx;
-  width: 100%;
-  background: rgba(250, 250, 250, 1);
-  position: fixed;
-  top: -1rpx;
-  z-index: 10;
+.scroll-nav-bar{
   overflow: hidden;
   white-space: nowrap;
+  background-color: #fff;
+  border-bottom: 1rpx solid #ccc;
+  height: 65rpx;
+  line-height: 65rpx;
 }
 
 .item_list {
@@ -47,7 +45,6 @@
   width: 750rpx;
   height: 1000rpx;
   display: flex;
-  margin-top: 88rpx;
   background-color: white;
   flex-direction: row;
 }
@@ -76,6 +73,7 @@
 
 .m-item-title {
   font-size: 24rpx;
+  font-weight: bold;
   color: black;
 }
 
@@ -91,10 +89,11 @@
 /*右侧菜品*/
 
 .dish-category-title {
-  font-size: 28rpx;
+  font-size: 22rpx;
   color: #888;
   border-bottom: 2rpx solid #ccc;
   padding: 20rpx 0;
+  padding-left: 1.5em;
   margin-bottom: 6rpx;
 }
 
@@ -114,7 +113,7 @@
 
 .dish-item {
   width: 100%;
-  padding: 16rpx 0;
+  padding: 16rpx 1.5em;
   border-bottom: 2rpx solid #ccc;
 }
 
@@ -126,6 +125,7 @@
 
 .dish-item-pic {
   width: 158rpx;
+  margin-right: 1em;
 }
 
 .dish-item-pic image {
@@ -137,6 +137,7 @@
 .dish-item-info {
   width: 150rpx;
   padding-left: 16rpx;
+  flex: 1;
 }
 
 .dish-item-name {
@@ -163,7 +164,7 @@
 /*操作菜品数量*/
 
 .dish-item-count {
-  width: 220rpx;
+  width: 260rpx;
   display: flex;
   font-size: 26rpx;
   padding: 60rpx 0 0 10rpx;

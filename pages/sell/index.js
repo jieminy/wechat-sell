@@ -24,11 +24,7 @@ Page({
     menus: [],
     smallCategories: [],
     selectedMenuId: 1,
-    list: [],
-    total: {
-      count: 0,
-      money: 0
-    }
+   
   },
   //事件处理函数
   bindViewTap: function () {
@@ -38,6 +34,7 @@ Page({
   },
   onLoad: function () {
     var that = this;
+    // wx.setStorageSync("cart", []);
     wx.request({
       url: "https://51vr.mynatapp.cc/sell/buyer/product/list",
       success: function (res) {
@@ -45,43 +42,70 @@ Page({
         if (list == null) {
           list = [];
         }
-
-        var smallcts = res.data.data[0].productSmallCategories;
-        if (smallcts == null) {
-          smallcts = [];
-        }
-
-        //初始化购物车数据
-        let cart = wx.getStorageSync("cart");
-        if(cart !=null && cart.length >= 1){
-          var i;
-          var j;
-          var k;
-          for (i in smallcts) {
-            for (j in smallcts[i].productInfos) {
-              let product = smallcts[i].productInfos[j];
-              for (k in cart) {
-                if (cart[k].productId == product.productId) {
-                  product.count = cart[k].count;
-                  cart.splice(k,1);
+        that.initCart(list);
+      }
+    })
+  },
+  onShow: function () {
+    if(this.data.menus.length != 0){
+      this.initCart(this.data.menus);
+    }
+  },
+  //初始化购物车数据
+  initCart: function (list) {
+    console.log("初始化购物车");
+    let total =  {
+      count: 0,
+      money: 0.0
+    };
+    console.log("total");
+    console.log(total);
+    let cart = wx.getStorageSync("cart");
+    if (cart != null && cart.length >= 1) {
+      var c;
+      var i;
+      var j;
+      var k;
+      for (c in list) {
+        //小类目集合
+        let proSmCts = list[c].productSmallCategories;
+        for (i in proSmCts) {
+          //小类目
+          let proSmCt = proSmCts[i];
+          for (j in proSmCt.productInfos) {
+            //商品
+            let product = proSmCt.productInfos[j];
+            for (k in cart) {
+              if (cart[k].productId == product.productId) {
+                product.count = cart[k].count;
+                console.log(cart[k]);
+                total.count += product.count;
+                total.money = (product.count * (10 * product.productPrice) + total.money * 10) / 10;
+                if(product.count == 0){
+                  cart.pop(cart[k]);
                 }
               }
             }
           }
         }
-
-        that.setData({
-          menus: list,
-          smallCategories: smallcts
-        });
       }
-    })
+      wx.setStorageSync("cart", cart);
+      getApp().globalData.total = total;
+    }
+
+    var smallcts = list[0].productSmallCategories;
+    if (smallcts == null) {
+      smallcts = [];
+    }
+    this.setData({
+      menus: list,
+      smallCategories: smallcts
+    });
   },
   //选择菜单
   selectMenu: function (event) {
     let eventData = event.currentTarget.dataset;
     let menus = this.data.menus;
-    console.log(menus);
     let menu = menus.find(function(v){
       return eventData.categoryid == v.categoryId;
     })
@@ -108,13 +132,13 @@ Page({
     });
     product.count += 1;
     total.count += 1;
-    total.money += product.productPrice;
+    //小数精度问题
+    total.money = (product.productPrice * 10 + total.money * 10) /10;
     //set数据
     this.setData({
       menus: lmenus,
       smallCategories: menu.productSmallCategories,
     });
-    console.log(total);
     getApp().globalData.total = total;
     //加入购物车缓存
     try {
@@ -158,7 +182,7 @@ Page({
     }
     product.count -= 1;
     total.count -= 1
-    total.money -= product.productPrice
+    total.money = (total.money * 10 - product.productPrice * 10) / 10;
     this.setData({
       menus: lmenus,
       smallCategories: menu.productSmallCategories,
@@ -187,4 +211,5 @@ Page({
       console.log(e);
     }
   },
-})
+});
+

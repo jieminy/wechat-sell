@@ -1,0 +1,26 @@
+<scroll-view scroll-y="true" class="order-main">
+  <block wx:for="{{orders}}" wx:key="orders.orderId" wx:for-item="order">
+
+    <view class="layout-column order-item">
+
+      <view class="order-time">
+        {{order.createTime}}
+      </view>
+
+      <view class="order-details">
+        icons...
+      </view>
+
+      <view class="order-status layout-row">
+        <view class="flex">
+          {{order.orderStatus}} {{order.payStatus}}
+        </view>
+        <text>￥{{orderAmount}}</text>
+      </view>
+      <view class="order-actions text-right">
+        <button bindtap='detail' class="order-action" data-orderid='{{order.orderId}}'>查看详情</button>
+      </view>
+    </view>
+
+  </block>
+</scroll-view>
