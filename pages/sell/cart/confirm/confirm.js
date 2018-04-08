@@ -12,13 +12,14 @@ Page({
     },
     discount: 9,
     isSelfPick: true,
+    receiver: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+
   },
 
   /**
@@ -39,6 +40,16 @@ Page({
         cart: letCart,
         total: getApp().globalData.total
       });
+
+      //获取收货人
+      let receiver = wx.getStorageSync("receiver");
+      console.log(receiver);
+      if (receiver == undefined || receiver == ""){
+        receiver: null
+      }
+      this.setData({
+        receiver: receiver
+      });
     } catch (e) {
       console.log(e);
     }
@@ -54,6 +65,10 @@ Page({
     });
   },
   createOrder: function () {
+    let receiver = this.data.receiver;
+    if (receiver == null){
+      return;
+    }
     let total = this.data.total;
     let sumPrice = total.money;
     let isSelfPick = this.data.isSelfPick;
@@ -64,14 +79,13 @@ Page({
     }
     let openId = getApp().globalData.openid;
     let orderForm = {
-      name: "张三",
-      phone: "15802603699",
-      address: "西城嘉苑",
+      name: receiver.name,
+      phone: receiver.phone,
+      address: receiver.address,
       orderAmount: sumPrice,
       openid: openId,
       items: JSON.stringify(cart)
     };
-    console.log(orderForm);
     wx.request({
       url: getApp().globalData.serviceUrl+'/buyer/order/create',
       data: Utils.json2Form(orderForm),
@@ -80,19 +94,24 @@ Page({
         'content-type': 'application/x-www-form-urlencoded'
       },
       success: function(res){
-        console.log("成功回掉");
         let resData = res.data;
-        console.log(resData);
         if (resData.code == 0){
           wx.setStorageSync("cart", []);
           getApp().globalData.total = {
             count: 0,
             money: 0.0
           }
-          console.log(wx.getStorageSync("cart"));
-          console.log(getApp().globalData.total); 
+          //跳转订单详情页面
+          wx.navigateTo({
+            url: '../../mine/myorder/detail/detail?orderid=' + resData.data.orderId,
+          })
         }
       }
+    })
+  },
+  navitoAddress: function () {
+    wx.navigateTo({
+      url: '../../mine/address/address?isChoose=true',
     })
   }
 })

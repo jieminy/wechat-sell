@@ -5,68 +5,54 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    receiver: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    
+    var that = this;
+    if (options.recId != undefined && options.recId != null) {
+      wx.request({
+        url: getApp().globalData.serviceUrl + '/buyer/receiver/one',
+        data: {
+          recId: options.recId
+        },
+        success: function (res) {
+          let resData = res.data;
+          console.log(resData.data);
+          that.setData({
+            receiver: resData.data
+          });
+        }
+      })
+    }
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-    
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-    
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-    
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-    
+    //choose页面选择地址naviback后赋值
+    let receiver = this.data.receiver;
+    if (getApp().globalData.location != "" && receiver != {}) {
+      let location = getApp().globalData.location;
+      receiver.address = location;
+      this.setData({
+        receiver: receiver
+      });
+      getApp().globalData.location = "";
+    }
   },
 
   formSubmit: function (e) {
     let receiver = e.detail.value;
     receiver.openid = getApp().globalData.openid;
+    let recData = this.data.receiver;
+    if (recData.recId != null) {
+      receiver.recId = recData.recId;
+    }
     console.log('form发生了submit事件，携带数据为：', receiver);
     wx.request({
       url: getApp().globalData.serviceUrl + '/buyer/receiver/save',
@@ -75,10 +61,21 @@ Page({
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
-      success: function(res){
+      success: function (res) {
         let resData = res.data;
         console.log(resData);
+        if (resData.code == 0) {
+          wx.navigateBack({
+            delta: 1
+          })
+        }
       }
     })
   },
+  //获取位置
+  getLocation: function () {
+    wx.navigateTo({
+      url: '../choose/choose',
+    })
+  }
 })

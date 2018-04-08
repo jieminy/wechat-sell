@@ -1,17 +1,16 @@
 {
   "pages":[
-
+    "pages/sell/index",
+    "pages/sell/cart/confirm/confirm",
+    "pages/sell/mine/address/address",
+    "pages/sell/mine/address/choose/choose",
     "pages/sell/mine/myorder/myorder",
     "pages/sell/cart/cart",
     "pages/sell/mine/mine",
-    "pages/sell/mine/address/address",
     "pages/logs/logs",
     "pages/sell/mine/custom/custom",
-    "pages/sell/cart/confirm/confirm",
     "pages/sell/mine/myorder/detail/detail",
-
-    "pages/sell/mine/address/manage/manage",
-    "pages/sell/index"
+    "pages/sell/mine/address/manage/manage"
   ],
   "window":{
     "backgroundTextStyle":"light",

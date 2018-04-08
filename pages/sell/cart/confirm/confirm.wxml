@@ -2,7 +2,7 @@
   <scroll-view scroll-y class="confirm-scroll flex">
 
     <view class="address-infos text-center">
-      <view>
+      <!-- <view>
         <icon type='waiting' size='46' />
       </view>
       <view class="pay-status">
@@ -10,15 +10,20 @@
       </view>
       <view class="hot-center">
         <button>联系客服</button>
-      </view>
+      </view> -->
 
-      <view class="address-text-wrap">
-        <view class="address-text">
-          <text>收货地址：尹洁明 15212121212</text>
+      <view class="address-text-wrap" bindtap='navitoAddress'>
+        <view class="address-text" hidden="{{receiver != null}}">
+          <text>请选择收获地址</text>
         </view>
-        <view class="address-text">
-          <text>北京市北京市北京时间</text>
-        </view>
+         <view hidden="{{receiver == null}}">
+          <view class="address-text" >
+            <text>收货地址：{{receiver.name}} {{receiver.phone}}</text>
+          </view>
+          <view class="address-text" >
+            <text>{{receiver.address}} {{receiver.detail}}</text>
+          </view>
+        </view> 
       </view>
     </view>
 
@@ -27,23 +32,19 @@
         <text>商品信息</text>
       </view>
       <view class="ibox-content">
-        <scroll-view scroll-y scroll-into-view="{{toView}}" class="right-side">
-          <view class="dish-header"></view>
+        <scroll-view scroll-x class="">
           <block wx:for="{{cart}}" wx:key="productId" wx:for-item="product">
-            <view class="dish-item">
-              <view class="dish-item-wrp">
-                <view class="dish-item-pic">
-                  <image class="image" src="{{product.productIcon}}" />
-                </view>
-                <text hidden="{{total.count}}" class="cart-item-total-num bc_red">共{{total.count}}件</text>
+            <view class="cart-item-icon-wrp ">
+              <view class="cart-item-icon ">
+                <image class="image" src="{{product.productIcon}}" />
               </view>
             </view>
           </block>
-          <view class="dish-footer"></view>
+          <text hidden="{{total.count == 0}}" class="cart-item-total-num bc_red">共{{total.count}}件</text>
         </scroll-view>
       </view>
     </view>
-
+<!-- 
     <view class="ibox">
       <view class="ibox-title">
         <text>订单信息</text>
@@ -56,7 +57,7 @@
           <text>创建时间：xxxxxxxx</text>
         </view>
       </view>
-    </view>
+    </view> -->
 
     <view class="ibox pay-infos">
       <view class="ibox-content">

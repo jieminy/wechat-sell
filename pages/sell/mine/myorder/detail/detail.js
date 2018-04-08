@@ -1,10 +1,11 @@
+var Utils = require("../../../../../utils/util.js");
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    order: []
+    order: [],
   },
 
   /**
@@ -25,55 +26,31 @@ Page({
           order: order
         });
       }
+    });
+
+  },
+  cancelOrder: function () {
+    let order = this.data.order;
+    let that = this;
+    wx.request({
+      url: getApp().globalData.serviceUrl + '/buyer/order/cancel',
+      method: "POST",
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: Utils.json2Form({
+        orderId: order.orderId,
+        openid: getApp().globalData.openid
+      }),
+      success: function (res) {
+        let resData = res.data;
+        if (resData.code == 0){
+          order.orderStatus = 2;
+          that.setData({
+            order: order
+          });
+        }
+      }
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-    
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-    
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-    
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-    
   }
 })

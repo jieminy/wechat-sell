@@ -7,8 +7,8 @@
           {{order.createTime}}
         </view>
 
-        <view class="ibox-item">
-          icons...
+        <view class="ibox-item" wx:for="{{order.orderDetailList}}" wx:for-item="detail">
+          <image src='{{detail.productIcon}}'></image>
         </view>
 
         <view class="ibox-item layout-row">

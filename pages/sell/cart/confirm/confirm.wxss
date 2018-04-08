@@ -41,11 +41,17 @@
 
 .cart-item-icon-wrp {
   width: 110rpx;
-  height: 90rpx;
+  height: 120rpx;
+  flex-direction: row;
   top: -4rpx;
 }
 
 .cart-item-icon {
+  width: 90rpx;
+  height: 90rpx;
+}
+
+.image{
   width: 90rpx;
   height: 90rpx;
 }

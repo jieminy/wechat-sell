@@ -2,25 +2,25 @@
   <form bindsubmit="formSubmit" class="flex">
     <view class='mana-form'>
       <view class="form-label">收货人</view>
-      <input class="form-contral" name="name" placeholder='姓名' />
+      <input class="form-contral" name="name" placeholder='姓名' value='{{receiver.name}}' />
     </view>
     <view class='mana-form'>
       <view class="form-label">联系电话</view>
-      <input class="form-contral" name="phone" placeholder='手机或固话' />
+      <input class="form-contral" name="phone" placeholder='手机或固话' value='{{receiver.phone}}' />
     </view>
     <view class='mana-form'>
       <view class="form-label">收获地址</view>
-      <input class="form-contral" name="address" placeholder='请输入您的收货地址' bindtap='' />
+      <input class="form-contral" name="address" placeholder='请输入您的收货地址' bindtap='getLocation' value='{{receiver.address}}' />
     </view>
     <view class='mana-form'>
       <view class="form-label">楼号门牌</view>
-      <input class="form-contral" name="doorPlate" placeholder='楼号/单元/门牌号' />
+      <input class="form-contral" name="detail" placeholder='楼号/单元/门牌号' value='{{receiver.detail}}' />
     </view>
     <view class='mana-form'>
       <view class="form-label">地址类型</view>
-      <input class="form-contral" name="addressType" placeholder='请选择地址类型' />
+      <input class="form-contral" name="addressType" placeholder='请选择地址类型' value='' />
     </view>
+    <button formType="submit" class="manage-action">保存</button>
   </form>
 
-  <button formType="submit" class="manage-action">保存</button>
 </view>

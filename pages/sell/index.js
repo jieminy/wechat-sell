@@ -1,3 +1,5 @@
+var bmap = require('../../libs/bmap-wx.min.js'); 
+var wxMarkerData = []; 
 Page({
   data: {
     text: "Page main",
@@ -24,7 +26,12 @@ Page({
     menus: [],
     smallCategories: [],
     selectedMenuId: 1,
-   
+    //地图
+    markers: [],
+    latitude: '',
+    longitude: '',
+    rgcData: {},
+    address: ''
   },
   //事件处理函数
   bindViewTap: function () {
@@ -44,7 +51,37 @@ Page({
         }
         that.initCart(list);
       }
-    })
+    });
+    //百度地图
+    var BMap = new bmap.BMapWX({
+      ak: 'NEgN0GEeMAmRS01KwFQarCGayZWVrLy7' 
+    }); 
+    var fail = function (data) {
+      console.log(data)
+    };
+    var success = function (data) {
+      wxMarkerData = data.wxMarkerData;
+      that.setData({
+        markers: wxMarkerData
+      });
+      that.setData({
+        latitude: wxMarkerData[0].latitude
+      });
+      that.setData({
+        longitude: wxMarkerData[0].longitude
+      });
+      that.setData({
+        address: wxMarkerData[0].address
+      });
+      console.log(wxMarkerData);
+    };
+    // 发起regeocoding检索请求 
+    BMap.regeocoding({
+      fail: fail,
+      success: success,
+      iconPath: '../../images/marker_red.png',
+      iconTapPath: '../../images/marker_red.png'
+    }); 
   },
   onShow: function () {
     if(this.data.menus.length != 0){
@@ -58,8 +95,6 @@ Page({
       count: 0,
       money: 0.0
     };
-    console.log("total");
-    console.log(total);
     let cart = wx.getStorageSync("cart");
     if (cart != null && cart.length >= 1) {
       var c;
@@ -78,7 +113,6 @@ Page({
             for (k in cart) {
               if (cart[k].productId == product.productId) {
                 product.count = cart[k].count;
-                console.log(cart[k]);
                 total.count += product.count;
                 total.money = (product.count * (10 * product.productPrice) + total.money * 10) / 10;
                 if(product.count == 0){
@@ -211,5 +245,6 @@ Page({
       console.log(e);
     }
   },
+
 });
 

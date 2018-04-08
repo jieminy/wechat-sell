@@ -1,0 +1,4 @@
+.sug_info {
+    margin: 15px 10px;
+    flex-direction: row;
+}

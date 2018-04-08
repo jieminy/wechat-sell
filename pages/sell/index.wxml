@@ -1,7 +1,7 @@
 <view class="index">
 
-  <view style='text-align: center;'>
-      <text>定位</text>
+  <view style='text-align: center;height: 24px'>
+      <text>{{address}}</text>
   </view>
 
   <scroll-view scroll-x class="scroll-nav-bar">

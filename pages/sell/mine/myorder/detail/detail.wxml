@@ -18,7 +18,7 @@
     <view class="ibox">
       <view class="ibox-content">
         <view class="ibox-item">
-          <text>白惠波 15212121212</text>
+          <text>{{order.buyerName}} {{order.buyerPhone}}</text>
         </view>
         <view class="ibox-item">
           <text>地址：{{order.buyerAddress}}</text>
@@ -68,9 +68,15 @@
 
   <view class="common-tab layout-row">
     <view class="flex"></view>
-    <view>
-      <view class="common-tab-action">取消订单</view>
+    <view wx:if="{{order.orderStatus == 0}}">
+      <view class="common-tab-action" bindtap='cancelOrder'>取消订单</view>
       <view class="common-tab-action">去支付</view>
+    </view>
+    <view wx:elif="{{order.orderStatus == 2}}">
+      <view class="common-tab-action">已取消</view>
+    </view>
+    <view wx:elif="{{order.orderStatus == 1}}">
+      <view class="common-tab-action">已配送</view>
     </view>
   </view>
 </view>

@@ -45,6 +45,7 @@ App({
       count: 0,
       money: 0.0
     },
+    location: "",
     openid: "wxffsaare23425ajk",
     serviceUrl: "https://51vr.mynatapp.cc/sell"
   }
