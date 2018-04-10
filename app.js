@@ -13,8 +13,33 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        if (res.code) {
+          wx.request({
+            url: getApp().globalData.serviceUrl + "/weixin/auth",
+            data: {
+              code: res.code
+            },
+            success: res =>{
+              console.log(res);
+              let resData = res.data;
+              let openid = resData.data;
+              if(openid){
+                getApp().globalData.openid = openid;
+              }
+              if (resData.code != 0){
+                wx.showModal({
+                  title: '提示',
+                  content: '登录失败',
+                })
+              }
+            }
+          })
+        } else {
+          console.log('登录失败！' + res.errMsg)
+        }
       }
     })
+    
     // 获取用户信息
     wx.getSetting({
       success: res => {

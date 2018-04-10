@@ -96,7 +96,7 @@ Page({
       money: 0.0
     };
     let cart = wx.getStorageSync("cart");
-    if (cart != null && cart.length >= 1) {
+    if (cart) {
       var c;
       var i;
       var j;
@@ -125,6 +125,9 @@ Page({
       }
       wx.setStorageSync("cart", cart);
       getApp().globalData.total = total;
+    }else{
+      cart = [];
+      wx.setStorageSync("cart", cart);
     }
 
     var smallcts = list[0].productSmallCategories;
