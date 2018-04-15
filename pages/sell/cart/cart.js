@@ -30,7 +30,7 @@ Page({
     let eventData = event.currentTarget.dataset;
     let cart = this.data.cart;
     let product = cart.find(function (v){
-      return v.productId = eventData.id;
+        return v.productId == eventData.id;
     });
     if(product.count >= 1){
       product.count -= 1;
@@ -47,8 +47,9 @@ Page({
   addCount: function (event) {
     let eventData = event.currentTarget.dataset;
     let cart = this.data.cart;
+      console.log(cart);
     let product = cart.find(function (v) {
-      return v.productId = eventData.id;
+        return v.productId == eventData.id;
     });
     product.count += 1;
     let total = this.data.total;

@@ -5,19 +5,19 @@
   </view>
 
   <scroll-view scroll-x class="scroll-nav-bar">
-    <view class="item_list" wx:for="{{menus}}" wx:key="{{menus.categoryId}}" wx:for-item="menu">
-      <view bindtap='selectMenu' data-categoryid='{{menu.categoryId}}'>
-        <text class="m-item-title">{{menu.categoryName}}</text>
+    <view class="item_list" wx:for="{{menus}}" wx:key="{{menus.categoryId}}" wx:for-item="menu" wx:for-index="idx">
+      <view bindtap='selectMenu' data-categoryid='{{menu.categoryId}}' data-idx='{{idx}}'>
+        <text class="m-item-title">{{menu.name}}</text>
       </view>
     </view>
   </scroll-view>
 
   <view class="menu-wrp">
-    <scroll-view scroll-y="true" scroll-into-view="{{toView}}" class="right-side">
+    <scroll-view scroll-y="true" scroll-into-view="{{toView}}" class="right-side" bindscrolltoupper="onPullDownRefresh"   bindscrolltolower="onReachBottom">
       <view class="dish-header"></view>
       <block wx:for="{{smallCategories}}" wx:key="id" wx:for-item="smallCategory">
         <view>
-          <view id="{{smallCategory.smallCategoryId}}" class="dish-category-title">{{smallCategory.smallCategoryName}}</view>
+          <view id="{{smallCategory.categoryId}}" class="dish-category-title">{{smallCategory.name}}</view>
           <block wx:for="{{smallCategory.productInfos}}" wx:key="id" wx:for-item="product">
             <view class="dish-item">
               <view class="dish-item-wrp">
@@ -40,14 +40,14 @@
 
                 <view class="dish-item-count">
                   <view class="dish-item-tab">
-                    <view hidden="{{product.count == 0}}" class="dish-item-count-minus" data-id="{{product.productId}}" data-sctid="{{smallCategory.smallCategoryId}}" data-ctid="{{smallCategory.categoryId}}" bindtap="minusCount">
+                    <view hidden="{{product.count == 0}}" class="dish-item-count-minus" data-id="{{product.productId}}" data-sctid="{{smallCategory.categoryId}}" data-ctid="{{smallCategory.parentId}}" bindtap="minusCount">
                       <image class="image" src="resources/pic/countMinus.png" />
                     </view>
                   </view>
                   <view class="dish-item-count-text dish-item-tab">
                     <text hidden="{{product.count == 0}}">{{product.count}}</text>
                   </view>
-                  <view class="dish-item-count-plus" data-id="{{product.productId}}" data-sctid="{{smallCategory.smallCategoryId}}" data-ctid="{{smallCategory.categoryId}}" bindtap="addCount">
+                  <view class="dish-item-count-plus" data-id="{{product.productId}}" data-sctid="{{smallCategory.categoryId}}" data-ctid="{{smallCategory.parentId}}" bindtap="addCount">
                     <image class="image" src="resources/pic/countSelAdd.png" />
                   </view>
                 </view>
@@ -56,8 +56,14 @@
           </block>
 
         </view>
+
       </block>
-      <view class="dish-footer"></view>
+      <view class="weui-loadmore" hidden="{{isHideLoadMore}}">
+        <view class="weui-loading"></view>
+        <view class="weui-loadmore__tips">正在加载</view>
+      </view>
+      <view class="dish-footer">
+      </view>
     </scroll-view>
   </view>
 </view>
