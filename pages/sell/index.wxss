@@ -1,16 +1,6 @@
-.image {
-  width: 100%;
-  height: 100%;
-}
+/*分类*/
 
-/*tab导航*/
-
-.swiper-item {
-  display: block;
-  height: 300rpx;
-}
-
-.scroll-nav-bar{
+.scroll-menu{
   overflow: hidden;
   white-space: nowrap;
   background-color: #fff;
@@ -19,7 +9,7 @@
   line-height: 65rpx;
 }
 
-.item_list {
+.scroll-menu-item {
   width: 160rpx;
   height: auto;
   margin-right: 23rpx;
@@ -38,15 +28,150 @@
   border-bottom: 2rpx solid rgba(254, 78, 69, 0.8);
 }
 
-/*菜单wrap*/
+/* swipper属性 */
 
-.menu-wrp {
+swiper {
+  display: block;
+  height: 300rpx;
+}
+
+swiper-item image {
+  width: 100%;
+  height: 100%;
+}
+
+/*商品展示*/
+
+.menu-container {
   overflow: hidden;
-  width: 750rpx;
-  height: 1000rpx;
+  height: auto;
   display: flex;
   background-color: white;
   flex-direction: row;
+}
+
+/*菜品信息*/
+
+.pro-item {
+  width: 100%;
+  padding: 16rpx 1.5em;
+  border-bottom: 2rpx solid #ccc;
+}
+
+.pro-item-wrp {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.pro-item-pic {
+  width: 158rpx;
+  margin-right: 1em;
+}
+
+.pro-item-pic image {
+  width: 158rpx;
+  height: 120rpx;
+  margin: 0 auto;
+}
+
+.pro-item-info {
+  width: 150rpx;
+  padding-left: 16rpx;
+  flex: 1;
+}
+
+.pro-item-name {
+  color: #454545;
+  font-size: 26rpx;
+}
+
+.pro-item-sales {
+  color: #ccc;
+  font-size: 20rpx;
+  line-height: 50rpx;
+}
+
+.pro-item-money {
+  color: #f50909;
+  font-size: 26rpx;
+}
+
+.pro-header {
+  height: 10rpx;
+}
+
+.pro-footer {
+  /*background: red;*/
+  height: 100rpx;
+}
+
+.pro-footer-tip {
+  height: 50rpx;
+}
+
+.pro-footer-tip text{
+  text-align: center;
+}
+
+/*操作商品数量*/
+
+.pro-item-count {
+  width: 260rpx;
+  display: flex;
+  font-size: 26rpx;
+  padding: 60rpx 0 0 10rpx;
+}
+
+.pro-item-tab {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.pro-item-count-minus {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.pro-item-count-text {
+  color: #ccc;
+  font-size: 28rpx;
+  line-height: 60rpx;
+  text-align: center;
+}
+
+.pro-item-count-plus {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.image{
+  width: 100%;
+  height: 100%;
+} 
+
+/*  加载更多   */
+.weui-loading {
+  margin: 0 5px;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-animation: weuiLoading 1s steps(12, end) infinite;
+  animation: weuiLoading 1s steps(12, end) infinite;
+  background: transparent url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHBhdGggZmlsbD0ibm9uZSIgZD0iTTAgMGgxMDB2MTAwSDB6Ii8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjRTlFOUU5IiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAgLTMwKSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iIzk4OTY5NyIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgzMCAxMDUuOTggNjUpIi8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjOUI5OTlBIiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0icm90YXRlKDYwIDc1Ljk4IDY1KSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iI0EzQTFBMiIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSg5MCA2NSA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNBQkE5QUEiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoMTIwIDU4LjY2IDY1KSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iI0IyQjJCMiIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgxNTAgNTQuMDIgNjUpIi8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjQkFCOEI5IiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0icm90YXRlKDE4MCA1MCA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNDMkMwQzEiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTE1MCA0NS45OCA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNDQkNCQ0IiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTEyMCA0MS4zNCA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNEMkQyRDIiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTkwIDM1IDY1KSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iI0RBREFEQSIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgtNjAgMjQuMDIgNjUpIi8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjRTJFMkUyIiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0icm90YXRlKC0zMCAtNS45OCA2NSkiLz48L3N2Zz4=) no-repeat;
+  background-size: 100%;
+}
+.weui-loadmore {
+  width: 65%;
+  margin: 1.5em auto;
+  line-height: 1.6em;
+  font-size: 14px;
+  text-align: center;
+}
+.weui-loadmore__tips {
+  display: inline-block;
+  vertical-align: middle;
 }
 
 /*左侧菜单*/
@@ -107,111 +232,4 @@
 
 .menu-footer {
   height: 100rpx;
-}
-
-/*菜品信息*/
-
-.dish-item {
-  width: 100%;
-  padding: 16rpx 1.5em;
-  border-bottom: 2rpx solid #ccc;
-}
-
-.dish-item-wrp {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-}
-
-.dish-item-pic {
-  width: 158rpx;
-  margin-right: 1em;
-}
-
-.dish-item-pic image {
-  width: 158rpx;
-  height: 120rpx;
-  margin: 0 auto;
-}
-
-.dish-item-info {
-  width: 150rpx;
-  padding-left: 16rpx;
-  flex: 1;
-}
-
-.dish-item-name {
-  color: #454545;
-  font-size: 26rpx;
-}
-
-.dish-item-sales {
-  color: #ccc;
-  font-size: 20rpx;
-  line-height: 50rpx;
-}
-
-.dish-item-money {
-  color: #f50909;
-  font-size: 26rpx;
-}
-
-.dish-footer {
-  /*background: red;*/
-  height: 100rpx;
-}
-
-/*操作菜品数量*/
-
-.dish-item-count {
-  width: 260rpx;
-  display: flex;
-  font-size: 26rpx;
-  padding: 60rpx 0 0 10rpx;
-}
-
-.dish-item-tab {
-  width: 60rpx;
-  height: 60rpx;
-}
-
-.dish-item-count-minus {
-  width: 60rpx;
-  height: 60rpx;
-}
-
-.dish-item-count-text {
-  color: #ccc;
-  font-size: 28rpx;
-  line-height: 60rpx;
-  text-align: center;
-}
-
-.dish-item-count-plus {
-  width: 60rpx;
-  height: 60rpx;
-}
-
-/*  加载更多   */
-.weui-loading {
-  margin: 0 5px;
-  width: 20px;
-  height: 20px;
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-animation: weuiLoading 1s steps(12, end) infinite;
-  animation: weuiLoading 1s steps(12, end) infinite;
-  background: transparent url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHBhdGggZmlsbD0ibm9uZSIgZD0iTTAgMGgxMDB2MTAwSDB6Ii8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjRTlFOUU5IiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAgLTMwKSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iIzk4OTY5NyIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgzMCAxMDUuOTggNjUpIi8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjOUI5OTlBIiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0icm90YXRlKDYwIDc1Ljk4IDY1KSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iI0EzQTFBMiIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSg5MCA2NSA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNBQkE5QUEiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoMTIwIDU4LjY2IDY1KSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iI0IyQjJCMiIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgxNTAgNTQuMDIgNjUpIi8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjQkFCOEI5IiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0icm90YXRlKDE4MCA1MCA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNDMkMwQzEiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTE1MCA0NS45OCA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNDQkNCQ0IiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTEyMCA0MS4zNCA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNEMkQyRDIiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTkwIDM1IDY1KSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iI0RBREFEQSIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgtNjAgMjQuMDIgNjUpIi8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjRTJFMkUyIiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0icm90YXRlKC0zMCAtNS45OCA2NSkiLz48L3N2Zz4=) no-repeat;
-  background-size: 100%;
-}
-.weui-loadmore {
-  width: 65%;
-  margin: 1.5em auto;
-  line-height: 1.6em;
-  font-size: 14px;
-  text-align: center;
-}
-.weui-loadmore__tips {
-  display: inline-block;
-  vertical-align: middle;
 }

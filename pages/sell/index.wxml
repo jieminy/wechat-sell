@@ -4,50 +4,58 @@
       <text>{{address}}</text>
   </view>
 
-  <scroll-view scroll-x class="scroll-nav-bar">
-    <view class="item_list" wx:for="{{menus}}" wx:key="{{menus.categoryId}}" wx:for-item="menu" wx:for-index="idx">
+  <scroll-view scroll-x class="scroll-menu">
+    <view class="scroll-menu-item" wx:for="{{menus}}" wx:key="{{menus.categoryId}}" wx:for-item="menu" wx:for-index="idx">
       <view bindtap='selectMenu' data-categoryid='{{menu.categoryId}}' data-idx='{{idx}}'>
         <text class="m-item-title">{{menu.name}}</text>
       </view>
     </view>
   </scroll-view>
 
-  <view class="menu-wrp">
+  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{advertisements}}" wx:key="advId" wx:for-item="advertisement">
+      <swiper-item>
+        <image src='{{advertisement.pic}}'></image>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <view class="menu-container">
     <scroll-view scroll-y="true" scroll-into-view="{{toView}}" class="right-side" bindscrolltoupper="onPullDownRefresh"   bindscrolltolower="onReachBottom">
-      <view class="dish-header"></view>
+      <view class="pro-header"></view>
       <block wx:for="{{smallCategories}}" wx:key="id" wx:for-item="smallCategory">
         <view>
           <view id="{{smallCategory.categoryId}}" class="dish-category-title">{{smallCategory.name}}</view>
           <block wx:for="{{smallCategory.productInfos}}" wx:key="id" wx:for-item="product">
-            <view class="dish-item">
-              <view class="dish-item-wrp">
+            <view class="pro-item">
+              <view class="pro-item-wrp">
 
-                <view class="dish-item-pic">
+                <view class="pro-item-pic">
                   <image class="image" src="{{product.productIcon}}" />
                 </view>
 
-                <view class="dish-item-info">
+                <view class="pro-item-info">
                   <view>
-                    <text class="dish-item-name">{{product.productName}}</text>
+                    <text class="pro-item-name">{{product.productName}}</text>
                   </view>
                   <view>
-                    <text class="dish-item-sales">月销量{{product.productSales}}</text>
+                    <text class="pro-item-sales">月销量{{product.productSales}}</text>
                   </view>
                   <view>
-                    <text class="dish-item-money">¥{{product.productPrice}}</text>
+                    <text class="pro-item-money">¥{{product.productPrice}}</text>
                   </view>
                 </view>
 
-                <view class="dish-item-count">
-                  <view class="dish-item-tab">
-                    <view hidden="{{product.count == 0}}" class="dish-item-count-minus" data-id="{{product.productId}}" data-sctid="{{smallCategory.categoryId}}" data-ctid="{{smallCategory.parentId}}" bindtap="minusCount">
+                <view class="pro-item-count">
+                  <view class="pro-item-tab">
+                    <view hidden="{{product.count == 0}}" class="pro-item-count-minus" data-id="{{product.productId}}" data-sctid="{{smallCategory.categoryId}}" data-ctid="{{smallCategory.parentId}}" bindtap="minusCount">
                       <image class="image" src="resources/pic/countMinus.png" />
                     </view>
                   </view>
-                  <view class="dish-item-count-text dish-item-tab">
+                  <view class="pro-item-count-text dish-item-tab">
                     <text hidden="{{product.count == 0}}">{{product.count}}</text>
                   </view>
-                  <view class="dish-item-count-plus" data-id="{{product.productId}}" data-sctid="{{smallCategory.categoryId}}" data-ctid="{{smallCategory.parentId}}" bindtap="addCount">
+                  <view class="pro-item-count-plus" data-id="{{product.productId}}" data-sctid="{{smallCategory.categoryId}}" data-ctid="{{smallCategory.parentId}}" bindtap="addCount">
                     <image class="image" src="resources/pic/countSelAdd.png" />
                   </view>
                 </view>
@@ -62,7 +70,10 @@
         <view class="weui-loading"></view>
         <view class="weui-loadmore__tips">正在加载</view>
       </view>
-      <view class="dish-footer">
+      <view class="pro-footer">
+        <view class='pro-footer-tip'>
+          <text>无更多商品</text>
+        </view>
       </view>
     </scroll-view>
   </view>
