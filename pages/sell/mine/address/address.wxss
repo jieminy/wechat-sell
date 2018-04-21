@@ -34,7 +34,7 @@
 }
 
 .new-address{
-  background-color: red;
+  background-color: #f5a22d;
   color: #fff;
   border-radius: 0;
 }

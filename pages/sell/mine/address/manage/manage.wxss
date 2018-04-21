@@ -14,7 +14,7 @@
 
 .manage-action{
   border-radius: 0;
-  background-color: red;
+  background-color: #f5a22d;
   color: #fff;
   width: 50%;
 }

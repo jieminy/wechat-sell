@@ -3,7 +3,6 @@ var req = require('../../utils/request.js');
 var wxMarkerData = [];
 Page({
   data: {
-    text: "Page main",
     background: [
       {
         color: 'green',
@@ -18,11 +17,6 @@ Page({
         sort: 3
       }
     ],
-    indicatorDots: true,
-    vertical: false,
-    autoplay: false,
-    interval: 3000,
-    duration: 1200,
     toView: 'blue',
     //菜单
     menus: null,
@@ -52,7 +46,7 @@ Page({
 
   onLoad: function () {
     var that = this;
-    wx.setStorageSync("cart", []);
+      // wx.setStorageSync("cart", []);
     //加载菜单
     req.getRequest('/buyer/product/list',
       function (res) {
@@ -99,7 +93,7 @@ Page({
   },
   onShow: function () {
     if (this.data.menus) {
-      this.initProducts(this.data.menus, this.data.menuIndex);
+        this.initCart(this.data.menus, this.data.menuIndex, this.data.smallCategories);
     }
     //加载购物车数据
     try {
@@ -117,24 +111,47 @@ Page({
   },
   //加载商品
   initProducts: function (menus, index) {
-    console.log(menus);
     var that = this;
     //加载商品
     console.log("加载商品");
     let page = menus[index].page;
+      //首次赋值
     if (!page) {
       page = 1;
       menus[index].page = 1;
-    } else {
-      page++;
     }
+      //page>=2 page自增 获取下一页商品
+      if (page >= 2) {
+      page++;
+          menus[index].page = page;
+      }
+      //-1代表无更多商品
+      if (page == -1) {
+          return;
+      }
     req.getRequest('/buyer/product/list/small/prodcut?parentId=' + menus[index].categoryId + '&page=' + page,
       function (res) {
         let clildCategories = res.data.data;
-        if (!clildCategories) {
-          clildCategories = [];
+          let smallCategories = menus[index].clildCategories
+          //都有数据合并
+          if (smallCategories && clildCategories) {
+              smallCategories = smallCategories.concat(clildCategories)
+          }
+          //没有查询到更多数据
+          else if (smallCategories) {
+              smallCategories = smallCategories;
+              menus[index].page = -1;
         }
-        that.initCart(menus, index, clildCategories);
+          //查询到数据但是menus[index].clildCategories无数据
+          else if (clildCategories) {
+              smallCategories = clildCategories;
+          }
+          //无任何数据
+          else {
+              smallCategories = [];
+              menus[index].page = -1;
+          }
+          that.initCart(menus, index, smallCategories);
       },
       function (res) {
         console.log(res);
@@ -167,7 +184,6 @@ Page({
                   }
                   if (cartProduct.productId == product.productId) {
                     product.count = cartProduct.count;
-                    console.log(cartProduct);
                     total.count += cartProduct.count;
                     total.money = (cartProduct.count * (10 * product.productPrice) + total.money * 10) / 10;
                   }
@@ -181,10 +197,7 @@ Page({
     } else {
       cart = [];
     }
-    //加载广告数据
-
     menus[index].childCategories = clildCategories;
-    console.log(menus[index].advertisements);
     this.setData({
       cart: cart,
       total: total,
@@ -265,7 +278,6 @@ Page({
       return;
     }
 
-    console.log(product);
     product.count -= 1;
 
     let total = this.data.total;
@@ -299,7 +311,6 @@ Page({
       if (product.count >= 1) {
         cart.push(product);
       }
-      console.log(cart);
     } catch (e) {
       console.log(e);
     }
@@ -313,53 +324,13 @@ Page({
     setTimeout(function () {
       // complete
       wx.hideNavigationBarLoading() //完成停止加载
-      wx.stopPullDownRefresh() //停止下拉刷新
+        wx.stopPullDownRefresh()      //停止下拉刷新
     }, 1500);
   },
   //上滑加载
-  onReachBottom: function () {
-    var that = this;
-    let menus = that.data.menus;
-    let index = that.data.menuIndex;
-    let page = menus[index].page;
-    if (page == -1) {
-      return;
-    }
-
+    lower: function (e) {
     console.log("上滑");
-    that.setData({
-      isHideLoadMore: false
-    });
-    setTimeout(function () {
-      //complete
-      if (page) {
-        page++;
-        req.getRequest('/buyer/product/list/small/prodcut?parentId=' + menus[index].categoryId + '&page=' + page,
-          function (res) {
-            let clildCategories = res.data.data;
-            if (!clildCategories) {
-              clildCategories = [];
-            }
-            if (clildCategories.length == 0) {
-              menus[index].page = -1;
-            }
-            console.log(menus[index].childCategories);
-            let menusChildCategories = menus[index].childCategories;
-            menusChildCategories = menusChildCategories.concat(clildCategories);
-            that.initCart(menus, index, menusChildCategories);
-
-          },
-          function (res) {
-            console.log(res);
-          }
-        );
-      }
-      that.setData({
-        isHideLoadMore: true
-      });
-    }, 1500);
   }
-
 
 });
 

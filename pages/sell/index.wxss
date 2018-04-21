@@ -49,6 +49,14 @@ swiper-item image {
   background-color: white;
   flex-direction: row;
 }
+.scroll-product{
+  overflow: hidden;
+  white-space: nowrap;
+  background-color: #fff;
+  border-bottom: 1rpx solid #ccc;
+  width: 100%;
+  line-height: 65rpx;
+}
 
 /*菜品信息*/
 

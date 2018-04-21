@@ -21,7 +21,7 @@
   </swiper>
 
   <view class="menu-container">
-    <scroll-view scroll-y="true" scroll-into-view="{{toView}}" class="right-side" bindscrolltoupper="onPullDownRefresh"   bindscrolltolower="onReachBottom">
+    <scroll-view scroll-y  scroll-into-view="{{toView}}"  bindscrolltoupper="onPullDownRefresh" bindscrolltolower="lower">
       <view class="pro-header"></view>
       <block wx:for="{{smallCategories}}" wx:key="id" wx:for-item="smallCategory">
         <view>
@@ -66,7 +66,7 @@
         </view>
 
       </block>
-      <view class="weui-loadmore" hidden="{{isHideLoadMore}}">
+      <!-- <view class="weui-loadmore" hidden="{{isHideLoadMore}}">
         <view class="weui-loading"></view>
         <view class="weui-loadmore__tips">正在加载</view>
       </view>
@@ -74,7 +74,7 @@
         <view class='pro-footer-tip'>
           <text>无更多商品</text>
         </view>
-      </view>
-    </scroll-view>
+      </view> -->
+     </scroll-view>  -
   </view>
 </view>

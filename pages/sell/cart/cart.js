@@ -22,6 +22,7 @@ Page({
   onHide: function () {
     // 页面隐藏
     console.log("页面隐藏")
+      console.log(this.data.total)
     wx.setStorageSync("cart", this.data.cart);
     getApp().globalData.total = this.data.total;
   },
@@ -34,14 +35,14 @@ Page({
     });
     if(product.count >= 1){
       product.count -= 1;
+        let total = this.data.total;
+        total.count -= 1;
+        total.money = (total.money * 10 - product.productPrice * 10) / 10;
+        this.setData({
+            cart: cart,
+            total: total
+        });
     }
-    let total = this.data.total;
-    total.count -= 1;
-    total.money = (total.money * 10 - product.productPrice * 10) / 10;
-    this.setData({
-      cart: cart,
-      total: total
-    });
   },
   //增加
   addCount: function (event) {
