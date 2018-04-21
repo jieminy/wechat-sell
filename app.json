@@ -1,6 +1,7 @@
 {
   "pages":[
     "pages/sell/index",
+    "pages/sell/home/detail/detail",
     "pages/sell/cart/confirm/confirm",
     "pages/sell/mine/address/address",
     "pages/sell/mine/address/choose/choose",

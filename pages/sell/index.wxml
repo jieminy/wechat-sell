@@ -5,8 +5,7 @@
   </view>
 
   <scroll-view scroll-x class="scroll-menu">
-    <view class="scroll-menu-item {{menuIndex == idx ? 'selected' : ''}}" 
-          wx:for="{{menus}}" wx:key="{{menus.categoryId}}" wx:for-item="menu" wx:for-index="idx">
+    <view class="scroll-menu-item {{menuIndex == idx ? 'selected' : ''}}" wx:for="{{menus}}" wx:key="{{menus.categoryId}}" wx:for-item="menu" wx:for-index="idx">
       <view class="menu-item" bindtap='selectMenu' data-categoryid='{{menu.categoryId}}' data-idx='{{idx}}'>
         <text class="menu-item-text">{{menu.name}}</text>
       </view>
@@ -29,24 +28,26 @@
         <view id="{{smallCategory.categoryId}}" class="dish-category-title">{{smallCategory.name}}</view>
         <block wx:for="{{smallCategory.productInfos}}" wx:key="id" wx:for-item="product">
           <view class="pro-item">
-            <view class="pro-item-wrp">
+            <view class="pro-item-wrp" >
 
-              <view class="pro-item-pic">
+            
+              <view class="pro-item-pic" bindtap='detail' data-proId='{{product.productId}}'>
                 <image class="image" src="{{product.productIcon}}" />
               </view>
 
-              <view class="pro-item-info">
+              <view class="pro-item-info" bindtap='detail' data-proId='{{product.productId}}'>
                 <view>
-                  <text class="pro-item-name">{{product.productName}} / 月销量{{product.productSales}}</text>
+                  <text class="pro-item-name">{{product.productName}} {{product.weight}}</text>
                 </view>
                 <view>
-                  <text class="pro-item-sales">描述</text>
+                  <text class="pro-item-sales">{{product.productDescription}} </text>
                 </view>
                 <view>
                   <text class="pro-item-money">¥{{product.productPrice}}</text>
                 </view>
               </view>
 
+              
               <view class="pro-item-count">
                 <view class="pro-item-tab">
                   <view hidden="{{product.count == 0}}" class="pro-item-count-minus" data-id="{{product.productId}}" data-sctid="{{smallCategory.categoryId}}" data-ctid="{{smallCategory.parentId}}" bindtap="minusCount">
@@ -60,6 +61,7 @@
                   <image class="image" src="resources/pic/countSelAdd.png" />
                 </view>
               </view>
+
             </view>
           </view>
         </block>

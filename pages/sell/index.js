@@ -330,7 +330,15 @@ Page({
   //上滑加载
     lower: function (e) {
     console.log("上滑");
-  }
+    },
+    //商品详情
+    detail: function (event) {
+        let eventData = event.currentTarget.dataset;
+        wx.navigateTo({
+            url: 'home/detail/detail?proid=' + eventData.proid,
+        })
+    }
+  
 
 });
 
