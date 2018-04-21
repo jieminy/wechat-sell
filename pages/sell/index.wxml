@@ -5,9 +5,10 @@
   </view>
 
   <scroll-view scroll-x class="scroll-menu">
-    <view class="scroll-menu-item" wx:for="{{menus}}" wx:key="{{menus.categoryId}}" wx:for-item="menu" wx:for-index="idx">
-      <view bindtap='selectMenu' data-categoryid='{{menu.categoryId}}' data-idx='{{idx}}'>
-        <text class="m-item-title">{{menu.name}}</text>
+    <view class="scroll-menu-item {{menuIndex == idx ? 'selected' : ''}}" 
+          wx:for="{{menus}}" wx:key="{{menus.categoryId}}" wx:for-item="menu" wx:for-index="idx">
+      <view class="menu-item" bindtap='selectMenu' data-categoryid='{{menu.categoryId}}' data-idx='{{idx}}'>
+        <text class="menu-item-text">{{menu.name}}</text>
       </view>
     </view>
   </scroll-view>
@@ -36,10 +37,10 @@
 
               <view class="pro-item-info">
                 <view>
-                  <text class="pro-item-name">{{product.productName}}</text>
+                  <text class="pro-item-name">{{product.productName}} / 月销量{{product.productSales}}</text>
                 </view>
                 <view>
-                  <text class="pro-item-sales">月销量{{product.productSales}}</text>
+                  <text class="pro-item-sales">描述</text>
                 </view>
                 <view>
                   <text class="pro-item-money">¥{{product.productPrice}}</text>
