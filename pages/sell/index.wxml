@@ -1,7 +1,7 @@
-<view class="index">
+<view class="layout-column layout-fill">
 
   <view style='text-align: center;height: 24px'>
-      <text>{{address}}</text>
+    <text>{{address}}</text>
   </view>
 
   <scroll-view scroll-x class="scroll-menu">
@@ -12,69 +12,59 @@
     </view>
   </scroll-view>
 
-  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-    <block wx:for="{{advertisements}}" wx:key="advId" wx:for-item="advertisement">
-      <swiper-item>
-        <image src='{{advertisement.pic}}'></image>
-      </swiper-item>
-    </block>
-  </swiper>
+  <scroll-view class="scroll-product flex" scroll-y scroll-into-view="{{toView}}" bindscrolltoupper="onPullDownRefresh" bindscrolltolower="lower">
 
-  <view class="menu-container">
-    <scroll-view scroll-y  scroll-into-view="{{toView}}"  bindscrolltoupper="onPullDownRefresh" bindscrolltolower="lower">
-      <view class="pro-header"></view>
-      <block wx:for="{{smallCategories}}" wx:key="id" wx:for-item="smallCategory">
-        <view>
-          <view id="{{smallCategory.categoryId}}" class="dish-category-title">{{smallCategory.name}}</view>
-          <block wx:for="{{smallCategory.productInfos}}" wx:key="id" wx:for-item="product">
-            <view class="pro-item">
-              <view class="pro-item-wrp">
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+      <block wx:for="{{advertisements}}" wx:key="advId" wx:for-item="advertisement">
+        <swiper-item>
+          <image src='{{advertisement.pic}}'></image>
+        </swiper-item>
+      </block>
+    </swiper>
 
-                <view class="pro-item-pic">
-                  <image class="image" src="{{product.productIcon}}" />
+    <view class="pro-header"></view>
+    <block wx:for="{{smallCategories}}" wx:key="id" wx:for-item="smallCategory">
+      <view>
+        <view id="{{smallCategory.categoryId}}" class="dish-category-title">{{smallCategory.name}}</view>
+        <block wx:for="{{smallCategory.productInfos}}" wx:key="id" wx:for-item="product">
+          <view class="pro-item">
+            <view class="pro-item-wrp">
+
+              <view class="pro-item-pic">
+                <image class="image" src="{{product.productIcon}}" />
+              </view>
+
+              <view class="pro-item-info">
+                <view>
+                  <text class="pro-item-name">{{product.productName}}</text>
                 </view>
+                <view>
+                  <text class="pro-item-sales">月销量{{product.productSales}}</text>
+                </view>
+                <view>
+                  <text class="pro-item-money">¥{{product.productPrice}}</text>
+                </view>
+              </view>
 
-                <view class="pro-item-info">
-                  <view>
-                    <text class="pro-item-name">{{product.productName}}</text>
-                  </view>
-                  <view>
-                    <text class="pro-item-sales">月销量{{product.productSales}}</text>
-                  </view>
-                  <view>
-                    <text class="pro-item-money">¥{{product.productPrice}}</text>
+              <view class="pro-item-count">
+                <view class="pro-item-tab">
+                  <view hidden="{{product.count == 0}}" class="pro-item-count-minus" data-id="{{product.productId}}" data-sctid="{{smallCategory.categoryId}}" data-ctid="{{smallCategory.parentId}}" bindtap="minusCount">
+                    <image class="image" src="resources/pic/countMinus.png" />
                   </view>
                 </view>
-
-                <view class="pro-item-count">
-                  <view class="pro-item-tab">
-                    <view hidden="{{product.count == 0}}" class="pro-item-count-minus" data-id="{{product.productId}}" data-sctid="{{smallCategory.categoryId}}" data-ctid="{{smallCategory.parentId}}" bindtap="minusCount">
-                      <image class="image" src="resources/pic/countMinus.png" />
-                    </view>
-                  </view>
-                  <view class="pro-item-count-text dish-item-tab">
-                    <text hidden="{{product.count == 0}}">{{product.count}}</text>
-                  </view>
-                  <view class="pro-item-count-plus" data-id="{{product.productId}}" data-sctid="{{smallCategory.categoryId}}" data-ctid="{{smallCategory.parentId}}" bindtap="addCount">
-                    <image class="image" src="resources/pic/countSelAdd.png" />
-                  </view>
+                <view class="pro-item-count-text dish-item-tab">
+                  <text hidden="{{product.count == 0}}">{{product.count}}</text>
+                </view>
+                <view class="pro-item-count-plus" data-id="{{product.productId}}" data-sctid="{{smallCategory.categoryId}}" data-ctid="{{smallCategory.parentId}}" bindtap="addCount">
+                  <image class="image" src="resources/pic/countSelAdd.png" />
                 </view>
               </view>
             </view>
-          </block>
+          </view>
+        </block>
 
-        </view>
-
-      </block>
-      <!-- <view class="weui-loadmore" hidden="{{isHideLoadMore}}">
-        <view class="weui-loading"></view>
-        <view class="weui-loadmore__tips">正在加载</view>
       </view>
-      <view class="pro-footer">
-        <view class='pro-footer-tip'>
-          <text>无更多商品</text>
-        </view>
-      </view> -->
-     </scroll-view>  -
-  </view>
+
+    </block>
+  </scroll-view>
 </view>
