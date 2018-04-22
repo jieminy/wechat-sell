@@ -1,10 +1,10 @@
 <view class="ibox">
   <view>
-    <input placeholder='请输入您的地址' bindinput='bindKeyInput'></input>
+    <input style='font-size:32rpx;' placeholder='请输入您的地址' bindinput='bindKeyInput'></input>
   </view>
-  <view class=".ibox-item">
+  <view class="ibox-item">
     <block wx:for="{{sugData}}" wx:for-index="idx">
-      <view bindtap='chooseLocation' data-item='{{item}}'>
+      <view bindtap='chooseLocation' data-item='{{item}}' style='border-bottom:1rpx solid #f2f2f2;'>
         <text>{{item}}</text>
       </view>
     </block>

@@ -41,6 +41,7 @@
   display: block;
   flex: 1;
   margin-left: 10rpx;
+  font-size: 32rpx;
 }
 
 .mine-item-img {

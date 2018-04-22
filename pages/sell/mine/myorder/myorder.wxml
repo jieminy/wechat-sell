@@ -1,14 +1,17 @@
 <scroll-view scroll-y="true" class="order-main">
   <block wx:for="{{orders}}" wx:key="orders.orderId" wx:for-item="order">
 
-    <view class="ibox layout-column order-item">
+    <view class="ibox order-item">
       <view class="ibox-content">
         <view class="ibox-item">
           {{order.createTime}}
         </view>
 
-        <view class="ibox-item" wx:for="{{order.orderDetailList}}" wx:for-item="detail">
-          <image src='{{detail.productIcon}}'></image>
+        <view class="ibox-item layout-row">
+          <view wx:for="{{order.orderDetailList}}" wx:for-item="detail"
+            style='display:inline-block;width:90rpx;height:90rpx;'>
+            <image src='{{detail.productIcon}}' style='width:100%;height:100%;'></image>
+          </view>
         </view>
 
         <view class="ibox-item layout-row">

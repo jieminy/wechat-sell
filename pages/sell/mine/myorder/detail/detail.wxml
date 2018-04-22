@@ -6,11 +6,9 @@
       </view>
       <view class="ibox-content">
         <block wx:for="{{order.orderDetailList}}" wx:key="detailId" wx:for-item="product">
-          <view style='flex-direction:row'>
-            <view style='width:50px;height:50px'>
-              <image src='{{product.productIcon}}' style='width:50px;height:50px'></image>
+          <view style='width:50px;height:50px;display:inline-block;'>
+              <image src='{{product.productIcon}}' style='width:100%;height:100%;'></image>
             </view>
-          </view>
         </block>
       </view>
     </view>

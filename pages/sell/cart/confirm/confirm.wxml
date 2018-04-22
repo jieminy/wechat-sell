@@ -2,34 +2,31 @@
   <scroll-view scroll-y class="confirm-scroll flex">
 
     <view class="address-infos text-center">
-      <!-- <view>
-        <icon type='waiting' size='46' />
-      </view>
-      <view class="pay-status">
-        <text>待付款</text>
-      </view>
-      <view class="hot-center">
-        <button>联系客服</button>
-      </view> -->
 
       <view class="address-text-wrap" bindtap='navitoAddress'>
         <view class="address-text" hidden="{{receiver != null}}">
           <text>请选择收获地址</text>
         </view>
-         <view hidden="{{receiver == null}}">
-          <view class="address-text" >
+        <view hidden="{{receiver == null}}">
+          <view class="address-text">
             <text>收货地址：{{receiver.name}} {{receiver.phone}}</text>
           </view>
-          <view class="address-text" >
+          <view class="address-text">
             <text>{{receiver.address}} {{receiver.detail}}</text>
           </view>
-        </view> 
+        </view>
       </view>
     </view>
 
     <view class="ibox">
-      <view class="ibox-title">
-        <text>商品信息</text>
+      <view class="ibox-title layout-row">
+        <view class='flex'>
+          <text>商品信息</text>
+        </view>
+
+        <view>
+          <text hidden="{{total.count == 0}}">共{{total.count}}件</text>
+        </view>
       </view>
       <view class="ibox-content">
         <scroll-view scroll-x class="">
@@ -40,24 +37,10 @@
               </view>
             </view>
           </block>
-          <text hidden="{{total.count == 0}}" class="cart-item-total-num bc_red">共{{total.count}}件</text>
+
         </scroll-view>
       </view>
     </view>
-<!-- 
-    <view class="ibox">
-      <view class="ibox-title">
-        <text>订单信息</text>
-      </view>
-      <view class="ibox-content">
-        <view class="ibox-item">
-          <text>订单编号：xxxxxxxx</text>
-        </view>
-        <view class="ibox-item">
-          <text>创建时间：xxxxxxxx</text>
-        </view>
-      </view>
-    </view> -->
 
     <view class="ibox pay-infos">
       <view class="ibox-content">
@@ -92,12 +75,12 @@
   </scroll-view>
 
   <view class="cart-tab-wrp layout-row">
-    <view class="cart-item-total cart-tab-item layout-row">
+    <view class="cart-item-total layout-row" style='margin-right:1em;'>
       <text>付款</text>
       <text class="cart-item-total-price">￥{{total.money}}</text>
     </view>
-    <view class="cart-tab-item">
-      <navigator url="/pages/sell/index" class="cart-tab-item-btn" hover-class="navigator-hover" bindtap='createOrder'>去支付</navigator>
+    <view class='flex'>
+      <navigator url="/pages/sell/index" class="cart-tab-item-btn bg-orange" hover-class="navigator-hover" bindtap='createOrder'>去支付</navigator>
     </view>
   </view>
 </view>

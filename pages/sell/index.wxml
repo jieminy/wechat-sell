@@ -17,7 +17,7 @@
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
       <block wx:for="{{advertisements}}" wx:key="advId" wx:for-item="advertisement">
         <swiper-item>
-          <image src='{{advertisement.pic}}'></image>
+          <image class="image" src='{{advertisement.pic}}'></image>
         </swiper-item>
       </block>
     </swiper>
@@ -28,14 +28,12 @@
         <view id="{{smallCategory.categoryId}}" class="dish-category-title">{{smallCategory.name}}</view>
         <block wx:for="{{smallCategory.productInfos}}" wx:key="id" wx:for-item="product">
           <view class="pro-item">
-            <view class="pro-item-wrp" >
-
-            
+            <view class="pro-item-wrp layout-row">
               <view class="pro-item-pic" bindtap='detail' data-proId='{{product.productId}}'>
-                <image class="image" src="{{product.productIcon}}" />
+                <image src="{{product.productIcon}}" />
               </view>
 
-              <view class="pro-item-info" bindtap='detail' data-proId='{{product.productId}}'>
+              <view class="pro-item-info flex" bindtap='detail' data-proId='{{product.productId}}'>
                 <view>
                   <text class="pro-item-name">{{product.productName}} {{product.weight}}</text>
                 </view>

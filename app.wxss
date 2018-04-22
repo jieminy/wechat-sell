@@ -309,6 +309,10 @@ checkbox, radio {
   color: red;
 }
 
+.bg-orange{
+  background-color: #f5a22d;
+}
+
 /*
 公共的底部交互组件 common-tab
 */
@@ -346,7 +350,7 @@ checkbox, radio {
 }
 
 .ibox-title {
-  font-size: 28rpx;
+  font-size: 30rpx;
   line-height: 60rpx;
   height: 60rpx;
   border-bottom: 1px solid #f2f2f2;
@@ -355,7 +359,7 @@ checkbox, radio {
 .ibox-item {
   height: 60rpx;
   line-height: 60rpx;
-  font-size: 24rpx;
+  font-size: 28rpx;
   border-bottom: 1px solid #fafafa;
   color: #999;
 }

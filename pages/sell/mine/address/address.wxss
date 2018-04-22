@@ -1,10 +1,9 @@
-
-.address-wrap-scroll{
+.address-wrap-scroll {
   overflow: hidden;
 }
 
-.address-item{
-  font-size: 26rpx;
+.address-item {
+  font-size: 32rpx;
   line-height: 40rpx;
   border-width: 1px 0;
   border-style: solid;
@@ -13,27 +12,28 @@
   padding: 1em;
 }
 
-.address-text{
-  font-size: 22rpx;
-  color: #DBDBDB;
+.address-text {
+  font-size: 28rpx;
+  color: #dbdbdb;
 }
 
-.address-item + .address-item{
-  border-top: 1em solid #FAFAFA;
+.address-item + .address-item {
+  border-top: 1em solid #fafafa;
 }
 
-.address-action{
+.address-action {
+  display: block;
   margin-left: 1em;
+  height: 50rpx;
+  line-height: 50rpx;
 }
 
 .address-action icon{
-  line-height: 1;
   position: relative;
-  top: 9rpx;
-  margin-right: 5rpx;
+  top: 3rpx;
 }
 
-.new-address{
+.new-address {
   background-color: #f5a22d;
   color: #fff;
   border-radius: 0;

@@ -1,5 +1,4 @@
 .order-main{
-  display: flex;
   height: 100%;
   width: 100%;
   overflow:hidden;
@@ -8,8 +7,8 @@
   margin-top: 10rpx;
 }
 
-.order-time{
-  font-size: 22rpx;
+.ibox-item{
+  font-size: 28rpx;
 }
 
 .order-status{
@@ -20,7 +19,6 @@
 .order-action{
   display: inline-block;
   font-weight: 400;
-  font-size: 22rpx;
   border: 1px solid #f2f2f2;
   height: 30rpx;
   line-height: 30rpx;

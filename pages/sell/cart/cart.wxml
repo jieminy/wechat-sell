@@ -3,11 +3,11 @@
   <scroll-view scroll-y="true" scroll-into-view="{{toView}}" class="right-side">
     <block wx:for="{{cart}}" wx:key="productId" wx:for-item="product">
       <view class="dish-item" hidden="{{product.count == 0}}">
-        <view class="dish-item-wrp">
+        <view class="dish-item-wrp layout-row">
           <view class="dish-item-pic">
             <image class="image" src="{{product.productIcon}}" />
           </view>
-          <view class="dish-item-info" style="">
+          <view class="dish-item-info flex">
             <view>
               <text class="dish-item-name">{{product.productName}}</text>
             </view>
@@ -19,7 +19,7 @@
             </view>
           </view>
 
-          <view class="dish-item-count" style="">
+          <view class="dish-item-count">
             <view class="dish-item-tab">
               <view hidden="{{product.count == 0}}" class="dish-item-count-minus" data-id="{{product.productId}}" bindtap="minusCount">
                 <image class="image" src="resources/pic/countMinus.png" />
@@ -40,15 +40,11 @@
   </scroll-view>
 
   <view class="cart-tab-wrp">
-    <view class="cart-item-total cart-tab-item">
-      <!-- <view class="cart-item-icon-wrp">
-        <image class="cart-item-icon" src="../resources/pic/orderBox.png" />
-        <text hidden="{{total.count}}" class="cart-item-total-num bc_red">{{total.count}}</text>
-      </view> -->
+    <view class="cart-item-total" style='margin-right:1em;'>
       <text class="cart-item-total-price">￥{{total.money}}</text>
     </view>
-    <view class="cart-tab-item">
-      <navigator url="confirm/confirm" class="cart-tab-item-btn" hover-class="navigator-hover">去结算</navigator>
+    <view class='flex'>
+      <navigator url="confirm/confirm" class="cart-tab-item-btn bg-orange" hover-class="navigator-hover">去结算</navigator>
     </view>
   </view>
 </view>

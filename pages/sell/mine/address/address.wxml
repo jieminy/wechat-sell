@@ -22,12 +22,12 @@
           <view class="flex"></view>
           <view class="layout-row">
             <view class="address-action" bindtap='edit' data-recid='{{receiver.recId}}'>
-              <icon type="info" size="14" />
-              <text>编辑</text>
+                <icon type="info" size="16" />
+                <text>编辑</text>
             </view>
             <view class="address-action text-danger" bindtap='deleteRec' data-recid="{{receiver.recId}}">
-              <icon type="cancel" size="14" color="red" />
-              <text>删除</text>
+                <icon type="cancel" size="16" color="red" />
+                <text>删除</text>
             </view>
           </view>
         </view>
