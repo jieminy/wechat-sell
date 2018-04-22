@@ -2,18 +2,27 @@ Page({
   data: {
     text: "Page main",
     cart: [],
-    total: {
-      count: 0,
-      money: 0.0
-    },
+      total: null,
   },
   onShow: function () {
     // 页面显示
     try {
-      let letCart = wx.getStorageSync("cart");
+        let cart = wx.getStorageSync("cart");
+        let total = {
+            count: 0,
+            money: 0.0
+        }
+        if (cart) {
+            cart.forEach(function (product, idx) {
+                total.count += product.count;
+                total.money = (total.money * 10 + product.count * product.productPrice * 10) / 10;
+            });
+        } else {
+            cart = [];
+        }
       this.setData({
-        cart: letCart,
-        total: getApp().globalData.total 
+          cart: cart,
+          total: total
       });
     } catch (e) {
       console.log(e);
@@ -22,9 +31,7 @@ Page({
   onHide: function () {
     // 页面隐藏
     console.log("页面隐藏")
-      console.log(this.data.total)
     wx.setStorageSync("cart", this.data.cart);
-    getApp().globalData.total = this.data.total;
   },
   //移除
   minusCount: function (event) {
