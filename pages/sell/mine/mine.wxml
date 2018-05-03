@@ -8,19 +8,19 @@
     <block>
       <view class="mine-wrap">
         <view class="mine-menu-item" bindtap='openOrderPage'>
-          <image class='mine-item-img' src="/images/myNormal.png"></image>
+          <image class='mine-item-img' src="/images/order.png"></image>
           <view class="mine-item-text">我的订单</view>
-          <image class='mine-item-img' src="/images/play.png"></image>
+          <image class='mine-item-img' src="/images/arrowright.png"></image>
         </view>
         <view class="mine-menu-item" bindtap='openAddressPage'>
-          <image class='mine-item-img' src="/images/myNormal.png"></image>
+          <image class='mine-item-img' src="/images/address.png"></image>
           <view class="mine-item-text">我的地址</view>
-          <image class='mine-item-img' src="/images/play.png"></image>
+          <image class='mine-item-img' src="/images/arrowright.png"></image>
         </view>
         <view class="mine-menu-item" bindtap='openCustomPage'>
-          <image class='mine-item-img' src="/images/myNormal.png"></image>
+          <image class='mine-item-img' src="/images/connect.png"></image>
           <view class="mine-item-text">联系客服</view>
-          <image class='mine-item-img' src="/images/play.png"></image>
+          <image class='mine-item-img' src="/images/arrowright.png"></image>
         </view>
       </view>
     </block>

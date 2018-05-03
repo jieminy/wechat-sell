@@ -20,6 +20,7 @@
 .detail .sales {
   margin-left: 1em;
   margin-right: 1em;
+  color: #999;
 }
 
 .detail .desc {
@@ -97,4 +98,7 @@ swiper-item image {
   color: #fff;
   font-size: 28rpx;
   padding: 5rpx;
+  min-width: 32rpx;
+  min-height: 32rpx;
+  text-align: center;
 }

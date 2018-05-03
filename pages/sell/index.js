@@ -66,6 +66,7 @@ Page({
     };
     var success = function (data) {
       wxMarkerData = data.wxMarkerData;
+        console.log(wxMarkerData[0]);
       that.setData({
         markers: wxMarkerData
       });
@@ -76,7 +77,7 @@ Page({
         longitude: wxMarkerData[0].longitude
       });
       that.setData({
-        address: wxMarkerData[0].address
+          address: wxMarkerData[0].desc
       });
     };
     // 发起regeocoding检索请求 

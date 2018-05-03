@@ -32,6 +32,7 @@ Page({
     // 页面隐藏
     console.log("页面隐藏")
     wx.setStorageSync("cart", this.data.cart);
+      getApp().globalData.total = this.data.total;
   },
   //移除
   minusCount: function (event) {

@@ -68,7 +68,7 @@
     <view class="flex"></view>
     <view wx:if="{{order.orderStatus == 0}}">
       <view class="common-tab-action" bindtap='cancelOrder'>取消订单</view>
-      <view class="common-tab-action">去支付</view>
+      <view class="common-tab-action" bindtap='pay' data-orderid='{{order.orderId}}'>去支付</view>
     </view>
     <view wx:elif="{{order.orderStatus == 2}}">
       <view class="common-tab-action">已取消</view>

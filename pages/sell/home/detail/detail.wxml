@@ -1,7 +1,7 @@
 <view class='layout-fill layout-column'>
   <scroll-view scroll-y="true" class="flex" style='overflow:hidden;'>
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-      <block wx:for="{{product.detailIconList}}" wx:key="advId" wx:for-item="icon">
+      <block wx:for="{{swipeIcons}}" wx:key="advId" wx:for-item="icon">
         <swiper-item>
           <image src='{{icon}}'></image>
         </swiper-item>
@@ -55,7 +55,7 @@
   <!-- 底部悬浮栏 -->
   <view class="detail-nav layout-row">
     <view class="cart">
-    <text class='cart-total'>12</text>
+    <text class='cart-total'>{{count}}</text>
     <image src="../../resources/pic/orderBox.png" bindtap='tocart' />
     </view>
     <view class='flex'>

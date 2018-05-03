@@ -9,17 +9,18 @@
       <input class="form-contral" name="phone" placeholder='手机或固话' value='{{receiver.phone}}' />
     </view>
     <view class='mana-form '>
-      <view class="text-right flex">收获地址</view>
-      <input class="form-contral" name="address" placeholder='请输入您的收货地址' bindtap='getLocation' value='{{receiver.address}}' />
+      <view class="text-right flex" >收获地址</view>
+      <input class="form-contral" name="address" placeholder='请输入您的收货地址' bindtap='getLocation'  value='{{location}}' />
     </view>
+     <!-- <view class='mana-form ' wx:else>
+      <view class="text-right flex" >收获地址</view>
+      <input class="form-contral" name="address" placeholder='请输入您的收货地址' bindtap='getLocation'  value='{{receiver.address}}' />
+    </view> -->
     <view class='mana-form '>
       <view class="text-right flex">楼号门牌</view>
       <input class="form-contral" name="detail" placeholder='楼号/单元/门牌号' value='{{receiver.detail}}' />
     </view>
-    <view class='mana-form '>
-      <view class="text-right flex">地址类型</view>
-      <input class="form-contral" name="addressType" placeholder='请选择地址类型' value='' />
-    </view>
+
     <button formType="submit" style='margin-top:2em;' class="manage-action">保存</button>
   </form>
 

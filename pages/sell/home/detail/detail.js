@@ -12,7 +12,9 @@ Page({
         duration: 1000, //  滑动动画时长1s
         product: {},
 
-        cart: []
+        cart: [],
+        count: 0,
+        swipeIcons: null
     },
 
     /**
@@ -27,8 +29,11 @@ Page({
                 let product = res.data.data;
                 console.log(product);
                 if (product) {
+                    let swipeIcons = JSON.parse(product.swipeIcons);
+                    console.log(swipeIcons);
                     that.setData({
-                        product: product
+                        product: product,
+                        swipeIcons: swipeIcons
                     });
                 }
             },
@@ -71,6 +76,7 @@ Page({
         }
         console.log(cart);
         this.setData({
+            count: ++this.data.count,
             cart: cart
         });
         wx.setStorageSync("cart", cart);

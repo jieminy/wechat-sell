@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    receiver: {}
+      receiver: {},
+      location: null
   },
 
   /**
@@ -23,7 +24,8 @@ Page({
           let resData = res.data;
           console.log(resData.data);
           that.setData({
-            receiver: resData.data
+              receiver: resData.data,
+              location: resData.data.address
           });
         }
       })
@@ -35,12 +37,10 @@ Page({
    */
   onShow: function () {
     //choose页面选择地址naviback后赋值
-    let receiver = this.data.receiver;
-    if (getApp().globalData.location != "" && receiver != {}) {
+      if (getApp().globalData.location != "") {
       let location = getApp().globalData.location;
-      receiver.address = location;
       this.setData({
-        receiver: receiver
+          location: location
       });
       getApp().globalData.location = "";
     }
@@ -72,7 +72,8 @@ Page({
       }
     })
   },
-  //获取位置
+
+    //获取位置
   getLocation: function () {
     wx.navigateTo({
       url: '../choose/choose',

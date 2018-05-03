@@ -27,20 +27,20 @@
     "list": [
       {
         "pagePath": "pages/sell/index",
-        "iconPath": "images/mealNormal.png",
-        "selectedIconPath": "images/mealSelect.png",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/homeSelect.png",
         "text": "首页"
       },
       {
         "pagePath": "pages/sell/cart/cart",
-        "iconPath": "images/orderListNormal.png",
-        "selectedIconPath": "images/orderListSelect.png",
+        "iconPath": "images/cart.png",
+        "selectedIconPath": "images/cartSelect.png",
         "text": "购物车"
       },
       {
         "pagePath": "pages/sell/mine/mine",
-        "iconPath": "images/myNormal.png",
-        "selectedIconPath": "images/mySelect.png",
+        "iconPath": "images/mine.png",
+        "selectedIconPath": "images/mineSelect.png",
         "text": "我的"
       }
     ]
