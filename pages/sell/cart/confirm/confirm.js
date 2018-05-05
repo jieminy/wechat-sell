@@ -6,6 +6,7 @@ Page({
    */
   data: {
     cart: [],
+      rangeData: [{value: '100'}, {value: '200'}],
     total: {
       count: 0,
       money: 0.0

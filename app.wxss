@@ -357,7 +357,7 @@ checkbox, radio {
 }
 
 .ibox-item {
-  height: 60rpx;
+  min-height: 60rpx;
   line-height: 60rpx;
   font-size: 28rpx;
   border-bottom: 1px solid #fafafa;

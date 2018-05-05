@@ -24,18 +24,16 @@
       </view>
     </view>
 
-    <view class="address-infos text-center">
+    <view class="address-infos">
       <view class="address-text-wrap" bindtap='navitoAddress'>
-        <view class="address-text" hidden="{{receiver != null}}">
-          <!-- <image src='/images/address.png'></image> -->
+        <view class="address-text layout-row" hidden="{{receiver != null}}">
+          <image src='/images/address.png' style='width:24rpx;height:24rpx;'></image>
           <text>请选择收获地址</text>
         </view>
         <view hidden="{{receiver == null}}">
           <view class="address-text">
-            <text>收货地址：{{receiver.name}} {{receiver.phone}}</text>
-          </view>
-          <view class="address-text">
-            <text>{{receiver.address}} {{receiver.detail}}</text>
+            <image src='/images/address.png' style='width:24rpx;height:24rpx;'></image>
+            <text>收货地址：{{receiver.name}} {{receiver.phone}} ({{receiver.address}} {{receiver.detail}})</text>
           </view>
         </view>
       </view>
@@ -44,7 +42,42 @@
 
 
     <view class="ibox pay-infos">
+
       <view class="ibox-content">
+        <view class='ibox-item layout-row'>
+          <button class="button active">送货上门</button>
+          <button class="button">到店自提</button>
+        </view>
+
+
+        <block>
+          <view class="ibox-item layout-row">
+            <text class="flex">送货时间</text>
+            <view class='layout-row'>
+              <picker mode="selector" range="{{rangeData}}" range-key='value' value="{{time}}" bindchange="bindTimeChange">
+                <view class="picker">
+                  [次日]:10:00-21:30
+                </view>
+              </picker>
+            </view>
+          </view>
+        </block>
+
+        <block>
+          <view class="ibox-item layout-row">
+            <text class="flex">自提地点</text>
+            <text>惺惺惜惺惺想寻寻寻寻寻寻寻</text>
+          </view>
+          <view class="ibox-item layout-row">
+            <text class="flex">自提时间</text>
+            <view class='layout-row'>
+              <text style='color:red;'>[次日]</text>
+              <text>10:00-21:30</text>
+            </view>
+          </view>
+        </block>
+
+
         <view class="ibox-item layout-row">
           <text class="flex">商品总价</text>
           <text>￥{{total.money}}</text>
@@ -59,7 +92,7 @@
         </view>
         <view class="ibox-item layout-row">
           <text class="flex">合计</text>
-          <text>￥{{total.money}}</text>
+          <text style='color:#FF0066;font-size:1.2em;'>￥{{total.money}}</text>
         </view>
         <view class="ibox-item layout-row">
           <text class="flex">备注</text>
