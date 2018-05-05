@@ -44,11 +44,9 @@
       </view>
     </view>
 
-    <block>
-      <view>
-        <image></image>
-      </view>
-    </block>
+    <view class="detailIcons" wx:for="{{detailIcons}}" wx:key="idx">
+      <image src='{{item}}'/>
+    </view>
   </scroll-view>
 
 

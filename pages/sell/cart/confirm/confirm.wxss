@@ -2,8 +2,25 @@
   overflow: hidden;
 }
 
+/* 收货人地址 */
 .address-infos {
   padding: 0 1em;
+  border-top: 0.5em solid #fafafa;
+}
+.address-text-wrap {
+  padding: 0.5em 0;
+}
+.address-text {
+  font-size: 28rpx;
+  color: #999;
+}
+.address-choose {
+  flex-direction: row;
+  height: 3em;
+}
+.address-choose .image {
+  width: 28rpx;
+  height: 28rpx;
 }
 
 .hot-center {
@@ -17,14 +34,6 @@
   margin: 1em auto;
 }
 
-.address-text-wrap {
-  padding: 0.5em 0;
-}
-
-.address-text {
-  font-size: 28rpx;
-  color: #999;
-}
 
 .cart-tab-wrp {
   height: 100rpx;

@@ -12,7 +12,7 @@
     </view>
   </scroll-view>
 
-  <scroll-view class="scroll-product flex" scroll-y scroll-into-view="{{toView}}" bindscrolltoupper="onPullDownRefresh" bindscrolltolower="lower">
+  <scroll-view class="scroll-product flex" scroll-y  bindscrolltolower="lower">
 
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
       <block wx:for="{{advertisements}}" wx:key="advId" wx:for-item="advertisement">
@@ -22,7 +22,6 @@
       </block>
     </swiper>
 
-    <view class="pro-header"></view>
     <block wx:for="{{smallCategories}}" wx:key="id" wx:for-item="smallCategory">
       <view>
         <view id="{{smallCategory.categoryId}}" class="dish-category-title">{{smallCategory.name}}</view>
@@ -55,8 +54,9 @@
                 <view class="pro-item-count-text dish-item-tab">
                   <text hidden="{{product.count == 0}}">{{product.count}}</text>
                 </view>
-                <view class="pro-item-count-plus" data-id="{{product.productId}}" data-sctid="{{smallCategory.categoryId}}" data-ctid="{{smallCategory.parentId}}" bindtap="addCount">
-                  <image class="image" src="resources/pic/countSelAdd.png" />
+                <view  class="pro-item-count-plus" data-id="{{product.productId}}" data-sctid="{{smallCategory.categoryId}}" data-ctid="{{smallCategory.parentId}}" bindtap="addCount">
+                  <image hidden="{{product.count == 0}}" class="image" src="resources/pic/countSelAdd.png" />
+                  <image hidden="{{product.count != 0}}" class="image" src="resources/pic/add-cart.png" />
                 </view>
               </view>
 
@@ -67,5 +67,10 @@
       </view>
 
     </block>
+
+    <view class="weui-loadmore" hidden="{{isHideLoadMore}}">
+      <view class="weui-loading"></view>
+      <view class="weui-loadmore__tips">正在加载</view>
+    </view>
   </scroll-view>
 </view>

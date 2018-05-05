@@ -14,7 +14,8 @@ Page({
 
         cart: [],
         count: 0,
-        swipeIcons: null
+        swipeIcons: null,
+        detailIcons:null
     },
 
     /**
@@ -30,10 +31,11 @@ Page({
                 console.log(product);
                 if (product) {
                     let swipeIcons = JSON.parse(product.swipeIcons);
-                    console.log(swipeIcons);
+                    let detailIcons = JSON.parse(product.detailIcons);
                     that.setData({
                         product: product,
-                        swipeIcons: swipeIcons
+                        swipeIcons: swipeIcons,
+                        detailIcons: detailIcons
                     });
                 }
             },

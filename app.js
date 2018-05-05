@@ -1,8 +1,7 @@
 //app.js
 App({
-  data:{
-      cart: [],
-      appId: "wx4f166bfc8a364fb1"
+  data: {
+    cart: [],
   },
   onLaunch: function () {
     // 展示本地存储能力
@@ -16,44 +15,31 @@ App({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         if (res.code) {
           wx.request({
-              url: getApp().globalData.serviceUrl + "/weixin/auth",
-              data: {
-                  code: res.code
-              },
-              success: res = > {
+            url: getApp().globalData.serviceUrl + "/weixin/auth",
+            data: {
+              code: res.code
+            },
+            success: res => {
               console.log(res);
-
-
-          wx.requestPayment({
-              'timeStamp': '',
-              'nonceStr': '',
-              'package': '',
-              'signType': 'MD5',
-              'paySign': '',
-              'success': function (res) {
-              },
-              'fail': function (res) {
+              let resData = res.data;
+              let openid = resData.data;
+              if(openid) {
+                getApp().globalData.openid = openid;
               }
-          })
-          let resData = res.data;
-          let openid = resData.data;
-          if (openid) {
-              getApp().globalData.openid = openid;
-          }
           if (resData.code != 0) {
-              wx.showModal({
+                wx.showModal({
                   title: '提示',
                   content: '登录失败',
-              })
-          }
-      }
-      })
+                })
+              }
+            }
+          })
         } else {
           console.log('登录失败！' + res.errMsg)
         }
       }
     })
-    
+
     // 获取用户信息
     wx.getSetting({
       success: res => {
