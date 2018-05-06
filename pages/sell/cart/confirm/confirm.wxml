@@ -29,20 +29,19 @@
         <view class="address-text layout-row" hidden="{{receiver != null}}">
           <image src='/images/address.png' style='width:24rpx;height:24rpx;'></image>
           <text>请选择收获地址</text>
+          <image src='/images/arrowright.png' style='width:26rpx;height:24rpx;'></image>
         </view>
         <view hidden="{{receiver == null}}">
           <view class="address-text">
             <image src='/images/address.png' style='width:24rpx;height:24rpx;'></image>
             <text>收货地址：{{receiver.name}} {{receiver.phone}} ({{receiver.address}} {{receiver.detail}})</text>
+            <image src='/images/arrowright.png' style='width:26rpx;height:24rpx;'></image>
           </view>
         </view>
       </view>
     </view>
 
-
-
     <view class="ibox pay-infos">
-
       <view class="ibox-content">
         <view class='ibox-item layout-row'>
           <button class="button {{isSelfPick == false ? 'active' : ''}}" bindtap='distribute'>送货上门</button>
@@ -51,32 +50,34 @@
 
         <view hidden="{{isSelfPick == true}}">
           <view class="ibox-item layout-row">
-            <text class="flex">送货时间</text>
+            <text class="flex">配送时间</text>
             <view class='layout-row'>
-              <picker mode="selector" range="{{rangeData}}" range-key='value' value="{{rangeIdx}}" bindchange="bindTimeChange">
+              <picker mode="multiSelector" range="{{rangeData}}" value="{{rangeIdx}}" bindchange="bindTimeChange">
                 <view class="picker">
-                  [次日]:{{rangeData[rangeIdx].value}}
+                  <text style='color:red;'>[次日]</text>
+                  <text>{{rangeData[1][rangeIdx[1]]}}</text>
+                  <image src='/images/arrowright.png' style='width:26rpx;height:24rpx;'></image>
                 </view>
               </picker>
             </view>
           </view>
           <view class="ibox-item layout-row" hidden='{{isSelfPick}}'>
             <text class="flex">运费</text>
-            <text>￥1</text>
+            <text>￥{{carriage}}</text>
           </view>
         </view>
 
         <view hidden="{{isSelfPick == false}}">
-          <view class="ibox-item layout-row">
-            <text class="flex">自提地点</text>
-            <text>天鸿公寓 32栋2楼 电梯口旁</text>
-          </view>
           <view class="ibox-item layout-row">
             <text class="flex">自提时间</text>
             <view class='layout-row'>
               <text style='color:red;'>[次日]</text>
               <text>10:00-21:30</text>
             </view>
+          </view>
+          <view class="ibox-item layout-row">
+            <text class="flex">自提地点</text>
+            <text>天鸿公寓 32栋2楼 电梯口旁</text>
           </view>
         </view>
 

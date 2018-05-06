@@ -1,5 +1,6 @@
 var Utils = require("../../../../utils/util.js");
 var Request = require("../../../../utils/request.js");
+var Pay = require("../../../../utils/pay.js");
 Page({
 
   /**
@@ -7,25 +8,30 @@ Page({
    */
   data: {
     cart: [],
-    rangeData: [
-      { value: '10:00-11:00' },
-      { value: '11:00-12:00' },
-      { value: '12:00-13:00' },
-      { value: '13:00-14:00' },
-      { value: '14:00-15:00' },
-      { value: '15:00-16:00' },
-      { value: '16:00-17:00' },
-      { value: '17:00-18:00' },
-      { value: '18:00-19:00' },
-      { value: '19:00-20:00' },
-      { value: '20:00-21:00' },
-      { value: '21:00-22:00' }],
-    rangeIdx: 9,
+    rangeData:[
+      ['次日'],
+      [
+      '请选择配送时间',
+      '10:00-11:00' ,
+      '11:00-12:00' ,
+      '12:00-13:00' ,
+      '13:00-14:00' ,
+      '14:00-15:00' ,
+      '15:00-16:00' ,
+      '16:00-17:00' ,
+      '17:00-18:00' ,
+      '18:00-19:00' ,
+      '19:00-20:00' ,
+      '20:00-21:00' ,
+      '21:00-22:00' ]
+      ],
+    rangeIdx: [0,0],
     total: {
       count: 0,
       money: 0.0
     },
     discount: 9,
+    carriage: 0.01,
     isSelfPick: true,
     receiver: null
   },
@@ -34,7 +40,7 @@ Page({
    */
   bindTimeChange: function (e) {
     this.setData({
-      timeIdx: e.detail.value
+      rangeIdx: e.detail.value
     });
   },
 
@@ -64,19 +70,31 @@ Page({
     }
   },
   selfpick: function () {
+    let total = this.data.total;
+    total.money = (100 * total.money - this.data.carriage * 100) / 100;
     this.setData({
-      isSelfPick: true
+      isSelfPick: true,
+      total: total
     });
   },
   distribute: function () {
+    let total = this.data.total;
+    total.money = (100 * total.money + this.data.carriage * 100) / 100;
     this.setData({
-      isSelfPick: false
+      isSelfPick: false,
+      total: total
     });
   },
   createOrder: function () {
+
     //组装订单数据
     let receiver = this.data.receiver;
-    if (receiver == null) {
+    if (receiver == null ) {
+      wx.showToast({
+        title: '请选择收获地址',
+        icon: 'none',
+        duration: 2000
+      });
       return;
     }
     let total = this.data.total;
@@ -86,11 +104,25 @@ Page({
     let discount = this.data.discount;
     let openid = getApp().globalData.openid;
     let distributeType = 1;
+    let distributeTime = null;
     if (isSelfPick == false) {
       distributeType = 2;
+      let rangeData = this.data.rangeData;
+      let rangeIdx = this.data.rangeIdx;
+      distributeTime = rangeData[1][rangeIdx[1]];
+      console.log(distributeTime)
+      if (rangeIdx[1] == 0 ){
+        wx.showToast({
+          title: '请选择配送时间',
+          icon: 'none',
+          duration: 2000
+        });
+        return;
+      }
+    }else{
+      distributeTime = '10:00-21:30';
     }
-    let rangeData = this.data.rangeData;
-    let distributeTime = rangeData[this.data.rangeIdx].value;
+    
     let orderForm = {
       name: receiver.name,
       phone: receiver.phone,
@@ -101,13 +133,14 @@ Page({
       distributeType: distributeType,
       distributeTime: distributeTime
     };
+
     Request.postRequest('/buyer/order/create',
       orderForm,
       function (res) {
         console.log(res);
         let resData = res.data;
         if (resData.code == 0) {
-          cart.forEach(function(product,i){
+          cart.forEach(function(product, i){
             product.count = 0;
           });
           wx.setStorageSync("cart", cart);
@@ -116,46 +149,7 @@ Page({
             url: '../../mine/myorder/detail/detail?orderid=' + resData.data.orderId,
           })
           //支付
-          Request.getRequest('/pay/create?orderId=' + resData.data.orderId + '&openid=' + openid,
-            function (res) {
-              console.log(res.data);
-              let payment = res.data.data;
-              wx.requestPayment({
-                'timeStamp': payment.timeStamp,
-                'nonceStr': payment.nonceStr,
-                'package': payment.package,
-                'signType': 'MD5',
-                'paySign': payment.paySign,
-                'success': function (res) {
-                  console.log(res);
-                  if (res.errMsg == "requestPayment:ok"){
-                    Request.getRequest('/buyer/order/paid?orderId=' + resData.data.orderId + '&openid=' + openid,
-                      function(res){
-                        console.log(res);
-                        let orderCode = res.data.data.orderCode;
-                        wx.showToast({
-                          title: '支付成功',
-                          duration:1000
-                        })
-                        wx.switchTab({
-                          url: '/pages/sell/index',
-                        })
-                   
-                     
-                      },
-                      function(res){
-                      }
-                    );
-                  }
-                },
-                'fail': function (res) {
-                }
-              })
-            },
-            function (res) {
-
-            }
-          )
+          Pay.pay(resData.data.orderId);
         }
       },
       function (res) {

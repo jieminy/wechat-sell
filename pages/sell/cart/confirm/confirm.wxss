@@ -12,7 +12,6 @@
 }
 .address-text {
   font-size: 28rpx;
-  color: #999;
 }
 .address-choose {
   flex-direction: row;

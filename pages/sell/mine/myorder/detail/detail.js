@@ -1,5 +1,6 @@
 var Utils = require("../../../../../utils/util.js");
-var req = require("../../../../../utils/request.js");
+var Request = require("../../../../../utils/request.js");
+var Pay = require("../../../../../utils/pay.js");
 Page({
 
   /**
@@ -56,27 +57,6 @@ Page({
   },
   pay: function (event) {
     let eventData = event.currentTarget.dataset;
-    console.log(eventData);
-    req.getRequest('/pay/create?orderId=' + eventData.orderid + '&openid=' + getApp().globalData.openid,
-      function (res) {
-        console.log(res.data);
-        let payment = res.data.data;
-        wx.requestPayment({
-          'timeStamp': payment.timeStamp,
-          'nonceStr': payment.nonceStr,
-          'package': payment.package,
-          'signType': 'MD5',
-          'paySign': payment.paySign,
-          'success': function (res) {
-            console.log(res);
-          },
-          'fail': function (res) {
-          }
-        })
-      },
-      function (res) {
-
-      }
-    )
+    Pay.pay(eventData.orderid);
   }
 })

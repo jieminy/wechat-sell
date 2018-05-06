@@ -45,7 +45,7 @@ Page({
 
     //百度地图
     var BMap = new bmap.BMapWX({
-      ak: 'NEgN0GEeMAmRS01KwFQarCGayZWVrLy7'
+       ak: 'KGPa32yj0bHnP7iAwIDX494yvm6R2auq'
     });
     var fail = function (data) {
       console.log(data)
