@@ -45,28 +45,31 @@
 
       <view class="ibox-content">
         <view class='ibox-item layout-row'>
-          <button class="button active">送货上门</button>
-          <button class="button">到店自提</button>
+          <button class="button {{isSelfPick == false ? 'active' : ''}}" bindtap='distribute'>送货上门</button>
+          <button class="button {{isSelfPick == true ? 'active' : ''}}" bindtap='selfpick'>到店自提</button>
         </view>
 
-
-        <block>
+        <view hidden="{{isSelfPick == true}}">
           <view class="ibox-item layout-row">
             <text class="flex">送货时间</text>
             <view class='layout-row'>
-              <picker mode="selector" range="{{rangeData}}" range-key='value' value="{{time}}" bindchange="bindTimeChange">
+              <picker mode="selector" range="{{rangeData}}" range-key='value' value="{{rangeIdx}}" bindchange="bindTimeChange">
                 <view class="picker">
-                  [次日]:10:00-21:30
+                  [次日]:{{rangeData[rangeIdx].value}}
                 </view>
               </picker>
             </view>
           </view>
-        </block>
+          <view class="ibox-item layout-row" hidden='{{isSelfPick}}'>
+            <text class="flex">运费</text>
+            <text>￥1</text>
+          </view>
+        </view>
 
-        <block>
+        <view hidden="{{isSelfPick == false}}">
           <view class="ibox-item layout-row">
             <text class="flex">自提地点</text>
-            <text>惺惺惜惺惺想寻寻寻寻寻寻寻</text>
+            <text>天鸿公寓 32栋2楼 电梯口旁</text>
           </view>
           <view class="ibox-item layout-row">
             <text class="flex">自提时间</text>
@@ -75,28 +78,17 @@
               <text>10:00-21:30</text>
             </view>
           </view>
-        </block>
+        </view>
 
 
         <view class="ibox-item layout-row">
           <text class="flex">商品总价</text>
           <text>￥{{total.money}}</text>
         </view>
-        <view class="ibox-item layout-row">
-          <text class="flex">商品实付</text>
-          <text>￥{{total.money}}</text>
-        </view>
-        <view class="ibox-item layout-row" hidden='{{isSelfPick}}'>
-          <text class="flex">运费</text>
-          <text>￥{{total.money}}</text>
-        </view>
+
         <view class="ibox-item layout-row">
           <text class="flex">合计</text>
           <text style='color:#FF0066;font-size:1.2em;'>￥{{total.money}}</text>
-        </view>
-        <view class="ibox-item layout-row">
-          <text class="flex">备注</text>
-          <text>￥{{total.money}}</text>
         </view>
       </view>
 

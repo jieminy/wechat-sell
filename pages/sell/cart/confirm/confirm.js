@@ -1,4 +1,5 @@
 var Utils = require("../../../../utils/util.js");
+var Request = require("../../../../utils/request.js");
 Page({
 
   /**
@@ -6,7 +7,20 @@ Page({
    */
   data: {
     cart: [],
-      rangeData: [{value: '100'}, {value: '200'}],
+    rangeData: [
+      { value: '10:00-11:00' },
+      { value: '11:00-12:00' },
+      { value: '12:00-13:00' },
+      { value: '13:00-14:00' },
+      { value: '14:00-15:00' },
+      { value: '15:00-16:00' },
+      { value: '16:00-17:00' },
+      { value: '17:00-18:00' },
+      { value: '18:00-19:00' },
+      { value: '19:00-20:00' },
+      { value: '20:00-21:00' },
+      { value: '21:00-22:00' }],
+    rangeIdx: 9,
     total: {
       count: 0,
       money: 0.0
@@ -15,19 +29,13 @@ Page({
     isSelfPick: true,
     receiver: null
   },
-
   /**
-   * 生命周期函数--监听页面加载
+   * 选择配送时间
    */
-  onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    
+  bindTimeChange: function (e) {
+    this.setData({
+      timeIdx: e.detail.value
+    });
   },
 
   /**
@@ -45,7 +53,7 @@ Page({
       //获取收货人
       let receiver = wx.getStorageSync("receiver");
       console.log(receiver);
-      if (receiver == undefined || receiver == ""){
+      if (receiver == undefined || receiver == "") {
         receiver: null
       }
       this.setData({
@@ -66,8 +74,9 @@ Page({
     });
   },
   createOrder: function () {
+    //组装订单数据
     let receiver = this.data.receiver;
-    if (receiver == null){
+    if (receiver == null) {
       return;
     }
     let total = this.data.total;
@@ -75,40 +84,84 @@ Page({
     let isSelfPick = this.data.isSelfPick;
     let cart = this.data.cart;
     let discount = this.data.discount;
-    if (isSelfPick){
-      sumPrice = sumPrice * discount / 10;
+    let openid = getApp().globalData.openid;
+    let distributeType = 1;
+    if (isSelfPick == false) {
+      distributeType = 2;
     }
-    let openId = getApp().globalData.openid;
+    let rangeData = this.data.rangeData;
+    let distributeTime = rangeData[this.data.rangeIdx].value;
     let orderForm = {
       name: receiver.name,
       phone: receiver.phone,
       address: receiver.address,
       orderAmount: sumPrice,
-      openid: openId,
-      items: JSON.stringify(cart)
+      openid: openid,
+      items: JSON.stringify(cart),
+      distributeType: distributeType,
+      distributeTime: distributeTime
     };
-    wx.request({
-      url: getApp().globalData.serviceUrl+'/buyer/order/create',
-      data: Utils.json2Form(orderForm),
-      method: "POST",
-      header: { 
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      success: function(res){
+    Request.postRequest('/buyer/order/create',
+      orderForm,
+      function (res) {
+        console.log(res);
         let resData = res.data;
-        if (resData.code == 0){
-          wx.setStorageSync("cart", []);
-          getApp().globalData.total = {
-            count: 0,
-            money: 0.0
-          }
+        if (resData.code == 0) {
+          cart.forEach(function(product,i){
+            product.count = 0;
+          });
+          wx.setStorageSync("cart", cart);
           //跳转订单详情页面
           wx.navigateTo({
             url: '../../mine/myorder/detail/detail?orderid=' + resData.data.orderId,
           })
+          //支付
+          Request.getRequest('/pay/create?orderId=' + resData.data.orderId + '&openid=' + openid,
+            function (res) {
+              console.log(res.data);
+              let payment = res.data.data;
+              wx.requestPayment({
+                'timeStamp': payment.timeStamp,
+                'nonceStr': payment.nonceStr,
+                'package': payment.package,
+                'signType': 'MD5',
+                'paySign': payment.paySign,
+                'success': function (res) {
+                  console.log(res);
+                  if (res.errMsg == "requestPayment:ok"){
+                    Request.getRequest('/buyer/order/paid?orderId=' + resData.data.orderId + '&openid=' + openid,
+                      function(res){
+                        console.log(res);
+                        let orderCode = res.data.data.orderCode;
+                        wx.showToast({
+                          title: '支付成功',
+                          duration:1000
+                        })
+                        wx.switchTab({
+                          url: '/pages/sell/index',
+                        })
+                   
+                     
+                      },
+                      function(res){
+                      }
+                    );
+                  }
+                },
+                'fail': function (res) {
+                }
+              })
+            },
+            function (res) {
+
+            }
+          )
         }
+      },
+      function (res) {
+
       }
-    })
+    );
   },
   navitoAddress: function () {
     wx.navigateTo({

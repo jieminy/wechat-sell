@@ -1,3 +1,4 @@
+var Utils = require('../utils/util.js');
 function postRequest(url, data, success, fail) {
   console.log("调用公共方法：postRequest");
   wx.request({
