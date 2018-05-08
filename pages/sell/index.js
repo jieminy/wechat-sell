@@ -63,7 +63,7 @@ Page({
         longitude: wxMarkerData[0].longitude
       });
       that.setData({
-        address: wxMarkerData[0].desc
+        address: wxMarkerData[0].address
       });
     };
     // 发起regeocoding检索请求 
@@ -85,7 +85,6 @@ Page({
       console.log(e);
     }
     if (this.data.menus) {
-    console.log("跑这里？")
       this.initCart(this.data.menus, this.data.menuIndex, this.data.smallCategories);
     }
   },
@@ -142,16 +141,10 @@ Page({
     let eventData = event.currentTarget.dataset;
     let menus = this.data.menus;
     let clildCategories = menus[eventData.idx].clildCategories;
-    if (clildCategories) {
-      this.setData({
-        smallCategories: clildCategories
-      })
-    } else {
-      this.initProducts(menus, eventData.idx);
-    }
     this.setData({
       menuIndex: eventData.idx
     });
+    this.initProducts(menus, eventData.idx);
     // this.data.toView = 'red'
 
   },
@@ -272,7 +265,10 @@ Page({
     }
     //-1代表无更多商品
     if (page == -1) {
-      console.log("无更多数据");
+      that.setData({
+        smallCategories: menus[index].childCategories,
+        advertisements: menus[index].advertisements
+      });
       return;
     }
     this.setData({
@@ -296,7 +292,6 @@ Page({
         } else {
           menus[index].page = -1;
         }
-        console.log(smallCategories);
         that.initCart(menus, index, smallCategories);
       },
       function (res) {
