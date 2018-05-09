@@ -11,5 +11,11 @@ Page({
     wx.previewImage({
       urls: this.data.imagList,
     })
+  },
+
+  call: function(){
+    wx.makePhoneCall({
+      phoneNumber: '15802603699',
+    })
   }
 })

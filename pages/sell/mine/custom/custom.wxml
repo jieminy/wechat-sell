@@ -1,3 +1,8 @@
-<view>
-  <image src='{{imagList[0]}}' bindtap='previewImage'></image>
+<view class = 'container'>
+  <view>
+    <image src='{{imagList[0]}}' bindtap='previewImage'></image>
+  </view>
+  <view class='phone' bindtap='call'>
+    <text>15802603699</text>
+  </view>
 </view>
