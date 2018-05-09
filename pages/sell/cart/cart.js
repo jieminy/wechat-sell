@@ -15,7 +15,7 @@ Page({
         if (cart) {
             cart.forEach(function (product, idx) {
                 total.count += product.count;
-                total.money = (total.money * 10 + product.count * product.productPrice * 10) / 10;
+                total.money = (total.money * 100 + product.count * product.productPrice * 100) / 100;
             });
         } else {
             cart = [];
@@ -45,7 +45,7 @@ Page({
       product.count -= 1;
         let total = this.data.total;
         total.count -= 1;
-        total.money = (total.money * 10 - product.productPrice * 10) / 10;
+        total.money = (total.money * 100 - product.productPrice * 100) / 100;
         this.setData({
             cart: cart,
             total: total
@@ -63,7 +63,7 @@ Page({
     product.count += 1;
     let total = this.data.total;
     total.count += 1;
-    total.money = (total.money * 10 + product.productPrice * 10) / 10;
+    total.money = (total.money * 100 + product.productPrice * 100) / 100;
     this.setData({
       cart: cart,
       total: total
