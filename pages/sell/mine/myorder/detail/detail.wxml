@@ -44,16 +44,10 @@
     <view class="ibox">
       <view class="ibox-content">
         <view class="ibox-item">
-          <text>商品总价：￥{{order.orderAmount}}</text>
-        </view>
-        <view class="ibox-item">
           <text>商品实付：￥{{order.orderAmount}}</text>
         </view>
         <view class="ibox-item">
-          <text>运费：￥{{order.orderAmount}}</text>
-        </view>
-        <view class="ibox-item">
-          <text>合计：￥{{order.orderAmount}}</text>
+          <text>运费：￥{{order.freight}}</text>
         </view>
       </view>
     </view>

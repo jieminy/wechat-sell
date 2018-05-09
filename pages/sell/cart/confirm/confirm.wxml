@@ -26,12 +26,12 @@
 
     <view class="address-infos">
       <view class="address-text-wrap" bindtap='navitoAddress'>
-        <view class="address-text layout-row" hidden="{{receiver != null}}">
+        <view class="address-text layout-row" hidden="{{receiver != null || receiver != ''}}">
           <image src='/images/address.png' style='width:24rpx;height:24rpx;'></image>
           <text>请选择收获地址</text>
           <image src='/images/arrowright.png' style='width:26rpx;height:24rpx;'></image>
         </view>
-        <view hidden="{{receiver == null}}">
+        <view hidden="{{receiver == null || receiver == ''}}">
           <view class="address-text">
             <image src='/images/address.png' style='width:24rpx;height:24rpx;'></image>
             <text>收货地址：{{receiver.name}} {{receiver.phone}} ({{receiver.address}} {{receiver.detail}})</text>
@@ -63,7 +63,7 @@
           </view>
           <view class="ibox-item layout-row" hidden='{{isSelfPick}}'>
             <text class="flex">运费</text>
-            <text>￥{{carriage}}</text>
+            <text>￥{{freight}}</text>
           </view>
         </view>
 

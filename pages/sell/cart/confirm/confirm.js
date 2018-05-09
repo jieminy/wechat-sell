@@ -31,7 +31,7 @@ Page({
       money: 0.0
     },
     discount: 9,
-    carriage: 0.01,
+    freight: 0.01,
     isSelfPick: true,
     receiver: null
   },
@@ -59,7 +59,7 @@ Page({
       //获取收货人
       let receiver = wx.getStorageSync("receiver");
       console.log(receiver);
-      if (receiver == undefined || receiver == "") {
+      if (!receiver) {
         receiver: null
       }
       this.setData({
@@ -71,7 +71,7 @@ Page({
   },
   selfpick: function () {
     let total = this.data.total;
-    total.money = (100 * total.money - this.data.carriage * 100) / 100;
+    total.money = (100 * total.money - this.data.freight * 100) / 100;
     this.setData({
       isSelfPick: true,
       total: total
@@ -79,7 +79,7 @@ Page({
   },
   distribute: function () {
     let total = this.data.total;
-    total.money = (100 * total.money + this.data.carriage * 100) / 100;
+    total.money = (100 * total.money + this.data.freight * 100) / 100;
     this.setData({
       isSelfPick: false,
       total: total
@@ -89,7 +89,8 @@ Page({
 
     //组装订单数据
     let receiver = this.data.receiver;
-    if (receiver == null ) {
+    console.log(receiver)
+    if (receiver == null || receiver == '') {
       wx.showToast({
         title: '请选择收获地址',
         icon: 'none',
@@ -105,6 +106,7 @@ Page({
     let openid = getApp().globalData.openid;
     let distributeType = 1;
     let distributeTime = null;
+    let freight = this.data.freight;
     if (isSelfPick == false) {
       distributeType = 2;
       let rangeData = this.data.rangeData;
@@ -121,6 +123,7 @@ Page({
       }
     }else{
       distributeTime = '10:00-21:30';
+      freight = 0;
     }
     
     let orderForm = {
@@ -131,7 +134,8 @@ Page({
       openid: openid,
       items: JSON.stringify(cart),
       distributeType: distributeType,
-      distributeTime: distributeTime
+      distributeTime: distributeTime,
+      freight: freight
     };
 
     Request.postRequest('/buyer/order/create',
