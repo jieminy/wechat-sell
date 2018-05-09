@@ -84,6 +84,12 @@ Page({
     } catch (e) {
       console.log(e);
     }
+    let location = getApp().globalData.location;
+    if(location){
+      this.setData({
+        address: location
+      });
+    }
     if (this.data.menus) {
       this.initCart(this.data.menus, this.data.menuIndex, this.data.smallCategories);
     }
@@ -298,6 +304,12 @@ Page({
 
       }
     );
+  },
+
+  getLocation: function(){
+    wx.navigateTo({
+      url: 'mine/address/choose/choose',
+    })
   }
 
 });

@@ -1,6 +1,6 @@
 <view class="layout-column layout-fill">
 
-  <view style='text-align: center;height: 24px'>
+  <view style='text-align: center;height: 24px' bindtap='getLocation'>
     <text>{{address}}</text>
   </view>
 
