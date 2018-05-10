@@ -9,6 +9,18 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
+    //读取本地存储
+    let cart = wx.getStorageSync("cart");
+    if(cart){
+      this.globalData.cart = cart;
+    }
+    wx.setStorageSync("receiver", null);
+    let receiver = wx.getStorageSync("receiver");
+    if (receiver){
+      this.globalData.receiver = receiver;
+    }
+
+
     // 登录
     wx.login({
       success: res => {
@@ -48,12 +60,12 @@ App({
           wx.getUserInfo({
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
-              this.globalData.userInfo = res.userInfo
+              this.globalData.userInfo = res.userInfo;
 
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
               if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
+                this.userInfoReadyCallback(res);
               }
             }
           })
@@ -65,13 +77,24 @@ App({
     console.log('app show')
   },
   globalData: {
+    //用户信息
     userInfo: null,
+    //总价
     total: {
       count: 0,
       money: 0.0
     },
+    //购物车
+    cart: [],
+    //位置
     location: "",
-    openid: "wxffsaare23425ajk",
+    //收获地址
+    receiver: null,
+    openid: "",
     serviceUrl: "https://51vr.mynatapp.cc/sell"
+  },
+  onHide: function(){
+    wx.setStorageSync("cart", this.globalData.cart);
+    wx.setStorageSync("receiver", this.globalData.receiver);
   }
 })

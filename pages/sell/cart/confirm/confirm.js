@@ -8,24 +8,24 @@ Page({
    */
   data: {
     cart: [],
-    rangeData:[
+    rangeData: [
       ['次日'],
       [
-      '请选择配送时间',
-      '10:00-11:00' ,
-      '11:00-12:00' ,
-      '12:00-13:00' ,
-      '13:00-14:00' ,
-      '14:00-15:00' ,
-      '15:00-16:00' ,
-      '16:00-17:00' ,
-      '17:00-18:00' ,
-      '18:00-19:00' ,
-      '19:00-20:00' ,
-      '20:00-21:00' ,
-      '21:00-22:00' ]
-      ],
-    rangeIdx: [0,0],
+        '请选择配送时间',
+        '10:00-11:00',
+        '11:00-12:00',
+        '12:00-13:00',
+        '13:00-14:00',
+        '14:00-15:00',
+        '15:00-16:00',
+        '16:00-17:00',
+        '17:00-18:00',
+        '18:00-19:00',
+        '19:00-20:00',
+        '20:00-21:00',
+        '21:00-22:00']
+    ],
+    rangeIdx: [0, 0],
     total: {
       count: 0,
       money: 0.0
@@ -49,25 +49,11 @@ Page({
    */
   onShow: function () {
     // 页面显示
-    try {
-      let letCart = wx.getStorageSync("cart");
-      this.setData({
-        cart: letCart,
-        total: getApp().globalData.total
-      });
-
-      //获取收货人
-      let receiver = wx.getStorageSync("receiver");
-      console.log(receiver);
-      if (!receiver) {
-        receiver: null
-      }
-      this.setData({
-        receiver: receiver
-      });
-    } catch (e) {
-      console.log(e);
-    }
+    this.setData({
+      cart: getApp().globalData.cart,
+      total: getApp().globalData.total,
+      receiver: getApp().globalData.receiver
+    });
   },
   selfpick: function () {
     let total = this.data.total;
@@ -90,7 +76,7 @@ Page({
     //组装订单数据
     let receiver = this.data.receiver;
     console.log(receiver)
-    if (receiver == null || receiver == '') {
+    if (receiver == null) {
       wx.showToast({
         title: '请选择收获地址',
         icon: 'none',
@@ -113,7 +99,7 @@ Page({
       let rangeIdx = this.data.rangeIdx;
       distributeTime = rangeData[1][rangeIdx[1]];
       console.log(distributeTime)
-      if (rangeIdx[1] == 0 ){
+      if (rangeIdx[1] == 0) {
         wx.showToast({
           title: '请选择配送时间',
           icon: 'none',
@@ -121,11 +107,11 @@ Page({
         });
         return;
       }
-    }else{
+    } else {
       distributeTime = '10:00-21:30';
       freight = 0;
     }
-    
+
     let orderForm = {
       name: receiver.name,
       phone: receiver.phone,
@@ -144,10 +130,10 @@ Page({
         console.log(res);
         let resData = res.data;
         if (resData.code == 0) {
-          cart.forEach(function(product, i){
+          cart.forEach(function (product, i) {
             product.count = 0;
           });
-          wx.setStorageSync("cart", cart);
+          getApp().globalData.cart = cart;
           //跳转订单详情页面
           wx.navigateTo({
             url: '../../mine/myorder/detail/detail?orderid=' + resData.data.orderId,

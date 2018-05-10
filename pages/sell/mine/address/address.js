@@ -94,7 +94,7 @@ Page({
     if (this.data.isChoose == true){
       let eventData = event.currentTarget.dataset;
       let receiver = this.data.receivers[eventData.idx];
-      wx.setStorageSync("receiver", receiver);
+      getApp().globalData.receiver = receiver;
       wx.navigateBack({
         delta: 1
       })

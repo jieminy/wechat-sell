@@ -27,7 +27,6 @@ Page({
 
   onLoad: function () {
     var that = this;
-    wx.setStorageSync("cart", []);
     //加载菜单
     req.getRequest('/buyer/product/list',
       function (res) {
@@ -77,7 +76,7 @@ Page({
   onShow: function () {
     //加载购物车数据
     try {
-      let cart = wx.getStorageSync("cart");
+      let cart = getApp().globalData.cart;
       this.setData({
         cart: cart
       });
@@ -95,7 +94,8 @@ Page({
     }
   },
   onHide: function () {
-    wx.setStorageSync("cart", this.data.cart);
+    // wx.setStorageSync("cart", this.data.cart);
+    getApp().globalData.cart = this.data.cart;
   },
   //加载商品
   initProducts: function (menus, index) {
