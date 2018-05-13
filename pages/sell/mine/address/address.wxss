@@ -37,4 +37,6 @@
   background-color: #f5a22d;
   color: #fff;
   border-radius: 0;
+  width: 80%;
+  margin-top: 2em;
 }

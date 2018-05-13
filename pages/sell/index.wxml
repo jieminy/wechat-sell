@@ -12,7 +12,7 @@
     </view>
   </scroll-view>
 
-  <scroll-view class="scroll-product flex" scroll-y  bindscrolltolower="lower">
+  <scroll-view class="scroll-product flex" scroll-y bindscrolltolower="lower">
 
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
       <block wx:for="{{advertisements}}" wx:key="advId" wx:for-item="advertisement">
@@ -29,34 +29,48 @@
           <view class="pro-item">
             <view class="pro-item-wrp layout-row">
               <view class="pro-item-pic" bindtap='detail' data-proId='{{product.productId}}'>
+                <!-- <view class="discount">
+                  <text>6.5折</text>
+                </view> -->
+
+                <view class="discount-pic">
+                  <image src="{{product.activity.icon}}" />
+                </view>
+
                 <image src="{{product.productIcon}}" />
               </view>
 
-              <view class="pro-item-info flex" bindtap='detail' data-proId='{{product.productId}}'>
-                <view>
-                  <text class="pro-item-name">{{product.productName}} {{product.weight}}</text>
+              <view class="pro-item-info flex" data-proId='{{product.productId}}'>
+                <view class="pro-item-name" bindtap='detail'>
+                  <text>{{product.productName}} {{product.weight}}</text>
                 </view>
-                <view>
-                  <text class="pro-item-sales">{{product.productDescription}} </text>
+                <view class="pro-item-sales" bindtap='detail'>
+                  <text>{{product.productDescription}} </text>
                 </view>
-                <view>
-                  <text class="pro-item-money">¥{{product.productPrice}}</text>
-                </view>
-              </view>
-
-              
-              <view class="pro-item-count">
-                <view class="pro-item-tab">
-                  <view hidden="{{product.count == 0}}" class="pro-item-count-minus" data-id="{{product.productId}}" data-sctid="{{smallCategory.categoryId}}" data-ctid="{{smallCategory.parentId}}" bindtap="minusCount">
-                    <image class="image addminus" src="resources/pic/countMinus.png" />
+                <view class="pro-item-money layout-row">
+                  <view class='flex' hidden='{{product.activity == null}}'>
+                    <text>¥{{product.productPrice * 100 * product.activity.discount / 100}}</text>
+                    <text  style="text-decoration:line-through; color:#ccc;font-size:.8em"> ¥{{product.productPrice}}</text>
                   </view>
-                </view>
-                <view class="pro-item-count-text pro-item-tab">
-                  <text hidden="{{product.count == 0}}">{{product.count}}</text>
-                </view>
-                <view  class="pro-item-count-plus" data-id="{{product.productId}}" data-sctid="{{smallCategory.categoryId}}" data-ctid="{{smallCategory.parentId}}" bindtap="addCount">
-                  <image hidden="{{product.count == 0}}" class="image addminus" src="resources/pic/countSelAdd.png" />
-                  <image hidden="{{product.count != 0}}" class="image cart" src="resources/pic/add-cart.png" />
+                  <view class='flex' hidden='{{product.activity.atvId == 1}}'>
+                    <text>¥{{product.productPrice}}</text>
+                  </view>
+
+                  <view class="pro-item-count">
+                    <view class="pro-item-tab">
+                      <view hidden="{{product.count == 0}}" class="pro-item-count-minus" data-id="{{product.productId}}" data-sctid="{{smallCategory.categoryId}}" data-ctid="{{smallCategory.parentId}}" bindtap="minusCount">
+                        <image class="image addminus" src="resources/pic/countMinus.png" />
+                      </view>
+                    </view>
+                    <view class="pro-item-count-text pro-item-tab">
+                      <text hidden="{{product.count == 0}}">{{product.count}}</text>
+                    </view>
+                    <view class="pro-item-count-plus" data-id="{{product.productId}}" data-sctid="{{smallCategory.categoryId}}" data-ctid="{{smallCategory.parentId}}" bindtap="addCount">
+                      <image hidden="{{product.count == 0}}" class="image addminus" src="resources/pic/countSelAdd.png" />
+                      <image hidden="{{product.count != 0}}" class="image cart" src="resources/pic/add-cart.png" />
+                    </view>
+                  </view>
+
                 </view>
               </view>
 

@@ -34,7 +34,8 @@
       </view>
 
     </block>
-  </scroll-view>
+    
+    <button bindtap='addAddress' class="new-address">+ 新增收获地址</button>
 
-  <button bindtap='addAddress' class="new-address">+ 新增收获地址</button>
+  </scroll-view>
 </view>

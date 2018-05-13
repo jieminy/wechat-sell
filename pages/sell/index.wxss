@@ -5,6 +5,7 @@
   white-space: nowrap;
   background-color: #fff;
   border-bottom: 1rpx solid #ccc;
+  text-align: center;
 }
 
 .scroll-menu-item {
@@ -15,7 +16,7 @@
 .menu-item {
   height: 60rpx;
   line-height: 60rpx;
-  margin: 0 30rpx;
+  margin: 0 35rpx;
   text-align: center;
   padding: 0 10rpx;
 }
@@ -87,20 +88,54 @@ swiper {
 }
 
 .pro-item-pic {
-  width: 158rpx;
+  width: 168rpx;
+  height: 168rpx;
   margin-right: 1em;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.pro-item-pic .discount{
+  position: absolute;
+  top: 18rpx;
+  left: -65rpx;
+  background: red;
+  color: #fff;
+  font-size: 20rpx;
+  width: 200rpx;
+  text-align: center;
+  line-height: 1.5;
+  transform: rotate(-45deg)
+}
+
+.pro-item-pic .discount-pic{
+  position: absolute;
+  top: 0rpx;
+  left: 0rpx;
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.pro-item-pic .discount-pic image{
+  width: 100%;
+  height: 100%;
 }
 
 .pro-item-pic image {
   margin: 0 auto;
-  width: 158rpx;
-  height: 158rpx;
+  width: 100%;
+  height: 100%;
 }
 
 .pro-item-info {
-  width: 150rpx;
   padding-left: 16rpx;
   flex: 1;
+}
+
+.pro-item-name,.pro-item-sales{
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .pro-item-name {
@@ -141,7 +176,6 @@ swiper {
 .pro-item-count {
   display: flex;
   font-size: 26rpx;
-  padding: 60rpx 0 0 10rpx;
 }
 
 .pro-item-tab {

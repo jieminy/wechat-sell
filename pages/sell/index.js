@@ -34,7 +34,6 @@ Page({
         if (!menus) {
           menus = [];
         }
-        // that.initProducts(menus, that.data.menuIndex);
         that.loadProductOfNextPage(menus, that.data.menuIndex);
       },
       function (res) {
@@ -94,13 +93,9 @@ Page({
     }
   },
   onHide: function () {
-    // wx.setStorageSync("cart", this.data.cart);
     getApp().globalData.cart = this.data.cart;
   },
-  //加载商品
-  initProducts: function (menus, index) {
-    this.loadProductOfNextPage(menus, index);
-  },
+
   //初始化购物车
   initCart: function (menus, index, clildCategories) {
 
@@ -117,10 +112,6 @@ Page({
             function (product, i) {
               cart.forEach(
                 function (cartProduct, j) {
-                  //去除无效数据
-                  // if (cartProduct.count == 0) {
-                  //   cart.pop(cartProduct);
-                  // }
                   if (cartProduct.productId == product.productId) {
                     product.count = cartProduct.count;
                   }
@@ -135,6 +126,7 @@ Page({
     }
 
     menus[index].childCategories = clildCategories;
+    console.log(menus);
     this.setData({
       cart: cart,
       menus: menus,
@@ -150,7 +142,8 @@ Page({
     this.setData({
       menuIndex: eventData.idx
     });
-    this.initProducts(menus, eventData.idx);
+    // this.initProducts(menus, eventData.idx);
+    this.loadProductOfNextPage(menus, eventData.idx);
     // this.data.toView = 'red'
 
   },

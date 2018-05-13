@@ -15,7 +15,11 @@ Page({
       if (cart) {
         cart.forEach(function (product, idx) {
           total.count += product.count;
-          total.money = (total.money * 100 + product.count * product.productPrice * 100) / 100;
+          if (product.activity.atvId == 1){
+            total.money = (total.money * 100 + product.count * product.productPrice * 100 * product.activity.discount) / 100;
+          }else{
+            total.money = (total.money * 100 + product.count * product.productPrice * 100) / 100;
+          }
         });
       } else {
         cart = [];

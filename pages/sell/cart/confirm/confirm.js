@@ -56,20 +56,24 @@ Page({
     });
   },
   selfpick: function () {
-    let total = this.data.total;
-    total.money = (100 * total.money - this.data.freight * 100) / 100;
-    this.setData({
-      isSelfPick: true,
-      total: total
-    });
+    if (this.data.isSelfPick == false) {
+      let total = this.data.total;
+      total.money = (100 * total.money - this.data.freight * 100) / 100;
+      this.setData({
+        isSelfPick: true,
+        total: total
+      });
+    }
   },
   distribute: function () {
-    let total = this.data.total;
-    total.money = (100 * total.money + this.data.freight * 100) / 100;
-    this.setData({
-      isSelfPick: false,
-      total: total
-    });
+    if (this.data.isSelfPick == true) {
+      let total = this.data.total;
+      total.money = (100 * total.money + this.data.freight * 100) / 100;
+      this.setData({
+        isSelfPick: false,
+        total: total
+      });
+    }
   },
   createOrder: function () {
 
