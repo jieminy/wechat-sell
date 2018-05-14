@@ -39,7 +39,8 @@ App({
     //收获地址
     receiver: null,
     openid: "",
-    serviceUrl: "https://51vr.mynatapp.cc/sell"
+    serviceUrl: "https://gongyuxian.com/sell"
+    // serviceUrl: "https://51vr.mynatapp.cc/sell"
   },
   onHide: function () {
     wx.setStorageSync("cart", this.globalData.cart);

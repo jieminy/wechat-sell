@@ -49,7 +49,7 @@
                 </view>
                 <view class="pro-item-money layout-row">
                   <view class='flex' hidden='{{product.activity == null}}'>
-                    <text>¥{{product.productPrice * 100 * product.activity.discount / 100}}</text>
+                    <text>¥{{(product.productPrice * 10 * 10) * (product.activity.discount * 10 * 10) / 10000  }}</text>
                     <text  style="text-decoration:line-through; color:#ccc;font-size:.8em"> ¥{{product.productPrice}}</text>
                   </view>
                   <view class='flex' hidden='{{product.activity.atvId == 1}}'>

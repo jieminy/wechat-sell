@@ -14,9 +14,16 @@
             <view>
               <text class="dish-item-sales">月销量{{product.productSales}}</text>
             </view>
-            <view>
+            <!-- <view>
               <text class="dish-item-money">¥{{product.productPrice}}</text>
-            </view>
+            </view> -->
+             <view class='dish-item-money' hidden='{{product.activity == null}}'>
+                    <text>¥{{(product.productPrice * 10 * 10) * (product.activity.discount * 10 * 10) / 10000  }}</text>
+                    <text  style="text-decoration:line-through; color:#ccc;font-size:.8em"> ¥{{product.productPrice}}</text>
+                  </view>
+                  <view class='dish-item-money' hidden='{{product.activity.atvId == 1}}'>
+                    <text>¥{{product.productPrice}}</text>
+                  </view>
           </view>
 
           <view class="dish-item-count">
