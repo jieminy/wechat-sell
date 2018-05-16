@@ -87,9 +87,10 @@
           <text>￥{{total.money}}</text>
         </view>
 
+
         <view class="ibox-item layout-row">
           <text class="flex">合计</text>
-          <text style='color:#FF0066;font-size:1.2em;'>￥{{total.money}}</text>
+          <text style='color:#FF0066;font-size:1.2em;'>￥{{amount}}</text>
         </view>
       </view>
 
@@ -100,7 +101,7 @@
   <view class="cart-tab-wrp layout-row">
     <view class="cart-item-total layout-row" style='margin-right:1em;'>
       <text>付款</text>
-      <text class="cart-item-total-price">￥{{total.money}}</text>
+      <text class="cart-item-total-price">￥{{amount}}</text>
     </view>
     <view class='flex'>
       <navigator url="/pages/sell/index" class="cart-tab-item-btn bg-orange" hover-class="navigator-hover" bindtap='createOrder'>去支付</navigator>

@@ -1,6 +1,6 @@
 var bmap = require('../../libs/bmap-wx.min.js');
 var req = require('../../utils/request.js');
-var wxMarkerData = [];
+const app = getApp();
 Page({
   data: {
     //菜单
@@ -10,11 +10,7 @@ Page({
     menuIndex: 0,
     //购物车
     cart: [],
-    //地图
-    markers: [],
-    latitude: '',
-    longitude: '',
-    rgcData: {},
+    //位置
     address: '',
     //是否显示加载更多
     isHideLoadMore: true,
@@ -39,38 +35,8 @@ Page({
       function (res) {
         console.log(res);
       }
-    );
+    ); 
 
-    //百度地图
-    var BMap = new bmap.BMapWX({
-       ak: 'KGPa32yj0bHnP7iAwIDX494yvm6R2auq'
-    });
-    var fail = function (data) {
-      console.log(data)
-    };
-    var success = function (data) {
-      wxMarkerData = data.wxMarkerData;
-      console.log(wxMarkerData[0]);
-      that.setData({
-        markers: wxMarkerData
-      });
-      that.setData({
-        latitude: wxMarkerData[0].latitude
-      });
-      that.setData({
-        longitude: wxMarkerData[0].longitude
-      });
-      that.setData({
-        address: wxMarkerData[0].address
-      });
-    };
-    // 发起regeocoding检索请求 
-    BMap.regeocoding({
-      fail: fail,
-      success: success,
-      iconPath: '../../images/marker_red.png',
-      iconTapPath: '../../images/marker_red.png'
-    });
   },
   onShow: function () {
     //加载购物车数据
@@ -82,12 +48,11 @@ Page({
     } catch (e) {
       console.log(e);
     }
-    let location = getApp().globalData.location;
-    if(location){
-      this.setData({
-        address: location
-      });
-    }
+
+    this.setData({
+      address: app.globalData.location
+    });
+
     if (this.data.menus) {
       this.initCart(this.data.menus, this.data.menuIndex, this.data.smallCategories);
     }
@@ -142,7 +107,6 @@ Page({
     this.setData({
       menuIndex: eventData.idx
     });
-    // this.initProducts(menus, eventData.idx);
     this.loadProductOfNextPage(menus, eventData.idx);
     // this.data.toView = 'red'
 
@@ -298,12 +262,19 @@ Page({
       }
     );
   },
-
+  //打开搜索位置页面
   getLocation: function(){
     wx.navigateTo({
       url: 'mine/address/choose/choose',
     })
+  },
+  //用户授权之后需要重新写入位置信息
+  reWriteLocation: function(){
+    this.setData({
+      address: app.globalData.location
+    });
   }
+
 
 });
 

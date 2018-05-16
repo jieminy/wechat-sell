@@ -131,11 +131,19 @@ swiper {
 .pro-item-info {
   padding-left: 16rpx;
   flex: 1;
+  overflow:hidden;
 }
 
 .pro-item-name,.pro-item-sales{
+  width: 100%;
+  display: block;
+}
+
+.pro-item-name text,.pro-item-sales text{
+  display: block;
+  width: 100%;
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow:ellipsis;
 }
 
 .pro-item-name {

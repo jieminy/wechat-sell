@@ -28,12 +28,13 @@ Page({
     rangeIdx: [0, 0],
     total: {
       count: 0,
-      money: 0.0
+      money: 0.00
     },
     discount: 9,
     freight: 0.01,
     isSelfPick: true,
-    receiver: null
+    receiver: null,
+    amount: 0.00,
   },
   /**
    * 选择配送时间
@@ -52,26 +53,29 @@ Page({
     this.setData({
       cart: getApp().globalData.cart,
       total: getApp().globalData.total,
-      receiver: getApp().globalData.receiver
+      receiver: getApp().globalData.receiver,
+      amount: getApp().globalData.total.money
     });
   },
   selfpick: function () {
     if (this.data.isSelfPick == false) {
-      let total = this.data.total;
-      total.money = (100 * total.money - this.data.freight * 100) / 100;
+      let amount = this.data.amount;
+      let freight = this.data.freight;
+      amount = (100 * amount - freight * 100) / 100;
       this.setData({
         isSelfPick: true,
-        total: total
+        amount: amount
       });
     }
   },
   distribute: function () {
     if (this.data.isSelfPick == true) {
-      let total = this.data.total;
-      total.money = (100 * total.money + this.data.freight * 100) / 100;
+      let amount = this.data.amount;
+      let freight = this.data.freight;
+      amount = (100 * amount + freight * 100) / 100;
       this.setData({
         isSelfPick: false,
-        total: total
+        amount: amount
       });
     }
   },
@@ -88,8 +92,7 @@ Page({
       });
       return;
     }
-    let total = this.data.total;
-    let sumPrice = total.money;
+    let sumPrice = this.data.amount;
     let isSelfPick = this.data.isSelfPick;
     let cart = this.data.cart;
     let discount = this.data.discount;
