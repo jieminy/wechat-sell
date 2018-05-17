@@ -47,6 +47,13 @@ Page({
   },
 
   formSubmit: function (e) {
+    if (getApp().globalData.openid == null || getApp().globalData.openid == '') {
+      wx.showToast({
+        title: '用户异常，请重新打开小程序！',
+        duration: 3000
+      });
+      return;
+    }
     let receiver = e.detail.value;
     receiver.openid = getApp().globalData.openid;
     let recData = this.data.receiver;

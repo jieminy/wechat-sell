@@ -1,3 +1,4 @@
+var Util = require('../../../../utils/util.js');
 Page({
 
   /**
@@ -32,6 +33,9 @@ Page({
    */
   onShow: function () {
     var that = this;
+    if (Util.islogin() === false){
+      return;
+    }
     wx.request({
       url: getApp().globalData.serviceUrl + '/buyer/receiver/list',
       data:{

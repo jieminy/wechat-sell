@@ -80,7 +80,9 @@ Page({
     }
   },
   createOrder: function () {
-
+    if (Util.islogin() === false) {
+      return;
+    }
     //组装订单数据
     let receiver = this.data.receiver;
     if (receiver == null) {
@@ -94,6 +96,13 @@ Page({
     let sumPrice = this.data.amount;
     let isSelfPick = this.data.isSelfPick;
     let cart = this.data.cart;
+    if(!cart || cart.length == 0){
+      wx.showToast({
+        title: '请先选择商品！',
+        duration: 3000
+      });
+      return;
+    }
     let discount = this.data.discount;
     let openid = getApp().globalData.openid;
     let distributeType = 1;
@@ -133,7 +142,6 @@ Page({
     Request.postRequest('/buyer/order/create',
       orderForm,
       function (res) {
-        console.log(res);
         let resData = res.data;
         if (resData.code == 0) {
           cart.forEach(function (product, i) {
@@ -149,7 +157,6 @@ Page({
         }
       },
       function (res) {
-
       }
     );
   },

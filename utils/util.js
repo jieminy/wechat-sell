@@ -20,9 +20,22 @@ function json2Form(json) {
     str.push(encodeURIComponent(p) + "=" + encodeURIComponent(json[p]));
   }
   return str.join("&");
-}  
+} 
+
+function isLogin(){
+  let openid = getApp().globalData.openid;
+  if (openid == null || openid == '') {
+    wx.showToast({
+      title: '用户异常，请重新打开小程序！',
+      duration: 3000
+    });
+    return false;
+  }
+  return true;
+} 
 
 module.exports = {
   formatTime: formatTime,
-  json2Form: json2Form
+  json2Form: json2Form,
+  isLogin: isLogin
 }

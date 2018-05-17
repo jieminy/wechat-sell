@@ -56,10 +56,8 @@ App({
     location: "",
     //收获地址
     receiver: null,
-    openid: "",
+    openid: null,
     serviceUrl: "https://gongyuxian.com/sell",
-    //是否登陆
-    isLogin: false,
     //百度地图
     ak: 'KGPa32yj0bHnP7iAwIDX494yvm6R2auq'
     // serviceUrl: "https://51vr.mynatapp.cc/sell"
@@ -126,7 +124,6 @@ App({
                 function (res) {
                   if (res.data.data) {
                     that.globalData.openid = res.data.data;
-                    that.globalData.isLogin = true;
                   }
                 },
                 function (res) {
@@ -163,7 +160,7 @@ App({
     var success = function (data) {
       wxMarkerData = data.wxMarkerData;
       that.globalData.location = wxMarkerData[0].address;
-      if (getCurrentPages()[0].reWriteLocation){
+      if (getCurrentPages()[0] && getCurrentPages()[0].reWriteLocation){
         getCurrentPages()[0].reWriteLocation();
       }
       // typeof hd == "function" && hd(that.globalData.location);

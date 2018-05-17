@@ -1,6 +1,10 @@
 var Request = require('request.js');
+var Util = require('util.js');
 function pay(orderId){
   let openid = getApp().globalData.openid;
+  if (Util.islogin() === false) {
+    return;
+  }
   Request.getRequest('/pay/create?orderId=' + orderId + '&openid=' + openid,
     function (res) {
       console.log(res.data);

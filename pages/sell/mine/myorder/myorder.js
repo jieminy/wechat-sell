@@ -1,3 +1,4 @@
+var Util = require('../../../../utils/util.js');
 Page({
 
   /**
@@ -13,19 +14,22 @@ Page({
   onLoad: function (options) {
     var that = this;
     console.log("监听页面加载onLoad");
-    wx.request({
-      url: getApp().globalData.serviceUrl +'/buyer/order/list',
-      data:{
-        openid: getApp().globalData.openid
-      },
-      success: function(res) {
-        let resData = res.data;
-          console.log(resData.data);
-        that.setData({
-          orders: resData.data
-        });
-      }
-    })
+
+    if (Util.islogin()){
+      wx.request({
+        url: getApp().globalData.serviceUrl +'/buyer/order/list',
+        data:{
+          openid: getApp().globalData.openid
+        },
+        success: function(res) {
+          let resData = res.data;
+            console.log(resData.data);
+          that.setData({
+            orders: resData.data
+          });
+        }
+      })
+    }
   },
 
   detail: function (event) {

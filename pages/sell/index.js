@@ -272,6 +272,12 @@ Page({
     this.setData({
       address: app.globalData.location
     });
+  },
+  //分享
+  onShareAppMessage: function(){
+    return{
+      title: '公寓鲜'
+    }
   }
 
 
