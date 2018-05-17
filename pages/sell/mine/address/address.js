@@ -33,7 +33,7 @@ Page({
    */
   onShow: function () {
     var that = this;
-    if (Util.islogin() === false){
+    if (Util.isLogin() === false){
       return;
     }
     wx.request({

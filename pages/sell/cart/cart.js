@@ -72,7 +72,7 @@ Page({
     product.count += 1;
     let total = this.data.total;
     total.count += 1;
-    if (product.activity.atvId == 1) {
+    if (product.activity != null && product.activity.atvId == 1) {
       total.money = (total.money * 10000 + (product.productPrice * 10 * 10) * (product.activity.discount * 10 * 10)) / 10000;}else{
     total.money = (total.money * 10 * 10 + product.productPrice * 10 * 10) / 10 / 10;
 

@@ -15,7 +15,7 @@ Page({
     var that = this;
     console.log("监听页面加载onLoad");
 
-    if (Util.islogin()){
+    if (Util.isLogin()){
       wx.request({
         url: getApp().globalData.serviceUrl +'/buyer/order/list',
         data:{

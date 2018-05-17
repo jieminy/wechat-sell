@@ -41,10 +41,10 @@
               </view>
 
               <view class="pro-item-info flex" data-proId='{{product.productId}}'>
-                <view class="pro-item-name" bindtap='detail'>
+                <view class="pro-item-name" bindtap='detail' data-proId='{{product.productId}}'>
                   <text>{{product.productName}} {{product.weight}}</text>
                 </view>
-                <view class="pro-item-sales" bindtap='detail'>
+                <view class="pro-item-sales" bindtap='detail' data-proId='{{product.productId}}'>
                   <text>{{product.productDescription}} </text>
                 </view>
                 <view class="pro-item-money layout-row">
@@ -58,7 +58,8 @@
 
                   <view class="pro-item-count">
                     <view class="pro-item-tab">
-                      <view hidden="{{product.count == 0}}" class="pro-item-count-minus" data-id="{{product.productId}}" data-sctid="{{smallCategory.categoryId}}" data-ctid="{{smallCategory.parentId}}" bindtap="minusCount">
+                      <view hidden="{{product.count == 0}}" class="pro-item-count-minus" data-id="{{product.productId}}" 
+                            data-sctid="{{smallCategory.categoryId}}" data-ctid="{{smallCategory.parentId}}" bindtap="minusCount">
                         <image class="image addminus" src="resources/pic/countMinus.png" />
                       </view>
                     </view>

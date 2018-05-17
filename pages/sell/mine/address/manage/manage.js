@@ -1,4 +1,4 @@
-var Utils = require("../../../../../utils/util.js");
+var Util = require("../../../../../utils/util.js");
 Page({
 
   /**
@@ -37,21 +37,14 @@ Page({
    */
   onShow: function () {
     //choose页面选择地址naviback后赋值
-      if (getApp().globalData.location != "") {
-      let location = getApp().globalData.location;
-      this.setData({
-          location: location
-      });
-      getApp().globalData.location = "";
-    }
+    let location = getApp().globalData.location;
+    this.setData({
+        location: location
+    });
   },
 
   formSubmit: function (e) {
-    if (getApp().globalData.openid == null || getApp().globalData.openid == '') {
-      wx.showToast({
-        title: '用户异常，请重新打开小程序！',
-        duration: 3000
-      });
+    if (Util.isLogin() === false){
       return;
     }
     let receiver = e.detail.value;
@@ -60,10 +53,38 @@ Page({
     if (recData.recId != null) {
       receiver.recId = recData.recId;
     }
+    if (receiver.name == '') {
+      wx.showToast({
+        title: '请填写收货人',
+        duration: 3000
+      })
+      return;
+    }
+    if (receiver.phone == ''){
+      wx.showToast({
+        title: '请填写联系电话',
+        duration: 3000
+      })
+      return;
+    }
+    if (receiver.address == '') {
+      wx.showToast({
+        title: '请填写收获地址',
+        duration: 3000
+      })
+      return;
+    }
+    if (receiver.detail == '') {
+      wx.showToast({
+        title: '请填写楼号门牌',
+        duration: 3000
+      })
+      return;
+    }
     console.log('form发生了submit事件，携带数据为：', receiver);
     wx.request({
       url: getApp().globalData.serviceUrl + '/buyer/receiver/save',
-      data: Utils.json2Form(receiver),
+      data: Util.json2Form(receiver),
       method: "POST",
       header: {
         'content-type': 'application/x-www-form-urlencoded'

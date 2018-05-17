@@ -1,4 +1,4 @@
-var Utils = require("../../../../utils/util.js");
+var Util = require("../../../../utils/util.js");
 var Request = require("../../../../utils/request.js");
 var Pay = require("../../../../utils/pay.js");
 Page({
@@ -49,13 +49,24 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    let receiver = getApp().globalData.receiver;
+    if (receiver && receiver.openid && receiver.openid == getApp().globalData.openid){
+    }else{
+      receiver = null;
+    }
     // 页面显示
     this.setData({
       cart: getApp().globalData.cart,
       total: getApp().globalData.total,
-      receiver: getApp().globalData.receiver,
+      receiver: receiver,
       amount: getApp().globalData.total.money
     });
+  },
+  onHide: function() {
+    let receiver = this.data.receiver;
+    if (receiver && receiver.openid && receiver.openid == getApp().globalData.openid) {
+      getApp().globalData.receiver = receiver;
+    }
   },
   selfpick: function () {
     if (this.data.isSelfPick == false) {
@@ -80,7 +91,7 @@ Page({
     }
   },
   createOrder: function () {
-    if (Util.islogin() === false) {
+    if (Util.isLogin() === false) {
       return;
     }
     //组装订单数据

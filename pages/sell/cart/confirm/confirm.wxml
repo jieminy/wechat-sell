@@ -26,18 +26,22 @@
 
     <view class="address-infos">
       <view class="address-text-wrap" bindtap='navitoAddress'>
-        <view class="address-text layout-row" hidden="{{receiver != null}}">
+
+      <block wx:if='{{receiver==null}}'>
+        <view class="address-text layout-row" >
           <image src='/images/address.png' style='width:24rpx;height:24rpx;'></image>
           <text>请选择收获地址</text>
           <image src='/images/arrowright.png' style='width:26rpx;height:24rpx;'></image>
         </view>
-        <view hidden="{{receiver == null}}">
-          <view class="address-text">
-            <image src='/images/address.png' style='width:24rpx;height:24rpx;'></image>
-            <text>收货地址：{{receiver.name}} {{receiver.phone}} ({{receiver.address}} {{receiver.detail}})</text>
-            <image src='/images/arrowright.png' style='width:26rpx;height:24rpx;'></image>
-          </view>
+      </block>
+
+      <block wx:if='{{receiver!=null}}'>
+        <view class="address-text">
+          <image src='/images/address.png' style='width:24rpx;height:24rpx;'></image>
+          <text>收货地址：{{receiver.name}} {{receiver.phone}} ({{receiver.address}} {{receiver.detail}})</text>
+          <image src='/images/arrowright.png' style='width:26rpx;height:24rpx;'></image>
         </view>
+      </block>
       </view>
     </view>
 

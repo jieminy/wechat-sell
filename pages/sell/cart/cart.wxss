@@ -84,9 +84,10 @@
    margin: 0 auto
 }
 .dish-item-info{
-  width: 150rpx;
   padding-left: 16rpx;
   flex:1;
+  overflow:hidden;
+  white-space: nowrap;
 }
 .dish-item-name{
   color: #454545;
@@ -97,6 +98,18 @@
   font-size:28rpx;
   line-height: 50rpx
 }
+.dish-item-name,.dish-item-sales{
+  width: 100%;
+  display: block;
+}
+
+.dish-item-name text,.dish-item-sales text{
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  text-overflow:ellipsis;
+}
+
 .dish-item-money{
   color: #f50909;
   font-size: 28rpx;
@@ -109,15 +122,14 @@
 .dish-item-count{
   display: flex;
   font-size: 26rpx;
-  padding: 60rpx 0 0 10rpx;
 }
 .dish-item-tab{
   width: 60rpx;
   height: 60rpx;
 }
 .dish-item-count-minus{
-  width: 60rpx;
-  height: 60rpx;
+  width: 50rpx;
+  height: 50rpx;
 }
 .dish-item-count-text{
   color: #ccc;
@@ -127,8 +139,8 @@
 
 }
 .dish-item-count-plus{
-  width: 60rpx;
-  height: 60rpx;
+  width: 50rpx;
+  height: 50rpx;
 }
 .image{
   width: 100%;
