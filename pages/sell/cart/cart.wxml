@@ -3,7 +3,10 @@
   <scroll-view scroll-y="true" scroll-into-view="{{toView}}" class="right-side">
     <block wx:for="{{cart}}" wx:key="productId" wx:for-item="product">
       <view class="dish-item" hidden="{{product.count == 0}}">
-        <view class="dish-item-wrp layout-row">
+        <view 
+        
+        
+        class="dish-item-wrp layout-row">
           <view class="dish-item-pic">
             <image class="image" src="{{product.productIcon}}" />
           </view>

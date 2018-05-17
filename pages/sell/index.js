@@ -91,7 +91,6 @@ Page({
     }
 
     menus[index].childCategories = clildCategories;
-    console.log(menus);
     this.setData({
       cart: cart,
       menus: menus,

@@ -24,26 +24,30 @@ Page({
     onLoad: function (options) {
         var that = this;
         let proid = options.proid;
-        console.log(proid);
         req.getRequest("/buyer/product/one?proId=" + proid,
             function (res) {
                 let product = res.data.data;
-                console.log(product);
                 if (product) {
-                    let swipeIcons = JSON.parse(product.swipeIcons);
-                    let detailIcons = JSON.parse(product.detailIcons);
-                    that.setData({
-                        product: product,
-                        swipeIcons: swipeIcons,
-                        detailIcons: detailIcons
-                    });
+                  let swipeIcons = [];
+                  if (product.swipeIcons){
+                    swipeIcons = JSON.parse(product.swipeIcons);
+                  }
+                  let detailIcons = [];
+                  if (product.detailIcons){
+                    detailIcons = JSON.parse(product.detailIcons);
+                  }
+                  that.setData({
+                      product: product,
+                      swipeIcons: swipeIcons,
+                      detailIcons: detailIcons
+                  });
                 }
             },
             function (res) {
 
             }
         );
-        let cart = wx.getStorageSync("cart");
+        let cart = getApp().globalData.cart;
         if (cart) {
             this.setData({
                 cart: cart
@@ -81,7 +85,7 @@ Page({
             count: ++this.data.count,
             cart: cart
         });
-        wx.setStorageSync("cart", cart);
+        getApp().globalData.cart = cart;
     },
 
 })

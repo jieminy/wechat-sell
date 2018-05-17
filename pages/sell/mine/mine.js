@@ -43,6 +43,33 @@ Page({
       })
     }
   },
+  onShow: function(){
+    this.remind();
+  },
+  getUserInfo: function (e) {
+    if (!e.detail.userInfo){
+      this.remind();
+      return;
+    }
+    //获取用户信息
+    app.getUserInfo();
+    wx.switchTab({
+      url: '../index',
+    })
+  },
+  remind: function(){
+    wx.getSetting({
+      success: (res) => {
+        if (res.authSetting["scope.userInfo"] === false) {
+          wx.showModal({
+            title: '用户信息未授权',
+            content: '如需正常使用小程序，需先授权获取用户信息，请点击 获取头像昵称',
+            showCancel: false
+          })
+        }
+      }
+    })
+  },
   openOrderPage: function(){
     wx.navigateTo({
       url: 'myorder/myorder'

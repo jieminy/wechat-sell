@@ -7,10 +7,6 @@ App({
     cart: [],
   },
   onLaunch: function () {
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
 
     //读取本地存储
     let cart = wx.getStorageSync("cart");
@@ -21,6 +17,7 @@ App({
     if (receiver) {
       this.globalData.receiver = receiver;
     }
+  
     this.getUserInfo();
     // wx.showModal({
     //   title: '用户未授权',
@@ -81,7 +78,7 @@ App({
           that.getUserInfo();
         } else {
           wx.showModal({
-            title: '用户未授权',
+            title: '获取位置未授权',
             content: '如需正常使用公寓鲜，请先进行授权',
             showCancel: false,
             confirmText: '授权',
@@ -145,7 +142,9 @@ App({
         that.getLocation();
       },
       fail: res=>{
-        that.authorize();
+        wx.switchTab({
+          url: 'mine/mine',
+        })
       }
     })
   
@@ -159,11 +158,14 @@ App({
     });
     var fail = function (data) {
       console.log(data)
+      that.authorize();
     };
     var success = function (data) {
       wxMarkerData = data.wxMarkerData;
       that.globalData.location = wxMarkerData[0].address;
-      getCurrentPages()[0].reWriteLocation();
+      if (getCurrentPages()[0].reWriteLocation){
+        getCurrentPages()[0].reWriteLocation();
+      }
       // typeof hd == "function" && hd(that.globalData.location);
     };
     // 发起regeocoding检索请求 

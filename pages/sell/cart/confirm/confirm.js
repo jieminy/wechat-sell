@@ -83,7 +83,6 @@ Page({
 
     //组装订单数据
     let receiver = this.data.receiver;
-    console.log(receiver)
     if (receiver == null) {
       wx.showToast({
         title: '请选择收获地址',
