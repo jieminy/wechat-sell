@@ -34,6 +34,7 @@ function isLogin(){
   return true;
 } 
 
+
 module.exports = {
   formatTime: formatTime,
   json2Form: json2Form,

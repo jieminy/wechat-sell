@@ -1,6 +1,7 @@
 //app.js
 var Request = require('/utils/request.js');
 var bmap = require('/libs/bmap-wx.min.js');
+require('./utils/number.extend.js');
 var wxMarkerData = [];
 App({
   data: {
@@ -8,6 +9,7 @@ App({
   },
   onLaunch: function () {
 
+    // wx.clearStorageSync();
     //读取本地存储
     let cart = wx.getStorageSync("cart");
     if (cart) {
@@ -57,10 +59,10 @@ App({
     //收获地址
     receiver: null,
     openid: null,
-    serviceUrl: "https://gongyuxian.com/sell",
+    // serviceUrl: "https://gongyuxian.com/sell",
     //百度地图
-    ak: 'KGPa32yj0bHnP7iAwIDX494yvm6R2auq'
-    // serviceUrl: "https://51vr.mynatapp.cc/sell"
+    ak: 'KGPa32yj0bHnP7iAwIDX494yvm6R2auq',
+    serviceUrl: "http://localhost:8082/sell"
   },
   onHide: function () {
     wx.setStorageSync("cart", this.globalData.cart);

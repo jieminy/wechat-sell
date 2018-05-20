@@ -1,3 +1,4 @@
+<wxs src="../../utils/number.extend.wxs" module="number"/>
 <view class="layout-column layout-fill">
 
   <view style='text-align: center;height: 24px' bindtap='getLocation'>
@@ -49,7 +50,7 @@
                 </view>
                 <view class="pro-item-money layout-row">
                   <view class='flex' hidden='{{product.activity == null}}'>
-                    <text>¥{{(product.productPrice * 10 * 10) * (product.activity.discount * 10 * 10) / 10000  }}</text>
+                    <text>¥{{number.mul(product.productPrice,product.activity.discount)}}</text>
                     <text  style="text-decoration:line-through; color:#ccc;font-size:.8em"> ¥{{product.productPrice}}</text>
                   </view>
                   <view class='flex' hidden='{{product.activity != null && product.activity.atvId == 1}}'>

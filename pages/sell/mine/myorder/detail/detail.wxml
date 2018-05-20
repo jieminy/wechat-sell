@@ -60,15 +60,21 @@
 
   <view class="common-tab layout-row">
     <view class="flex"></view>
-    <view wx:if="{{order.payStatus == 0}}">
+    <block wx:if="{{order.orderStatus == 0 && order.payStatus == 0}}">
       <view class="common-tab-action" bindtap='cancelOrder'>取消订单</view>
       <view class="common-tab-action" bindtap='pay' data-orderid='{{order.orderId}}'>去支付</view>
-    </view>
-    <view wx:elif="{{order.orderStatus == 2}}">
+    </block>
+    <block wx:if="{{order.orderStatus == 2 && order.payStatus == 0}}">
       <view class="common-tab-action">已取消</view>
-    </view>
-    <view wx:elif="{{order.payStatus == 1}}">
+    </block>
+    <block wx:if="{{order.orderStatus == 0 && order.payStatus == 1}}">
       <view class="common-tab-action">已支付</view>
-    </view>
+    </block>
+    <block wx:if="{{order.orderStatus == 1 && order.payStatus == 1}}">
+      <view class="common-tab-action">已完结</view>
+    </block>
+    <block wx:if="{{order.orderStatus == 2 && order.payStatus == 1}}">
+      <view class="common-tab-action">已撤单</view>
+    </block>
   </view>
 </view>

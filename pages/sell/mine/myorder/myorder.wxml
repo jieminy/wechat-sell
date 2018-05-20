@@ -1,4 +1,4 @@
-<scroll-view scroll-y="true" class="order-main">
+<scroll-view scroll-y="true" class="order-main" bindscrolltolower="lower" bindscrolltoupper="upper">
   <block wx:for="{{orders}}" wx:key="orders.orderId" wx:for-item="order">
 
     <view class="ibox order-item">
@@ -8,13 +8,27 @@
         </view>
 
         <view class="ibox-item layout-row">
-          <view wx:for="{{order.orderDetailList}}" wx:for-item="detail"
-            style='display:inline-block;width:59rpx;height:59rpx;'>
+          <view wx:for="{{order.orderDetailList}}" wx:key="detailId" wx:for-item="detail" style='display:inline-block;width:59rpx;height:59rpx;'>
             <image src='{{detail.productIcon}}' style='width:100%;height:100%;'></image>
           </view>
         </view>
 
         <view class="ibox-item layout-row">
+          <block wx:if="{{order.orderStatus == 0 && order.payStatus == 0}}">
+            <view class="flex">未支付</view>
+          </block>
+          <block wx:if="{{order.orderStatus == 2 && order.payStatus == 0}}">
+            <view class="flex">已取消</view>
+          </block>
+          <block wx:if="{{order.orderStatus == 0 && order.payStatus == 1}}">
+            <view class="flex">配送中</view>
+          </block>
+          <block wx:if="{{order.orderStatus == 1 && order.payStatus == 1}}">
+            <view class="flex">已完结</view>
+          </block>
+          <block wx:if="{{order.orderStatus == 2 && order.payStatus == 1}}">
+            <view class="flex">已撤单</view>
+          </block>
           <view class="flex">
             <!-- {{order.orderStatus}} {{order.payStatus}} -->
           </view>

@@ -87,5 +87,10 @@ Page({
         });
         getApp().globalData.cart = cart;
     },
-
+    //分享
+    onShareAppMessage: function () {
+      return {
+        title: '根本停不下来'
+      }
+    }
 })
