@@ -54,6 +54,7 @@ Page({
     }else{
       receiver = null;
     }
+
     // 页面显示
     this.setData({
       cart: getApp().globalData.cart,
@@ -107,9 +108,16 @@ Page({
     let sumPrice = this.data.amount;
     let isSelfPick = this.data.isSelfPick;
     let cart = this.data.cart;
-    if(!cart || cart.length == 0){
+    let cartForm = [];
+    cart.forEach(function(product, i){
+      if (product.count != 0){
+        cartForm.push(product);
+      }
+    });
+    if (cartForm.length == 0){
       wx.showToast({
         title: '请先选择商品！',
+        icon: "none",
         duration: 3000
       });
       return;
@@ -144,7 +152,7 @@ Page({
       address: receiver.address,
       orderAmount: sumPrice,
       openid: openid,
-      items: JSON.stringify(cart),
+      items: JSON.stringify(cartForm),
       distributeType: distributeType,
       distributeTime: distributeTime,
       freight: freight

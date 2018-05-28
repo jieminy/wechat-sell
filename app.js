@@ -59,10 +59,10 @@ App({
     //收获地址
     receiver: null,
     openid: null,
-    // serviceUrl: "https://gongyuxian.com/sell",
+    serviceUrl: "https://gongyuxian.com/sell",
     //百度地图
     ak: 'KGPa32yj0bHnP7iAwIDX494yvm6R2auq',
-    serviceUrl: "http://localhost:8082/sell"
+    // serviceUrl: "http://localhost:8082/sell"
   },
   onHide: function () {
     wx.setStorageSync("cart", this.globalData.cart);

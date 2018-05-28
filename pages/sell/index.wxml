@@ -1,4 +1,4 @@
-<wxs src="../../utils/number.extend.wxs" module="number"/>
+ <wxs src="../../utils/number.extend.wxs" module="number"> </wxs> 
 <view class="layout-column layout-fill">
 
   <view style='text-align: center;height: 24px' bindtap='getLocation'>
@@ -49,13 +49,17 @@
                   <text>{{product.productDescription}} </text>
                 </view>
                 <view class="pro-item-money layout-row">
-                  <view class='flex' hidden='{{product.activity == null}}'>
-                    <text>¥{{number.mul(product.productPrice,product.activity.discount)}}</text>
-                    <text  style="text-decoration:line-through; color:#ccc;font-size:.8em"> ¥{{product.productPrice}}</text>
-                  </view>
-                  <view class='flex' hidden='{{product.activity != null && product.activity.atvId == 1}}'>
-                    <text>¥{{product.productPrice}}</text>
-                  </view>
+                  <block wx:if="{{product.activity.type == 1}}" >
+                    <view class='flex'>
+                       <text>¥{{number.mul(product.productPrice,product.activity.discount)}}</text> 
+                       <text  style="text-decoration:line-through; color:#ccc;font-size:.8em"> ¥{{product.productPrice}}</text> 
+                    </view>
+                  </block>
+                  <block  wx:if="{{product.activity.type == -1}}" >
+                    <view class='flex'>
+                      <text>¥{{product.productPrice}}</text>
+                    </view>
+                  </block>
 
                   <view class="pro-item-count">
                     <view class="pro-item-tab">

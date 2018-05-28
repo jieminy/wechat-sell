@@ -15,7 +15,7 @@
         <scroll-view scroll-x class="">
           <block wx:for="{{cart}}" wx:key="productId" wx:for-item="product">
             <view class="cart-item-icon-wrp ">
-              <view class="cart-item-icon ">
+              <view class="cart-item-icon " wx:if="{{product.count!=0}}">
                 <image class="image" src="{{product.productIcon}}" />
               </view>
             </view>
