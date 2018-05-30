@@ -103,8 +103,12 @@ Page({
 
     //获取位置
   getLocation: function () {
-    wx.navigateTo({
-      url: '../choose/choose',
+    // wx.navigateTo({
+    //   url: '../choose/choose',
+    // })
+    wx.showToast({
+      title: '现只支持天鸿公寓',
+      icon: "none"
     })
   }
 })

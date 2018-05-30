@@ -11,7 +11,7 @@ Page({
     //购物车
     cart: [],
     //位置
-    address: '',
+    address: '天鸿公寓',
     //是否显示加载更多
     isHideLoadMore: true,
     //swipper 属性
@@ -262,9 +262,10 @@ Page({
   },
   //打开搜索位置页面
   getLocation: function(){
-    wx.navigateTo({
-      url: 'mine/address/choose/choose',
-    })
+    // wx.navigateTo({
+    //   url: 'mine/address/choose/choose',
+    // })
+
   },
   //用户授权之后需要重新写入位置信息
   reWriteLocation: function(){

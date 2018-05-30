@@ -10,7 +10,7 @@
     </view>
     <view class='mana-form '>
       <view class="text-right flex" >收获地址</view>
-      <input class="form-contral" name="address" placeholder='请输入您的收货地址' bindtap='getLocation'  value='{{location}}' />
+      <input class="form-contral" name="address" disabled='true' placeholder='请输入您的收货地址' bindtap='getLocation'  value='{{location}}' />
     </view>
      <!-- <view class='mana-form ' wx:else>
       <view class="text-right flex" >收获地址</view>

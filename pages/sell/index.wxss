@@ -75,7 +75,7 @@ swiper {
 /*商品信息*/
 
 .pro-item {
-  padding: 16rpx 1.5em;
+  padding: 16rpx 1em;
   margin-left: 10rpx;
   margin-right: 10rpx;
   border-bottom: 1rpx solid #f2f2f2;
@@ -88,8 +88,8 @@ swiper {
 }
 
 .pro-item-pic {
-  width: 168rpx;
-  height: 168rpx;
+  width: 200rpx;
+  height: 200rpx;
   margin-right: 1em;
   position: relative;
   overflow: hidden;
@@ -194,7 +194,7 @@ swiper {
 
 .dish-category-title {
   line-height: 60rpx;
-  padding-left: 1em;
+  padding-left: 0.8em;
   font-size: 38rpx;
 }
 

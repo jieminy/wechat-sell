@@ -48,7 +48,6 @@ Page({
     wx.onSocketMessage(function(res){
       console.log(res);
     })
-
   },
   onUnload: function(){
     console.log("onUnload");

@@ -55,7 +55,7 @@ App({
     //购物车
     cart: [],
     //位置
-    location: "",
+    location: "天鸿公寓",
     //收获地址
     receiver: null,
     openid: null,
@@ -137,8 +137,8 @@ App({
           }
         })
 
-        //定位
-        that.getLocation();
+        //定位 暂时注释掉
+        // that.getLocation();
       },
       fail: res=>{
         wx.switchTab({
