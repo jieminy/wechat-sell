@@ -30,31 +30,31 @@ Page({
       }
     });
 
-    wx.connectSocket({
-      url: 'ws://51vr.mynatapp.cc/sell/webSocket',
-      success(res){
-        console.log(res);
-      },
-      fail(res){
-        console.log(res);
-      }
-    })
-    wx.onSocketOpen(function (res) {
-      console.log(res+'WebSocket连接已打开！')
-    })
-    wx.onSocketError(function (res) {
-      console.log(res+'WebSocket连接打开失败，请检查！')
-    })
-    wx.onSocketMessage(function(res){
-      console.log(res);
-    })
+    // wx.connectSocket({
+    //   url: 'ws://51vr.mynatapp.cc/sell/webSocket',
+    //   success(res){
+    //     console.log(res);
+    //   },
+    //   fail(res){
+    //     console.log(res);
+    //   }
+    // })
+    // wx.onSocketOpen(function (res) {
+    //   console.log(res+'WebSocket连接已打开！')
+    // })
+    // wx.onSocketError(function (res) {
+    //   console.log(res+'WebSocket连接打开失败，请检查！')
+    // })
+    // wx.onSocketMessage(function(res){
+    //   console.log(res);
+    // })
   },
   onUnload: function(){
     console.log("onUnload");
-    wx.closeSocket();
-    wx.onSocketClose(function (res) {
-      console.log("连接已关闭！");
-    })
+    // wx.closeSocket();
+    // wx.onSocketClose(function (res) {
+    //   console.log("连接已关闭！");
+    // })
   },
   cancelOrder: function () {
     let that = this;

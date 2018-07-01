@@ -22,41 +22,49 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        var that = this;
-        let proid = options.proid;
-        req.getRequest("/buyer/product/one?proId=" + proid,
-            function (res) {
-                let product = res.data.data;
-                if (product) {
-                  let swipeIcons = [];
-                  if (product.swipeIcons){
-                    swipeIcons = JSON.parse(product.swipeIcons);
-                  }
-                  let detailIcons = [];
-                  if (product.detailIcons){
-                    detailIcons = JSON.parse(product.detailIcons);
-                  }
-                  that.setData({
-                      product: product,
-                      swipeIcons: swipeIcons,
-                      detailIcons: detailIcons
-                  });
+      var that = this;
+      let proid = options.proid;
+      console.log(proid);
+      req.getRequest("/buyer/product/one?proId=" + proid,
+          function (res) {
+              let product = res.data.data;
+              if (product) {
+                let swipeIcons = [];
+                if (product.swipeIcons){
+                  swipeIcons = JSON.parse(product.swipeIcons);
                 }
-            },
-            function (res) {
+                let detailIcons = [];
+                if (product.detailIcons){
+                  detailIcons = JSON.parse(product.detailIcons);
+                }
+                that.setData({
+                    product: product,
+                    swipeIcons: swipeIcons,
+                    detailIcons: detailIcons
+                });
+              }
+          },
+          function (res) {
 
-            }
-        );
-        let cart = getApp().globalData.cart;
-        if (cart) {
-            this.setData({
-                cart: cart
-            });
-        }
+          }
+      );
+      let cart = getApp().globalData.cart;
+      let cartProduct = cart.find(function (v) {
+        return v.productId == proid;
+      });
+      if(cartProduct){
+        that.setData({
+          count: cartProduct.count,
+        });
+      }
+      if (cart) {
+          that.setData({
+              cart: cart
+          });
+      }
 
     },
     tocart: function () {
-
         wx.switchTab({
             url: '/pages/sell/cart/cart',
         })
@@ -89,8 +97,11 @@ Page({
     },
     //分享
     onShareAppMessage: function () {
+      console.log(this.data.product.productId);
       return {
-        title: '根本停不下来'
+        title: '根本停不下来',
+        // path: 'pages/sell/home/detail/detail?proid=' + this.data.product.productId
+        path: 'pages/sell/index?proid=' + this.data.product.productId
       }
     }
 })

@@ -17,7 +17,7 @@ Page({
       this.setData({
         isChoose: true
       })
-    }
+    } 
     
   },
 
@@ -77,22 +77,33 @@ Page({
   deleteRec: function (event) {
     let eventData = event.currentTarget.dataset;
     var that = this;
-    wx.request({
-      url: getApp().globalData.serviceUrl + '/buyer/receiver/del',
-      data: {
-        recId: eventData.recid,
-        openid: getApp().globalData.openid
-      },
+    wx.showModal({
+      title: '提示',
+      content: '确定删除该收货地址？',
       success: function (res) {
-        let resData = res.data;
-        if(resData.code == 0){
-          that.setData({
-            receivers: resData.data
-          });
+        if (res.confirm) {
+          console.log('用户点击确定')
+          wx.request({
+            url: getApp().globalData.serviceUrl + '/buyer/receiver/del',
+            data: {
+              recId: eventData.recid,
+              openid: getApp().globalData.openid
+            },
+            success: function (res) {
+              let resData = res.data;
+              if (resData.code == 0) {
+                that.setData({
+                  receivers: resData.data
+                });
+              }
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
         }
       }
-      
     })
+
   },
   chooseCurrentReceiver: function (event) {
     if (this.data.isChoose == true){

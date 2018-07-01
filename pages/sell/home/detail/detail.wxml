@@ -1,3 +1,5 @@
+<wxs src="../../../../utils/number.extend.wxs" module="number">
+</wxs>
 <view class='layout-fill layout-column'>
   <scroll-view scroll-y="true" class="flex" style='overflow:hidden;'>
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
@@ -12,17 +14,29 @@
         <view class="title flex">
           <text>{{product.productName}} {{product.weight}}</text>
         </view>
+        <block wx:if="{{product.activity.type == -1}}">
+          <view class='price'>
+            <text>￥{{product.productPrice}}</text>
+          </view>
+        </block>
+        <block wx:if="{{product.activity.type == 1}}">
+          <view class='price'>
+            <text>¥{{number.mul(product.productPrice,product.activity.discount)}}</text>
+            <text style="text-decoration:line-through; color:#ccc;font-size:.8em"> ¥{{product.productPrice}}</text>
+          </view>
+        </block>
+      </view>
+
+      <view class="layout-row">
+        <view class='desc flex'>
+          <text>{{product.productDescription}}</text>
+        </view>
+
         <view class="sales">
           <text>已售{{product.productSales}}份</text>
         </view>
       </view>
 
-      <view class='desc'>
-        <text>{{product.productDescription}}</text>
-      </view>
-      <view class='price'>
-        <text>￥{{product.productPrice}}</text>
-      </view>
 
     </view>
 
@@ -45,7 +59,7 @@
     </view>
 
     <view class="detailIcons" wx:for="{{detailIcons}}" wx:key="idx">
-      <image src='{{item}}'/>
+      <image src='{{item}}' />
     </view>
   </scroll-view>
 
@@ -53,11 +67,11 @@
   <!-- 底部悬浮栏 -->
   <view class="detail-nav layout-row">
     <view class="cart">
-    <text class='cart-total'>{{count}}</text>
-    <image src="../../resources/pic/orderBox.png" bindtap='tocart' />
+      <text class='cart-total'>{{count}}</text>
+      <image src="../../resources/pic/orderBox.png" bindtap='tocart' />
     </view>
     <view class='flex'>
-    <button class="bg-orange" bindtap="addProduct" formType="submit">加入购物车</button>
+      <button class="bg-orange" bindtap="addProduct" formType="submit">加入购物车</button>
     </view>
   </view>
 </view>

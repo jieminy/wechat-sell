@@ -21,7 +21,7 @@ Page({
     duration: 1000, //  滑动动画时长1s
   },
 
-  onLoad: function () {
+  onLoad: function (options) {
     var that = this;
     //加载菜单
     req.getRequest('/buyer/product/list',
@@ -31,11 +31,18 @@ Page({
           menus = [];
         }
         that.loadProductOfNextPage(menus, that.data.menuIndex);
+        //商品详情分享跳转
+        if (options.proid) {
+          console.log(options.proid);
+          wx.navigateTo({
+            url: 'home/detail/detail?proid=' + options.proid,
+          })
+        }
       },
       function (res) {
         console.log(res);
       }
-    ); 
+    );
 
   },
   onShow: function () {
@@ -63,7 +70,6 @@ Page({
 
   //初始化购物车
   initCart: function (menus, index, clildCategories) {
-
     let cart = this.data.cart;
     if (cart) {
       var i;
@@ -79,6 +85,9 @@ Page({
                 function (cartProduct, j) {
                   if (cartProduct.productId == product.productId) {
                     product.count = cartProduct.count;
+                    cartProduct.productPrice = product.productPrice;
+                    cartProduct.activity = product.activity;
+                    cartProduct.productIcon = product.productIcon;
                   }
                 }
               );
@@ -216,7 +225,7 @@ Page({
     })
   },
   //加载下一页的商品数据
-  loadProductOfNextPage: function (menus, index){
+  loadProductOfNextPage: function (menus, index) {
 
     var that = this;
     let page = menus[index].page;
@@ -244,7 +253,7 @@ Page({
         });
         let childCategories = res.data.data;
         let smallCategories = menus[index].childCategories
-        if(!smallCategories){
+        if (!smallCategories) {
           smallCategories = [];
         }
         smallCategories = smallCategories.concat(childCategories)
@@ -261,21 +270,21 @@ Page({
     );
   },
   //打开搜索位置页面
-  getLocation: function(){
+  getLocation: function () {
     // wx.navigateTo({
     //   url: 'mine/address/choose/choose',
     // })
 
   },
   //用户授权之后需要重新写入位置信息
-  reWriteLocation: function(){
+  reWriteLocation: function () {
     this.setData({
       address: app.globalData.location
     });
   },
   //分享
-  onShareAppMessage: function(){
-    return{
+  onShareAppMessage: function () {
+    return {
       title: '公寓鲜'
     }
   }

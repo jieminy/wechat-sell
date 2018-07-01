@@ -20,6 +20,7 @@
 }
 .cart-item-total{
   padding-left: 30rpx;
+  min-width: 160rpx;
 }
 .cart-item-icon-wrp{
   width: 110rpx;

@@ -1,8 +1,9 @@
  <wxs src="../../utils/number.extend.wxs" module="number"> </wxs> 
 <view class="layout-column layout-fill">
 
-  <view style='text-align: center;height: 24px' bindtap='getLocation'>
-    <text>{{address}}</text>
+  <view style='text-align: center;height: 34px;' bindtap='getLocation'>
+    <view style='display:inline-block;font-size:0.8rem; color:red;margin-right:.3rem;'>次日达</view>
+    <view style='display:inline-block;vertical-align:middle;'>{{address}}</view>
   </view>
 
   <scroll-view scroll-x class="scroll-menu">

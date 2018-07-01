@@ -1,6 +1,6 @@
 <view style='text-align:center;'>
-  <image src='{{imagList[0]}}' bindtap='previewImage'></image>
+  <image src='{{imagList[0]}}' class='image' bindtap='previewImage'></image>
 </view>
-<view class='custom' bindtap='call'>
-  <text>‭13512959618</text>
+<view class='custom' bindtap='copy'>
+  <text>微信号码：{{wechatNumber}}</text>
 </view>

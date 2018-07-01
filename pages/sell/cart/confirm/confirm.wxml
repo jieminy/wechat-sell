@@ -27,21 +27,20 @@
     <view class="address-infos">
       <view class="address-text-wrap" bindtap='navitoAddress'>
 
-      <block wx:if='{{receiver==null}}'>
-        <view class="address-text layout-row" >
-          <image src='/images/address.png' style='width:24rpx;height:24rpx;'></image>
-          <text>请选择收获地址</text>
-          <image src='/images/arrowright.png' style='width:26rpx;height:24rpx;'></image>
-        </view>
-      </block>
+        <view class="address-text layout-row">
+          <image src='/images/address.png' style='padding:15px 15px; width:42rpx;height:42rpx;'></image>
 
-      <block wx:if='{{receiver!=null}}'>
-        <view class="address-text">
-          <image src='/images/address.png' style='width:24rpx;height:24rpx;'></image>
-          <text>收货地址：{{receiver.name}} {{receiver.phone}} ({{receiver.address}} {{receiver.detail}})</text>
-          <image src='/images/arrowright.png' style='width:26rpx;height:24rpx;'></image>
+          <block wx:if='{{receiver==null}}'>
+            <view class="flex" style='padding:10px 10px;' >请选择收获地址</view>
+          </block>
+
+          <block wx:if='{{receiver!=null}}'>
+            <view class="flex" style='padding:10px 10px;'>收货地址：{{receiver.name}} {{receiver.phone}} ({{receiver.address}} {{receiver.detail}})</view>
+          </block>
+
+          <image src='/images/arrowright.png' style='padding:15px 15px;width:35rpx;height:35rpx;'></image>
         </view>
-      </block>
+
       </view>
     </view>
 
@@ -54,12 +53,12 @@
 
         <view hidden="{{isSelfPick == true}}">
           <view class="ibox-item layout-row">
-            <text class="flex">配送时间</text>
+            <text class="flex" style="color:black;" >配送时间</text>
             <view class='layout-row'>
               <picker mode="multiSelector" range="{{rangeData}}" value="{{rangeIdx}}" bindchange="bindTimeChange">
                 <view class="picker">
                   <text style='color:red;'>[次日]</text>
-                  <text>{{rangeData[1][rangeIdx[1]]}}</text>
+                  <text style="color:black;">{{rangeData[1][rangeIdx[1]]}}</text>
                   <image src='/images/arrowright.png' style='width:26rpx;height:24rpx;'></image>
                 </view>
               </picker>

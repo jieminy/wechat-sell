@@ -24,6 +24,14 @@
       </view>
     </view>
 
+    <view class="ibox" wx:if="{{order.orderCode!=null}}">
+      <view class="ibox-content">
+        <view class="ibox-item" style="font-size:1.4rem; text-align:center;color:black;">
+          <text>取货码 {{order.orderCode}}</text>
+        </view>
+      </view>
+    </view>
+
     <view class="ibox">
       <view class="ibox-title">
         <text>订单信息</text>

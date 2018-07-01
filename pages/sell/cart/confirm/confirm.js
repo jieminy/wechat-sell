@@ -1,6 +1,7 @@
 var Util = require("../../../../utils/util.js");
 var Request = require("../../../../utils/request.js");
 var Pay = require("../../../../utils/pay.js");
+
 Page({
 
   /**
@@ -73,7 +74,7 @@ Page({
     if (this.data.isSelfPick == false) {
       let amount = this.data.amount;
       let freight = this.data.freight;
-      amount = (100 * amount - freight * 100) / 100;
+      amount = amount.sub(freight);
       this.setData({
         isSelfPick: true,
         amount: amount
@@ -84,7 +85,7 @@ Page({
     if (this.data.isSelfPick == true) {
       let amount = this.data.amount;
       let freight = this.data.freight;
-      amount = (100 * amount + freight * 100) / 100;
+      amount = amount.add(freight);
       this.setData({
         isSelfPick: false,
         amount: amount
