@@ -13,7 +13,7 @@
       </view>
     </view>
 
-    <view class="ibox">
+    <view class="ibox" wx:if="{{order.buyerName!='null'}}">
       <view class="ibox-content">
         <view class="ibox-item">
           <text>{{order.buyerName}} {{order.buyerPhone}}</text>
@@ -56,6 +56,9 @@
         </view>
         <view class="ibox-item">
           <text>运费：￥{{order.freight}}</text>
+        </view>
+        <view class="ibox-item" wx:if="{{order.distributeType == 1}}">
+          <text>自取地址：天鸿公寓 32栋2楼 超市内生鲜区</text>
         </view>
       </view>
     </view>

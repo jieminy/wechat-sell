@@ -14,8 +14,8 @@
       <view class="ibox-content">
         <scroll-view scroll-x class="">
           <block wx:for="{{cart}}" wx:key="productId" wx:for-item="product">
-            <view class="cart-item-icon-wrp ">
-              <view class="cart-item-icon " wx:if="{{product.count!=0}}">
+            <view class="cart-item-icon-wrp " wx:if="{{product.count!=0}}">
+              <view class="cart-item-icon ">
                 <image class="image" src="{{product.productIcon}}" />
               </view>
             </view>
@@ -80,7 +80,7 @@
           </view>
           <view class="ibox-item layout-row">
             <text class="flex">自提地点</text>
-            <text>天鸿公寓 32栋2楼 电梯口旁</text>
+            <text>天鸿公寓 32栋2楼 超市内生鲜区</text>
           </view>
         </view>
 

@@ -7,7 +7,6 @@ function pay(orderId){
   }
   Request.getRequest('/pay/create?orderId=' + orderId + '&openid=' + openid,
     function (res) {
-      console.log(res.data);
       let payment = res.data.data;
       wx.requestPayment({
         'timeStamp': payment.timeStamp,
