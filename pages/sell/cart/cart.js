@@ -53,7 +53,7 @@ Page({
       product.count -= 1;
       let total = this.data.total;
       total.count -= 1;
-      if (product.activity != null && product.activity.atvId == 1) {
+      if (product.activity != null && product.activity.type == 1) {
         total.money = total.money.sub(
          product.productPrice.mul(product.activity.discount)
         );
@@ -76,7 +76,7 @@ Page({
     product.count += 1;
     let total = this.data.total;
     total.count += 1;
-    if (product.activity != null && product.activity.atvId == 1) {
+    if (product.activity != null && product.activity.type == 1) {
       total.money = total.money.add(
         product.productPrice.mul(product.activity.discount)
       );

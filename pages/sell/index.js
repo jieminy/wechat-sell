@@ -113,7 +113,6 @@ Page({
     } else {
       cart = [];
     }
-
     menus[index].childCategories = clildCategories;
     this.setData({
       cart: cart,

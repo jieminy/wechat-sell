@@ -50,24 +50,32 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    console.log();
     let receiver = getApp().globalData.receiver;
     if (receiver && receiver.openid && receiver.openid == getApp().globalData.openid){
     }else{
       receiver = null;
     }
 
+    let amount = getApp().globalData.total.money ;
+    if (!this.data.isSelfPick) {
+      amount = amount + this.data.freight
+    }
     // 页面显示
     this.setData({
       cart: getApp().globalData.cart,
       total: getApp().globalData.total,
       receiver: receiver,
-      amount: getApp().globalData.total.money
+      amount: amount
     });
+
+ 
   },
   onHide: function() {
     let receiver = this.data.receiver;
     if (receiver && receiver.openid && receiver.openid == getApp().globalData.openid) {
       getApp().globalData.receiver = receiver;
+      // getApp().globalData.total = this.data.total;
     }
   },
   selfpick: function () {
@@ -96,9 +104,10 @@ Page({
     if (Util.isLogin() === false) {
       return;
     }
+    let isSelfPick = this.data.isSelfPick;
     //组装订单数据
     let receiver = this.data.receiver;
-    if (receiver == null) {
+    if (!isSelfPick && receiver == null) {
       wx.showToast({
         title: '请选择收获地址',
         icon: 'none',
@@ -107,7 +116,7 @@ Page({
       return;
     }
     let sumPrice = this.data.amount;
-    let isSelfPick = this.data.isSelfPick;
+  
     let cart = this.data.cart;
     let cartForm = [];
     cart.forEach(function(product, i){
@@ -143,6 +152,11 @@ Page({
         return;
       }
     } else {
+      receiver = {
+        name: null,
+        phone: null,
+        address: null,
+      }
       distributeTime = '10:00-21:30';
       freight = 0;
     }
@@ -150,7 +164,7 @@ Page({
     let orderForm = {
       name: receiver.name,
       phone: receiver.phone,
-      address: receiver.address,
+      address: receiver.address + " " + receiver.detail,
       orderAmount: sumPrice,
       openid: openid,
       items: JSON.stringify(cartForm),
@@ -168,6 +182,10 @@ Page({
             product.count = 0;
           });
           getApp().globalData.cart = cart;
+          getApp().globalData.total = {
+            count: 0,
+            money: 0.00
+          }
           //跳转订单详情页面
           wx.navigateTo({
             url: '../../mine/myorder/detail/detail?orderid=' + resData.data.orderId,
