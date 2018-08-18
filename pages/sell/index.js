@@ -44,6 +44,21 @@ Page({
       }
     );
 
+    req.getRequest('/mini/isOpen',
+      function (res) {
+        let mini = res.data.data;
+        if(mini){
+          if (mini.status === 0){
+            that.isOpen();
+          }
+        }
+      },
+      function (res) {
+        console.log(res);
+      }
+    );
+
+
   },
   onShow: function () {
     //加载购物车数据
@@ -287,6 +302,19 @@ Page({
     return {
       title: '公寓鲜'
     }
+  },
+  isOpen: function(){
+    var that = this;
+    wx.showModal({
+      title: '非常抱歉',
+      content: '本小店打烊了',
+      showCancel: false,
+      success: function (res) {
+        if (res.confirm) {
+          that.isOpen();
+        }
+      }
+    })
   }
 
 

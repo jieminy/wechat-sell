@@ -15,7 +15,7 @@ Page({
       if (cart) {
         cart.forEach(function (product, idx) {
           total.count += product.count;
-          if (product.activity != null && product.activity.atvId == 1) {
+          if (product.activity != null && product.activity.type == 1) {
             total.money = total.money.add(
               product.count.mul(product.productPrice).mul(product.activity.discount)
             );

@@ -57,6 +57,9 @@
         <view class="ibox-item">
           <text>运费：￥{{order.freight}}</text>
         </view>
+        <view class="ibox-item" wx:if="{{order.distributeType == 1}}">
+          <text>自取地址：天鸿公寓 32栋2楼 超市内生鲜区</text>
+        </view>
       </view>
     </view>
 

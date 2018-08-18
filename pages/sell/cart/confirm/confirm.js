@@ -32,7 +32,7 @@ Page({
       money: 0.00
     },
     discount: 9,
-    freight: 0.01,
+    freight: 1,
     isSelfPick: true,
     receiver: null,
     amount: 0.00,
